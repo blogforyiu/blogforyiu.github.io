@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>내 블로그 메인</title>
 
+    <!-- 구글 서치콘솔 소유권 확인 태그 -->
+    <meta name="google-site-verification" content="1COvF1O1NVrlPI7Bku_BulWgocAYuCh60OkP2O_hZFE" />
+
     <!-- 구글 애드센스 코드 -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1967645240354790"
          crossorigin="anonymous"></script>
@@ -27,17 +30,16 @@
         <a href="contact.html">문의하기</a>
     </footer>
 
-    <!-- 공통 데이터와 메인 페이지 스크립트 로드 (캐시 방지 ?v=2 적용) -->
+    <!-- 공통 데이터와 메인 페이지 스크립트 로드 (캐시 방지) -->
     <script src="data.js?v=2"></script>
     <script>
         const grid = document.getElementById('cardGrid');
 
         posts.forEach(post => {
-            // SEO 향상을 위해 a 태그 사용
             const cardLink = document.createElement('a');
             cardLink.href = `article.html?id=${post.id}`;
             cardLink.className = 'post-card-link'; 
-            cardLink.style.textDecoration = 'none'; // 기본 링크 밑줄 제거
+            cardLink.style.textDecoration = 'none';
             cardLink.style.color = 'inherit';
 
             cardLink.innerHTML = `
