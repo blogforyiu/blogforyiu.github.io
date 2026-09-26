@@ -119,3 +119,8 @@ body {
 .post-date-mini { font-size: 13px; color: var(--text-muted); font-weight: 500; margin-top: 6px; }
 
 @media (max-width: 1200px) { .sidebar { display: none !important; } .wrapper { display: block; } }
+
+/* 애드센스 심사 기간 동안 빈 광고 박스 숨기기 */
+.adsense-sidebar-tall, .adsense-box {
+  display: none !important;
+}
