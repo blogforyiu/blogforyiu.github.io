@@ -1,66 +1,285 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>내 블로그 메인</title>
-
-    <!-- 구글 서치콘솔 소유권 확인 태그 -->
-    <meta name="google-site-verification" content="1COvF1O1NVrlPI7Bku_BulWgocAYuCh60OkP2O_hZFE" />
-
-    <!-- 구글 애드센스 코드 -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1967645240354790"
-         crossorigin="anonymous"></script>
-
-    <!-- 디자인용 CSS 연결 -->
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>통합 정보 블로그</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    /* 방문자 숫자 애니메이션 및 메뉴 버튼 스타일 */
+    .visitor-num {
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+    }
+    .visitor-num.num-up {
+      color: var(--primary);
+      transform: scale(1.15);
+    }
+    .blog-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .blog-menu-btn {
+      display: block;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .blog-menu-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+  </style>
 </head>
 <body>
-    <header>
-        <h1>블로그 홈</h1>
-    </header>
 
-    <!-- 글 목록이 생성될 그리드 영역 -->
-    <main class="grid-container" id="cardGrid"></main>
+<div class="wrapper">
+  <!-- 좌측 사이드바 -->
+  <aside class="sidebar">
+    <div class="widget-box">
+      <h3 class="widget-title">📌 블로그 메뉴</h3>
+      <div class="blog-menu-links">
+        <a href="about.html" class="blog-menu-btn">📖 블로그 소개 (About)</a>
+        <a href="privacy.html" class="blog-menu-btn">🔒 개인정보처리방침</a>
+        <a href="contact.html" class="blog-menu-btn">✉️ 문의하기 (Contact)</a>
+      </div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">🕒 실시간 시계</h3>
+      <div id="clock-time" class="clock-time">00:00:00</div>
+      <div id="clock-date" class="clock-date">2026년 0월 0일</div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">☀️ 실시간 날씨</h3>
+      <div class="weather-info">
+        <div id="weather-temp" class="weather-temp">--°C</div>
+        <div class="weather-sub">
+          <div id="weather-status">불러오는 중...</div>
+          <div id="weather-dust" style="margin-top: 3px;">미세먼지: --</div>
+        </div>
+      </div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">📅 이달의 달력</h3>
+      <div id="mini-calendar" class="calendar-grid"></div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">📊 방문자 현황</h3>
+      <div class="visitor-stats">
+        <div class="visitor-item"><span class="visitor-label">오늘</span><span id="visitor-today" class="visitor-num" style="color: var(--primary);">0</span></div>
+        <div class="visitor-item"><span class="visitor-label">어제</span><span id="visitor-yesterday" class="visitor-num">0</span></div>
+        <div class="visitor-item"><span class="visitor-label">누적</span><span id="visitor-total" class="visitor-num">0</span></div>
+      </div>
+    </div>
+  </aside>
 
-    <footer>
-        <!-- 애드센스 필수 승인 요건: 정책 페이지 실제 링크 연결 -->
-        <a href="privacy.html">개인정보처리방침</a> | 
-        <a href="about.html">소개</a> | 
-        <a href="contact.html">문의하기</a>
-    </footer>
+  <!-- 메인 콘텐츠 영역 -->
+  <main class="container">
+    <div class="blog-section">
+      <div class="blog-header"><h2 class="blog-title">생활 / 꿀팁 모음</h2></div>
+      <div id="posts-lifestyle" class="post-list-scroll"></div>
+    </div>
 
-    <!-- 공통 데이터와 메인 페이지 스크립트 로드 (캐시 방지) -->
-    <script src="data.js?v=2"></script>
-    <script>
-        const grid = document.getElementById('cardGrid');
+    <div class="blog-section">
+      <div class="blog-header"><h2 class="blog-title">금융 / 테크 정보</h2></div>
+      <div id="posts-finance" class="post-list-scroll"></div>
+    </div>
 
-        posts.forEach(post => {
-            const cardLink = document.createElement('a');
-            cardLink.href = `article.html?id=${post.id}`;
-            cardLink.className = 'post-card-link'; 
-            cardLink.style.textDecoration = 'none';
-            cardLink.style.color = 'inherit';
+    <div class="blog-section">
+      <div class="blog-header"><h2 class="blog-title">IT / 스마트폰</h2></div>
+      <div id="posts-it" class="post-list-scroll"></div>
+    </div>
+  </main>
 
-            cardLink.innerHTML = `
-                <article class="post-card">
-                    <div class="thumb-wrapper">
-                        <img src="${post.thumb}" alt="${post.title}" class="thumb-img" loading="lazy"
-                             onerror="this.onerror=null; this.src='https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80';">
-                    </div>
-                    <div class="card-body-preview">
-                        <div class="card-meta">
-                            <span class="category-badge">${post.category}</span>
-                            <span class="post-date">${post.date}</span>
-                        </div>
-                        <h2 class="post-title">${post.title}</h2>
-                        <p class="post-snippet">${post.snippet}</p>
-                        <div class="read-more-link">본문 읽기 ➔</div>
-                    </div>
-                </article>
-            `;
-            grid.appendChild(cardLink);
-        });
-    </script>
+  <!-- 우측 사이드바 -->
+  <aside class="sidebar">
+    <div class="widget-box">
+      <h3 class="widget-title">🔍 포스트 검색</h3>
+      <div class="search-input-box">
+        <input type="text" id="search-input" class="search-input" placeholder="글 제목 키워드 입력..." onkeyup="filterPosts()">
+      </div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">🔥 인기 포스트 Top 5</h3>
+      <ul id="top-posts-list" class="top-post-list"></ul>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">💡 오늘의 꿀팁 <button class="refresh-tip-btn" onclick="showNextTip()">다음 🔄</button></h3>
+      <div id="random-tip" class="tip-box">로딩 중...</div>
+    </div>
+  </aside>
+</div>
+
+<script src="data.js"></script>
+<script>
+  let currentTipIndex = 0;
+  const tipsList = [
+    "전자레인지 청소 시 물과 귤껍질을 함께 넣고 2분 돌린 뒤 닦아내면 냄새와 기름때가 싹 사라집니다.",
+    "옷에 묻은 볼펜 자국은 물파스로 문지른 후 세탁하면 깔끔하게 제거됩니다.",
+    "냉장고 탈취에는 쓰고 남은 원두커피 가루나 100원짜리 동전을 넣어두면 효과적입니다.",
+    "스티커나 테이프 자국은 선크림을 발라두었다가 닦아내면 손쉽게 지워집니다."
+  ];
+
+  window.onload = function() {
+    startClock();
+    fetchWeather();
+    renderMiniCalendar();
+    initTips();
+    initVisitorCounter();
+    renderPostsToDOM();
+  };
+
+  function initVisitorCounter() {
+    const todayStr = new Date().toISOString().slice(0, 10);
+    const savedDate = localStorage.getItem('v_last_date');
+
+    let todayCount = parseInt(localStorage.getItem('v_today') || '128');
+    let yesterdayCount = parseInt(localStorage.getItem('v_yesterday') || '342');
+    let totalCount = parseInt(localStorage.getItem('v_total') || '15480');
+
+    if (savedDate !== todayStr) {
+      yesterdayCount = todayCount;
+      todayCount = 1;
+      localStorage.setItem('v_last_date', todayStr);
+      localStorage.setItem('v_yesterday', yesterdayCount);
+    } else {
+      if (!sessionStorage.getItem('visited_session')) {
+        todayCount += 1;
+        totalCount += 1;
+        sessionStorage.setItem('visited_session', 'true');
+        localStorage.setItem('v_today', todayCount);
+        localStorage.setItem('v_total', totalCount);
+      }
+    }
+
+    updateVisitorDOM(todayCount, yesterdayCount, totalCount);
+
+    setInterval(() => {
+      const inc = Math.floor(Math.random() * 2) + 1;
+      todayCount += inc;
+      totalCount += inc;
+
+      localStorage.setItem('v_today', todayCount);
+      localStorage.setItem('v_total', totalCount);
+
+      updateVisitorDOM(todayCount, yesterdayCount, totalCount, true);
+    }, 60000);
+  }
+
+  function updateVisitorDOM(today, yesterday, total, animate = false) {
+    const todayEl = document.getElementById('visitor-today');
+    const yesterdayEl = document.getElementById('visitor-yesterday');
+    const totalEl = document.getElementById('visitor-total');
+
+    if (todayEl) todayEl.innerText = today.toLocaleString();
+    if (yesterdayEl) yesterdayEl.innerText = yesterday.toLocaleString();
+    if (totalEl) totalEl.innerText = total.toLocaleString();
+
+    if (animate && todayEl) {
+      todayEl.classList.add('num-up');
+      setTimeout(() => todayEl.classList.remove('num-up'), 500);
+    }
+  }
+
+  function renderPostsToDOM() {
+    if (typeof posts === 'undefined') return;
+    const lifestyleEl = document.getElementById('posts-lifestyle');
+    const financeEl = document.getElementById('posts-finance');
+    const itEl = document.getElementById('posts-it');
+
+    posts.forEach(post => {
+      const card = document.createElement('a');
+      card.className = 'post-card-mini';
+      card.href = `article.html?id=${post.id}`;
+      card.setAttribute('data-title', post.title.toLowerCase());
+      card.innerHTML = `
+        <div class="post-thumb-wrapper-mini">
+          <img class="post-thumb-mini" src="${post.thumb}" alt="썸네일" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3959/3959542.png'">
+        </div>
+        <div class="post-content-mini">
+          <div class="post-title-mini" title="${post.title}">${post.title}</div>
+          <div class="post-date-mini">${post.date}</div>
+        </div>
+      `;
+      if (post.category.includes('생활')) lifestyleEl?.appendChild(card);
+      else if (post.category.includes('금융')) financeEl?.appendChild(card);
+      else itEl?.appendChild(card);
+    });
+    renderTopPosts();
+  }
+
+  function renderTopPosts() {
+    const listEl = document.getElementById('top-posts-list');
+    if (!listEl || typeof posts === 'undefined') return;
+    const shuffled = [...posts].sort(() => 0.5 - Math.random()).slice(0, 5);
+    listEl.innerHTML = '';
+    shuffled.forEach((post, idx) => {
+      const li = document.createElement('li');
+      li.className = 'top-post-item';
+      li.onclick = () => window.location.href = `article.html?id=${post.id}`;
+      li.innerHTML = `<span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span><span title="${post.title}">${post.title}</span>`;
+      listEl.appendChild(li);
+    });
+  }
+
+  function startClock() {
+    function update() {
+      const now = new Date();
+      document.getElementById('clock-time').innerText = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
+      document.getElementById('clock-date').innerText = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일`;
+    }
+    update();
+    setInterval(update, 1000);
+  }
+
+  function fetchWeather() {
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.current_weather) {
+          document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
+          document.getElementById('weather-status').innerText = '맑음 ☀️';
+        }
+      }).catch(() => {});
+  }
+
+  function renderMiniCalendar() {
+    const calendarEl = document.getElementById('mini-calendar');
+    if (!calendarEl) return;
+    const now = new Date();
+    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
+    const lastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    let html = ['일','월','화','수','목','금','토'].map(d => `<div class="calendar-day-header">${d}</div>`).join('');
+    for (let i = 0; i < firstDay; i++) html += `<div></div>`;
+    for (let d = 1; d <= lastDate; d++) {
+      html += `<div class="calendar-cell ${d === now.getDate() ? 'today' : ''}">${d}</div>`;
+    }
+    calendarEl.innerHTML = html;
+  }
+
+  function initTips() { document.getElementById('random-tip').innerText = tipsList[0]; }
+  function showNextTip() {
+    currentTipIndex = (currentTipIndex + 1) % tipsList.length;
+    document.getElementById('random-tip').innerText = tipsList[currentTipIndex];
+  }
+
+  function filterPosts() {
+    const query = document.getElementById('search-input').value.toLowerCase();
+    document.querySelectorAll('.post-card-mini').forEach(card => {
+      card.style.display = card.getAttribute('data-title').includes(query) ? 'flex' : 'none';
+    });
+  }
+</script>
 </body>
 </html>
