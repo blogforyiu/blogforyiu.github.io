@@ -46,7 +46,7 @@
     .post-list-scroll:active {
       cursor: grabbing;
     }
-    /* 구글 다국어 번역 위젯 디자인 최적화 스타일 */
+    /* 다국어 번역 선택 박스 디자인 */
     .translate-box {
       background: var(--card-bg);
       backdrop-filter: blur(12px);
@@ -67,7 +67,7 @@
       align-items: center;
       gap: 8px;
     }
-    .goog-te-combo {
+    .lang-select {
       width: 100%;
       padding: 10px 12px;
       border: 1px solid #cbd5e1;
@@ -79,14 +79,8 @@
       outline: none;
       cursor: pointer;
     }
-    .goog-te-combo:focus {
+    .lang-select:focus {
       border-color: var(--primary);
-    }
-    .goog-te-banner-frame, .skiptranslate {
-      display: none !important;
-    }
-    body {
-      top: 0 !important;
     }
   </style>
 </head>
@@ -95,10 +89,15 @@
 <div class="wrapper">
   <!-- 좌측 사이드바 (PC 전용) -->
   <aside class="sidebar">
-    <!-- 글로벌 다국어 번역 위젯 박스 -->
+    <!-- 다국어 번역 선택 박스 -->
     <div class="translate-box">
       <h3 class="translate-title">🌐 언어 / Language</h3>
-      <div id="google_translate_element"></div>
+      <select id="language-selector" class="lang-select" onchange="changeLanguage(this.value)">
+        <option value="ko">한국어 (Korean)</option>
+        <option value="en">English (영어)</option>
+        <option value="ja">日本語 (일본어)</option>
+        <option value="zh-CN">中文 (중국어)</option>
+      </select>
     </div>
 
     <div class="widget-box">
@@ -204,6 +203,14 @@
     renderPostsToDOM();
     initMouseDragScroll();
   };
+
+  /* 언어 선택 시 구글 번역 페이지로 안전하게 연결하는 함수 */
+  function changeLanguage(langCode) {
+    if (langCode === 'ko') return;
+    const currentUrl = window.location.href;
+    const translateUrl = `https://translate.google.com/translate?sl=ko&tl=${langCode}&u=${encodeURIComponent(currentUrl)}`;
+    window.open(translateUrl, '_blank');
+  }
 
   function initMouseDragScroll() {
     const scrollContainers = document.querySelectorAll('.post-list-scroll');
@@ -379,19 +386,5 @@
     });
   }
 </script>
-
-<!-- 구글 번역 위젯 초기화 스크립트 -->
-<script type="text/javascript">
-  function googleTranslateElementInit() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'ko',
-      includedLanguages: 'en,ja,zh-CN,es,vi,ko',
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
-      autoDisplay: false
-    }, 'google_translate_element');
-  }
-</script>
-<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-
 </body>
 </html>
