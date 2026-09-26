@@ -65,6 +65,11 @@
     .top-nav a:hover {
       text-decoration: underline;
     }
+    .top-nav a.current {
+      color: var(--text-main);
+      font-weight: 700;
+      pointer-events: none;
+    }
     .top-nav span {
       color: var(--text-muted);
       margin: 0 6px;
@@ -92,7 +97,7 @@
     <a href="index.html">홈</a><span>|</span>
     <a href="about.html">소개</a><span>|</span>
     <a href="privacy.html">개인정보처리방침</a><span>|</span>
-    <a href="contact.html">문의하기</a>
+    <a href="contact.html" class="current">문의하기</a>
   </div>
   
   <a href="index.html" class="back-btn">← 홈으로</a>
