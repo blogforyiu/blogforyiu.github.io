@@ -72,7 +72,7 @@
         <div id="weather-temp" class="weather-temp">--°C</div>
         <div class="weather-sub">
           <div id="weather-status">불러오는 중...</div>
-          <div id="weather-dust" style="margin-top: 3px;">미세먼지: --</div>
+          <div id="weather-dust" style="margin-top: 3px;">미세먼지: 불러오는 중...</div>
         </div>
       </div>
     </div>
@@ -156,6 +156,51 @@
     renderPostsToDOM();
     initMouseDragScroll();
   };
+
+  /* 실시간 날씨 및 미세먼지 연동 함수 */
+  function fetchWeather() {
+    // 1. 실시간 날씨(기온, 날씨 상태) 가져오기
+    fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.current_weather) {
+          const temp = Math.round(data.current_weather.temperature);
+          const weatherCode = data.current_weather.weathercode;
+          
+          document.getElementById('weather-temp').innerText = `${temp}°C`;
+          
+          let statusText = "맑음 ☀️";
+          if (weatherCode >= 1 && weatherCode <= 3) statusText = "구름 조금 ⛅";
+          else if (weatherCode >= 45 && weatherCode <= 48) statusText = "안개 🌫️";
+          else if (weatherCode >= 51 && weatherCode <= 67) statusText = "비 🌧️";
+          else if (weatherCode >= 71 && weatherCode <= 77) statusText = "눈 ❄️";
+          else if (weatherCode >= 95) statusText = "뇌우 ⚡";
+
+          document.getElementById('weather-status').innerText = statusText;
+        }
+      }).catch(() => {
+        document.getElementById('weather-status').innerText = "날씨 정보 없음";
+      });
+
+    // 2. 실시간 미세먼지(PM10) 대기질 데이터 가져오기
+    fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.5665&longitude=126.9780&current=pm10')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.current && data.current.pm10 !== undefined) {
+          const pm10 = Math.round(data.current.pm10);
+          let dustGrade = "좋음 😊";
+          if (pm10 > 80) dustGrade = "매우 나쁨 💀";
+          else if (pm10 > 50) dustGrade = "나쁨 😷";
+          else if (pm10 > 30) dustGrade = "보통 😐";
+
+          document.getElementById('weather-dust').innerText = `미세먼지: ${pm10}㎍/㎥ (${dustGrade})`;
+        } else {
+          document.getElementById('weather-dust').innerText = "미세먼지: 정보 없음";
+        }
+      }).catch(() => {
+        document.getElementById('weather-dust').innerText = "미세먼지: 확인 불가";
+      });
+  }
 
   function initMouseDragScroll() {
     const scrollContainers = document.querySelectorAll('.post-list-scroll');
@@ -291,17 +336,6 @@
     }
     update();
     setInterval(update, 1000);
-  }
-
-  function fetchWeather() {
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
-      .then(res => res.json())
-      .then(data => {
-        if (data?.current_weather) {
-          document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
-          document.getElementById('weather-status').innerText = '맑음 ☀️';
-        }
-      }).catch(() => {});
   }
 
   function renderMiniCalendar() {
