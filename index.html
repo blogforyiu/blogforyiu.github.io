@@ -85,7 +85,6 @@
 
   <!-- 메인 콘텐츠 영역 -->
   <main class="container">
-    <!-- 모바일 전용 상단 환영 배너 (PC에서는 자동 숨김) -->
     <div class="mobile-welcome-banner">
       <h2>🚀 통합 정보 블로그</h2>
       <p>매일 업데이트되는 알찬 생활 꿀팁과 테크 정보를 확인해 보세요!</p>
@@ -104,6 +103,11 @@
     <div class="blog-section">
       <div class="blog-header"><h2 class="blog-title">IT / 스마트폰</h2></div>
       <div id="posts-it" class="post-list-scroll"></div>
+    </div>
+
+    <div class="blog-section">
+      <div class="blog-header"><h2 class="blog-title">여행 / 맛집 탐방</h2></div>
+      <div id="posts-travel" class="post-list-scroll"></div>
     </div>
   </main>
 
@@ -146,7 +150,6 @@
     initHorizontalWheelScroll();
   };
 
-  /* 마우스 휠로 가로 스크롤링 제어 기능 */
   function initHorizontalWheelScroll() {
     const scrollContainers = document.querySelectorAll('.post-list-scroll');
     scrollContainers.forEach(container => {
@@ -216,6 +219,7 @@
     const lifestyleEl = document.getElementById('posts-lifestyle');
     const financeEl = document.getElementById('posts-finance');
     const itEl = document.getElementById('posts-it');
+    const travelEl = document.getElementById('posts-travel');
 
     posts.forEach(post => {
       const card = document.createElement('a');
@@ -233,7 +237,8 @@
       `;
       if (post.category.includes('생활')) lifestyleEl?.appendChild(card);
       else if (post.category.includes('금융')) financeEl?.appendChild(card);
-      else itEl?.appendChild(card);
+      else if (post.category.includes('IT')) itEl?.appendChild(card);
+      else travelEl?.appendChild(card); // 여행/맛집 및 기타
     });
     renderTopPosts();
   }
@@ -288,6 +293,7 @@
   }
 
   function initTips() { document.getElementById('random-tip').innerText = tipsList[0]; }
+  function showNextTest() {}
   function showNextTip() {
     currentTipIndex = (currentTipIndex + 1) % tipsList.length;
     document.getElementById('random-tip').innerText = tipsList[currentTipIndex];
