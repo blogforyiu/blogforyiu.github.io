@@ -44,7 +44,7 @@
 <body>
 
 <div class="wrapper">
-  <!-- 좌측 사이드바 -->
+  <!-- 좌측 사이드바 (PC 전용) -->
   <aside class="sidebar">
     <div class="widget-box">
       <h3 class="widget-title">📌 블로그 메뉴</h3>
@@ -85,6 +85,12 @@
 
   <!-- 메인 콘텐츠 영역 -->
   <main class="container">
+    <!-- 모바일 전용 상단 환영 배너 (PC에서는 자동 숨김) -->
+    <div class="mobile-welcome-banner">
+      <h2>🚀 통합 정보 블로그</h2>
+      <p>매일 업데이트되는 알찬 생활 꿀팁과 테크 정보를 확인해 보세요!</p>
+    </div>
+
     <div class="blog-section">
       <div class="blog-header"><h2 class="blog-title">생활 / 꿀팁 모음</h2></div>
       <div id="posts-lifestyle" class="post-list-scroll"></div>
@@ -101,7 +107,7 @@
     </div>
   </main>
 
-  <!-- 우측 사이드바 -->
+  <!-- 우측 사이드바 (PC 전용) -->
   <aside class="sidebar">
     <div class="widget-box">
       <h3 class="widget-title">🔍 포스트 검색</h3>
