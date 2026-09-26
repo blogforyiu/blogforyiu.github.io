@@ -137,7 +137,21 @@
     initTips();
     initVisitorCounter();
     renderPostsToDOM();
+    initHorizontalWheelScroll();
   };
+
+  /* 마우스 휠로 가로 스크롤링 제어 기능 */
+  function initHorizontalWheelScroll() {
+    const scrollContainers = document.querySelectorAll('.post-list-scroll');
+    scrollContainers.forEach(container => {
+      container.addEventListener('wheel', (e) => {
+        if (e.deltaY !== 0) {
+          e.preventDefault();
+          container.scrollLeft += e.deltaY * 1.5;
+        }
+      }, { passive: false });
+    });
+  }
 
   function initVisitorCounter() {
     const todayStr = new Date().toISOString().slice(0, 10);
