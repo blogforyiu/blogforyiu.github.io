@@ -1,7 +1,7 @@
 :root {
   --bg-gradient: linear-gradient(135deg, #f0f4f8 0%, #e2e8f0 100%);
-  --card-bg: rgba(255, 255, 255, 0.88);
-  --card-border: rgba(255, 255, 255, 0.6);
+  --card-bg: rgba(255, 255, 255, 0.92);
+  --card-border: rgba(255, 255, 255, 0.8);
   --primary: #2563eb;
   --primary-hover: #1d4ed8;
   --text-main: #0f172a;
@@ -21,13 +21,14 @@ body {
   min-height: 100vh;
   color: var(--text-main);
   margin: 0;
-  padding: 20px 16px;
+  padding: 24px 20px;
   -webkit-font-smoothing: antialiased;
 }
 
+/* 블로그 전체 최대 폭을 넓혀서 양옆 빈 공간 최소화 */
 .wrapper {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1650px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -36,7 +37,7 @@ body {
 }
 
 .container { flex: 1; min-width: 0; width: 100%; }
-.sidebar { width: 320px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
+.sidebar { width: 300px; flex-shrink: 0; display: flex; flex-direction: column; gap: 20px; }
 
 .widget-box {
   background: var(--card-bg);
@@ -96,9 +97,10 @@ body {
 .tip-box { font-size: 15px; color: var(--text-sub); background: #f8fafc; padding: 14px; border-radius: 12px; border-left: 4px solid var(--primary); line-height: 1.6; min-height: 80px; display: flex; align-items: center; font-weight: 500; }
 .refresh-tip-btn { background: none; border: none; font-size: 13.5px; color: var(--primary); cursor: pointer; padding: 2px 6px; font-weight: 700; }
 
-.adsense-sidebar-tall { min-height: 500px; background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 18px; padding: 10px; text-align: center; color: #94a3b8; font-size: 13px; display: flex; align-items: center; justify-content: center; position: sticky; top: 20px; overflow: hidden; }
-.adsense-box { background: #ffffff; border: 1px dashed #cbd5e1; border-radius: 14px; padding: 10px; text-align: center; color: #94a3b8; font-size: 14px; width: 100%; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.adsense-banner-main { min-height: 110px; margin-bottom: 20px; }
+/* 심사 기간 동안 빈 광고 박스 완전히 숨기기 */
+.adsense-sidebar-tall, .adsense-box, .adsense-banner-main {
+  display: none !important;
+}
 
 .blog-section { background: var(--card-bg); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-radius: 22px; padding: 24px; margin-bottom: 20px; border: 1px solid var(--card-border); box-shadow: var(--shadow-md); width: 100%; }
 .blog-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 16px; margin-bottom: 20px; border-bottom: 1px solid #e2e8f0; }
@@ -109,7 +111,7 @@ body {
 .post-list-scroll::-webkit-scrollbar-track { background: #e2e8f0; border-radius: 10px; }
 .post-list-scroll::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 10px; }
 
-.post-card-mini { flex: 0 0 220px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.2s ease; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; text-decoration: none; }
+.post-card-mini { flex: 0 0 235px; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 14px; overflow: hidden; cursor: pointer; transition: all 0.2s ease; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; text-decoration: none; }
 .post-card-mini:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: #cbd5e1; }
 .post-thumb-wrapper-mini { width: 100%; height: 140px; overflow: hidden; background-color: #f1f5f9; }
 .post-thumb-mini { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
@@ -119,8 +121,3 @@ body {
 .post-date-mini { font-size: 13px; color: var(--text-muted); font-weight: 500; margin-top: 6px; }
 
 @media (max-width: 1200px) { .sidebar { display: none !important; } .wrapper { display: block; } }
-
-/* 애드센스 심사 기간 동안 빈 광고 박스 숨기기 */
-.adsense-sidebar-tall, .adsense-box {
-  display: none !important;
-}
