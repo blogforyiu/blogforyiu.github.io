@@ -121,3 +121,14 @@ body {
 .post-date-mini { font-size: 13px; color: var(--text-muted); font-weight: 500; margin-top: 6px; }
 
 @media (max-width: 1200px) { .sidebar { display: none !important; } .wrapper { display: block; } }
+
+/* 가로 스크롤바 마우스 드래그 및 휠 감도 개선 */
+.post-list-scroll {
+  overflow-x: auto;
+  overflow-y: hidden;
+  cursor: grab;
+  scroll-behavior: smooth;
+}
+.post-list-scroll:active {
+  cursor: grabbing;
+}
