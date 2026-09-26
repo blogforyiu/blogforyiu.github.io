@@ -39,6 +39,14 @@
       color: #ffffff;
       border-color: var(--primary);
     }
+    /* 마우스 드래그 시 손 모양 커서 적용 */
+    .post-list-scroll {
+      cursor: grab;
+      user-select: none;
+    }
+    .post-list-scroll:active {
+      cursor: grabbing;
+    }
   </style>
 </head>
 <body>
@@ -147,18 +155,38 @@
     initTips();
     initVisitorCounter();
     renderPostsToDOM();
-    initHorizontalWheelScroll();
+    initMouseDragScroll(); // 마우스 드래그(주먹 쥐기) 스크롤 기능 실행
   };
 
-  function initHorizontalWheelScroll() {
+  /* 마우스로 꾹 잡고 드래그하여 가로 스크롤하는 기능 (주먹 쥐기 효과) */
+  function initMouseDragScroll() {
     const scrollContainers = document.querySelectorAll('.post-list-scroll');
     scrollContainers.forEach(container => {
-      container.addEventListener('wheel', (e) => {
-        if (e.deltaY !== 0) {
-          e.preventDefault();
-          container.scrollLeft += e.deltaY * 1.5;
-        }
-      }, { passive: false });
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
+
+      container.addEventListener('mouseleave', () => {
+        isDown = false;
+      });
+
+      container.addEventListener('mouseup', () => {
+        isDown = false;
+      });
+
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 2; // 스크롤 이동 속도 조절
+        container.scrollLeft = scrollLeft - walk;
+      });
     });
   }
 
@@ -238,7 +266,7 @@
       if (post.category.includes('생활')) lifestyleEl?.appendChild(card);
       else if (post.category.includes('금융')) financeEl?.appendChild(card);
       else if (post.category.includes('IT')) itEl?.appendChild(card);
-      else travelEl?.appendChild(card); // 여행/맛집 및 기타
+      else travelEl?.appendChild(card);
     });
     renderTopPosts();
   }
@@ -293,7 +321,6 @@
   }
 
   function initTips() { document.getElementById('random-tip').innerText = tipsList[0]; }
-  function showNextTest() {}
   function showNextTip() {
     currentTipIndex = (currentTipIndex + 1) % tipsList.length;
     document.getElementById('random-tip').innerText = tipsList[currentTipIndex];
