@@ -1,11 +1,11 @@
-// data.js - 총 26개 포스트 완벽 통합본
+// data.js - 총 26개 포스트 썸네일 개별 완벽 차별화 버전
 const posts = [
     {
         id: 1,
         category: "생활/꿀팁",
         title: "날씨 풀렸을 때 홈트와 야외 운동 루틴 비교! 나에게 딱 맞는 운동법 찾기",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80",
         snippet: "집에서 하는 매트 운동과 야외 러닝 중 어떤 운동이 나에게 맞을까요? 운동 목적과 성향에 맞는 주간 운동 루틴 조합법을 추천해 드립니다.",
         content: `
             <h2>1. 시간과 비용 아끼는 가성비 갑 '홈트레이닝'의 매력과 한계</h2>
@@ -34,7 +34,7 @@ const posts = [
         category: "금융/테크",
         title: "엔화 환율 전망 분석과 초보자를 위한 엔테크 투자 방법 3가지 비교",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80",
         snippet: "저점 부근에서 변동하는 일본 엔화! 외화 예금, 엔화 ETF, 일본 주식 직접 투자까지 초보자가 시작하기 좋은 엔테크 수익 전략을 알아봅니다.",
         content: `
             <h2>1. 엔화 환율 전망을 결정짓는 핵심 경제 지표와 변수</h2>
@@ -63,7 +63,7 @@ const posts = [
         category: "IT/스마트폰",
         title: "갤럭시 구글 타임라인 기록 안됨 원인 1위! 배터리 절전 예외 설정 꿀팁",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1526738549149-8e07eca6c147?auto=format&fit=crop&w=800&q=80",
         snippet: "구글 지도 타임라인 이동 동선이 자꾸 끊기시나요? 삼성 갤럭시 특유의 강력한 배터리 자동 절전 기능을 꺼서 위치 기록을 정상화하는 법입니다.",
         content: `
             <h2>1. 구글 지도 앱 배터리 사용량 '제한 없음' 설정</h2>
@@ -90,7 +90,7 @@ const posts = [
         category: "IT/스마트폰",
         title: "스마트폰 배터리 수명 2배 늘리는 실전 충전 및 설정 습관 4가지",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1583863788434-e58a36330cf0?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=800&q=80",
         snippet: "비싼 스마트폰 배터리가 1년 만에 조기 방전되시나요? 리튬이온 배터리의 특성을 고려한 올바른 충전 습관과 수명 연장 설정법을 알려드립니다.",
         content: `
             <h2>1. 배터리 완전 방전(0%)과 완충(100%)을 피해야 하는 이유</h2>
@@ -115,7 +115,7 @@ const posts = [
         category: "금융/테크",
         title: "코스피 상승장 투자 꿀팁! 주식 초보자가 꼭 써야 하는 필수 어플과 실시간 속보 뉴스 확인법 총정리",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?auto=format&fit=crop&w=800&q=80",
         snippet: "상승장에서 덜컥 매수했다 고점에 물리셨나요? 초보자가 지켜야 할 3가지 투자 원칙과 직관적인 추천 필수 어플, 실시간 증시 속보 확인 꿀소스를 총정리합니다.",
         content: `
             <h2>1. 뇌동매매 금지! 코스피 상승장에서 초보자들이 지켜야 할 철칙 3가지</h2>
@@ -146,7 +146,7 @@ const posts = [
         category: "생활/꿀팁",
         title: "케이스티파이 황변 현상 세척 방법 및 AS 교환 받는 꿀팁 완벽 가이드",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1601784551446-20c9e07cdbdb?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1585060544812-6b45742d762f?auto=format&fit=crop&w=800&q=80",
         snippet: "큰맘 먹고 구매한 케이스티파이 투명 케이스의 변색 세척 노하우부터 6개월 보증 기간을 활용한 무상 AS 교환 팁까지 완벽 정리해 드립니다.",
         content: `
             <p>큰맘 먹고 비싼 돈 주고 구매한 케이스티파이 투명 케이스(클리어 케이스)인데, 몇 달 동안 주머니에 넣고 다니거나 손때가 묻다 보니 모서리 부분이 꼬질꼬질하게 누렇게 변색(황변)되어 속상했던 적 있으신가요?</p>
@@ -182,7 +182,7 @@ const posts = [
         category: "여행/맛집",
         title: "주말 당일치기 힐링 여행! 서울 근교 드라이브 코스 베스트 3 추천",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80",
         snippet: "주말에 먼 지방까지 가기 부담스러우신가요? 탁 트인 풍경과 예쁜 카페, 산책로를 한 번에 즐길 수 있는 서울 근교 당일치기 코스를 추천합니다.",
         content: `
             <h2>1. 잔잔한 호수 뷰와 산책로가 어우러진 '포천 산정호수 & 둘레길'</h2>
@@ -207,7 +207,7 @@ const posts = [
         category: "생활/꿀팁",
         title: "아침 공복에 먹으면 좋은 음식 vs 절대 피해야 할 음식 완벽 정리",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1498837167922-ddd27525d352?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=800&q=80",
         snippet: "아침에 일어나자마자 마시는 커피와 과일이 위 건강을 해친다는 사실 알고 계셨나요? 공복에 약이 되는 음식과 독이 되는 음식을 구분해 드립니다.",
         content: `
             <h2>1. 약해진 위를 보호하고 에너지를 높이는 공복 추천 음식</h2>
@@ -232,7 +232,7 @@ const posts = [
         category: "생활/꿀팁",
         title: "거북목과 굽은 어깨 탈출! 사무실에서도 할 수 있는 3분 스트레칭 루틴",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=800&q=80",
         snippet: "장시간 모니터와 스마트폰을 보다 보면 어느새 굳어버리는 목과 어깨! 뻐근한 통증을 싹 날려주는 초간단 교정 스트레칭을 소개합니다.",
         content: `
             <h2>1. 거북목을 정상 목 C커브로 돌리는 '턱 당기기(Chin-Tuck)'</h2>
@@ -258,7 +258,7 @@ const posts = [
         category: "IT/스마트폰",
         title: "윈도우 PC 용량 부족할 때 5분 만에 용량 확보하는 정리 꿀팁 3가지",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80",
         snippet: "C드라이브 빨간불이 들어왔나요? 별도 프로그램 설치 없이 윈도우 자체 기능만으로 불필요한 임시 파일을 삭제하고 저장 공간을 대폭 늘려보세요.",
         content: `
             <h2>1. 윈도우 자체 '저장 공간 센스(저장소 센스)' 활성화 및 실행</h2>
@@ -285,7 +285,7 @@ const posts = [
         category: "IT/스마트폰",
         title: "핸드폰 싸게 사는 법, 아직도 정가 주고 사세요? 모르면 진짜 손해입니다",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1546054454-aa26e2b733c7?auto=format&fit=crop&w=800&q=80",
         snippet: "스마트폰 구매 시 대리점 호갱 탈출 법칙! 공시지원금과 선택약정 요금할인의 선택 기준과 자급제+알뜰폰 조합의 경제성을 비교합니다.",
         content: `
             <p>핸드폰 바꾸려고 검색창에 ‘핸드폰 싸게 사는 법’ 한 번쯤 검색해보셨죠? 저도 예전에는 휴대폰을 바꿀 때 그냥 집 근처 대리점에 가서 "이거 얼마예요?" 하고 물어보고 계약하곤 했습니다. 그런데 알고 보니 같은 휴대폰인데도 누구는 훨씬 저렴하게 사고 있더라고요.</p>
@@ -313,7 +313,7 @@ const posts = [
         category: "금융/테크",
         title: "청년도약계좌 5년 유지 팁! 중도해지 불이익과 적금담보대출 활용법",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
         snippet: "청년도약계좌 5년 만기를 채우기 힘들 때! 정부 기여금과 비과세 혜택을 지켜내는 특별중도해지 조건 및 적금담보대출 활용법입니다.",
         content: `
             <p>청년도약계좌의 가장 큰 장벽인 '5년 만기'를 지키기 어렵다면, '특별중도해지 사유'에 해당하는지 확인하거나 '청년도약계좌 적금담보대출'을 활용하세요. 이 두 가지를 활용하면 비과세 혜택과 정부 기여금을 잃지 않고 급전을 해결할 수 있습니다.</p>
@@ -346,7 +346,7 @@ const posts = [
         category: "시사/이슈",
         title: "재일교포 야구 영웅 장훈 별세 소식에 한국 야구계가 슬픔에 잠긴 이유",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1508802913122-024420507246?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1592656094267-764a45160876?auto=format&fit=crop&w=800&q=80",
         snippet: "일본 통산 3085안타 대기록의 주인공이자 KBO 기틀을 마련한 재일교포 야구 영웅 장훈 위원의 별세 소식과 추모 물결을 전합니다.",
         content: `
             <p>대한민국 프로야구의 역사를 돌아볼 때, 비록 바다 건너 일본 무대에서 활동했으나 언제나 한국인의 자부심을 가슴에 품고 후배들에게 영감을 주었던 거목이 있었죠. 바로 통산 3,085안타의 대기록을 세운 재일교포 야구 영웅 장훈 위원이 향년 86세의 일기로 별세했다는 비보가 전해지면서 국내 야구계 전체가 깊은 슬픔과 충격에 빠졌습니다.</p>
@@ -371,7 +371,7 @@ const posts = [
         category: "생활/꿀팁",
         title: "가성비 세차 용품 추천 더클래스 클린앤코트 vs 타사 실내 코팅제 비교 분석",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=800&q=80",
         snippet: "초보 디테일러를 위한 올인원 실내 세정 코팅제! 번들거림 없는 매트함과 뛰어난 작업성을 자랑하는 더클래스 클린앤코트 솔직 후기입니다.",
         content: `
             <p>셀프 세차의 세계에 발을 들이는 순간, 마트나 온라인 세차 용품 쇼핑몰에 널리고 널린 수십 가지의 실내 클리너와 코팅제 종류를 보고 1차 멘붕이 오기 마련이죠. "이 브랜드가 좋다더라", "저 유튜버가 추천한 게 최고라더라" 해서 호기심에 덜컥 샀다가 향이 너무 독하거나, 닦고 난 뒤 유리가 뿌옇게 유막처럼 흐려져서 후회했던 경험 다들 한 번쯤 있으실 거예요.</p>
@@ -401,7 +401,7 @@ const posts = [
         category: "여행/맛집",
         title: "강남역 데이트 코스 추천! 치폴레 강남점 방문 전 꼭 알아야 할 실전 팁",
         date: "2026. 09. 23",
-        thumb: "https://images.unsplash.com/photo-1565299585323-38d6b0865b47?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
         snippet: "강남역 핫플 치폴레 강남점 커스텀 주문 노하우, 대기 피하는 스마트한 시간대, 주변 산책 데이트 코스까지 완벽 가이드!",
         content: `
             <p>사랑하는 연인과 함께 주말 데이트 장소를 고를 때, 강남역은 언제나 1순위로 떠오르는 만남의 장소죠. 하지만 매번 똑같은 파스타나 고깃집 데이트에 지루함을 느끼셨다면, 치폴레 강남점이 완벽한 데이트 코스 구원투수가 되어줄 거예요.</p>
@@ -430,7 +430,7 @@ const posts = [
         category: "IT/스마트폰",
         title: "AI 시대 필수 생존 전략! 스마트폰 인공지능 기능으로 일상 업무 시간 반으로 줄이는 꿀팁",
         date: "2026. 09. 26",
-        thumb: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=80",
         snippet: "최신 스마트폰에 탑재된 AI 기능을 활용해 일상 속 번거로운 작업들을 순식간에 처리하는 실전 활용법을 알아봅니다.",
         content: `
             <p>최근 출시되는 스마트폰들을 보면 'AI(인공지능)'라는 단어가 빠지지 않고 등장하죠. 처음에는 신기해서 몇 번 써보거나 대화 좀 해보는 용도로 쓰다가, 나중에는 기능을 까먹고 기존 방식대로만 스마트폰을 사용하는 분들이 정말 많습니다.</p>
@@ -456,7 +456,7 @@ const posts = [
         category: "생활/꿀팁",
         title: "환절기마다 목이 칼칼하고 피곤하다면? 면역력 지키는 생활 속 식습관과 수면 꿀팁",
         date: "2026. 09. 26",
-        thumb: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
         snippet: "아침저녁으로 쌀쌀해진 환절기 기온 변화에 무너지는 면역력! 감기를 예방하고 에너지를 채워주는 실속 있는 건강 관리 노하우입니다.",
         content: `
             <p>계절이 바뀌는 환절기 시즌만 되면 어김없이 찾아오는 불청객이 있죠. 아침에 눈을 뜰 때마다 목이 칼칼하고 몸은 솜처럼 무거워지며, 면역력이 떨어져 각종 잔병치레로 고생하시는 분들이 많습니다.</p>
@@ -482,7 +482,7 @@ const posts = [
         category: "여행/맛집",
         title: "국내·해외 여행 예약할 때 항공권 취소 수수료 폭탄 피하는 실전 예약 꿀팁",
         date: "2026. 09. 26",
-        thumb: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1500835556837-99ac94a94552?auto=format&fit=crop&w=800&q=80",
         snippet: "설레는 마음으로 예약한 여행 상품! 갑작스러운 일정 변경이나 취소 시 수수료 폭탄을 피하기 위해 반드시 확인해야 할 체크포인트입니다.",
         content: `
             <p>몇 달 전부터 손꼽아 기다리던 여행 일정을 잡고 설레는 마음으로 항공권과 숙소를 결제했는데, 회사 일정이 바뀌거나 개인 사정이 생겨 눈물을 머금고 취소해야 했던 경험 한 번쯤 있으신가요?</p>
@@ -508,7 +508,7 @@ const posts = [
         category: "금융/테크",
         title: "미국 배당주 투자로 은퇴 후 월세 받는 시스템 구축하기: 초보자 포트폴리오 가이드",
         date: "2026. 09. 30",
-        thumb: "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=80",
         snippet: "매달 따박따박 통장에 꽂히는 배당금의 기쁨! 은퇴자뿐만 아니라 직장인 부수입으로 각광받는 미국 월배당 주식 투자 전략입니다.",
         content: `
             <p>서론: 현대 사회에서 근로 소득만으로 노후를 준비하거나 경제적 자유를 달성하기란 점점 더 어려운 과제가 되어가고 있습니다. 이에 따라 많은 투자자들이 눈을 돌리고 있는 분야가 바로 자산이 스스로 일하게 만드는 '배당주 투자'입니다. 특히 매달 혹은 분기마다 안정적인 현금 흐름을 창출해 주는 미국 배당 성장 주는 직장인과 은퇴 예정자 모두에게 가장 강력한 재테크 수단으로 자리 잡았습니다. 이번 포스팅에서는 초보자도 실패 없이 월배당 포트폴리오를 짜는 구체적인 방법론을 상세히 파헤쳐 보겠습니다.</p>
@@ -539,7 +539,7 @@ const posts = [
         content: `
             <p>서론: 지갑을 들고 다니지 않고 스마트폰 하나만 들고 외출하는 '지갑 없는 사회'가 우리 일상의 당연한 풍경이 되었습니다. 카카오페이, 네이버페이, 토스 등 다양한 간편결제 서비스는 결제의 번거로움을 혁신적으로 줄여주었지만, 반대로 스마트폰을 분실하거나 보안이 취약해질 경우 순식간에 거액의 금전적 피해로 직결될 수 있는 양날의 검이기도 합니다. 오늘 포스팅에서는 유사시 내 계좌와 카드를 안전하게 지켜내는 실전 보안 대처법을 총정리해 드립니다.</p>
 
-            <h2>1. 스마트폰 분실 직후 반드시 실행해야 갈 골든타임 행동 수칙</h2>
+            <h2>1. 스마트폰 분실 직후 반드시 실행해야 할 골든타임 행동 수칙</h2>
             <p>만약 야외에서 휴대폰을 분실했다는 사실을 인지했다면, 당황하지 말고 가장 먼저 통신사와 금융사에 연락하여 2차 피해를 막아야 합니다. 범인들이 생체 인식을 우회하거나 소액결제를 시도하는 것을 원천 차단하는 것이 최우선 과제입니다.</p>
             <ul>
                 <li><strong>통신사 회선 일시 정지:</strong> 고객센터를 통해 즉시 발신 및 수신을 정지시켜 인증 문자 탈취 방어</li>
@@ -560,7 +560,7 @@ const posts = [
         category: "여행/맛집",
         title: "베트남 다낭 여행 준비 꿀팁! 현지 물가 파악부터 바가지 요금 완벽하게 피하는 노하우",
         date: "2026. 09. 30",
-        thumb: "https://images.unsplash.com/photo-1559592413-7cec4d0cae2b?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?auto=format&fit=crop&w=800&q=80",
         snippet: "한국인들이 가장 사랑하는 최고의 해외 휴양지 다낭! 환전 꿀팁부터 그랩 이용법, 전통시장 흥정 요령까지 생생한 가이드입니다.",
         content: `
             <p>서론: 에메랄드빛 바다와 이국적인 리조트, 입맛을 사로잡는 현지 음식, 그리고 비교적 저렴한 물가 덕분에 베트남 다낭은 늘 한국인 여행객들의 위시리스트 최상단에 자리 잡고 있죠. 하지만 철저한 정보 없이 무작정 떠났다가는 환전 과정에서의 손해나 택시 기사의 부당한 요금 요구 등 사소한 스트레스로 여행을 망칠 수 있습니다. 이번 포스팅에서는 다낭 여행의 만족도를 극대화하고 쌈박하게 예산을 아끼는 실전 꿀팁을 전격 공개합니다.</p>
@@ -584,7 +584,7 @@ const posts = [
         category: "여행/맛집",
         title: "서울 성수동 핫플 데이트 코스 추천! 주말 긴 웨이팅 피하는 스마트한 동선 짜기",
         date: "2026. 09. 30",
-        thumb: "https://images.unsplash.com/photo-1514933651103-005eec06c04b?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1533105079780-92b9be482077?auto=format&fit=crop&w=800&q=80",
         snippet: "트렌드의 중심 성수동 카페거리와 이색 팝업스토어 탐방! 주말 인파 속에서도 여유롭게 데이트를 즐기는 완벽한 코스 가이드입니다.",
         content: `
             <p>서론: 과거 낡은 공장과 수제화 거리가 밀집해 있던 회색빛 골목들이 이제는 대한민국에서 가장 감각적이고 트렌디한 문화 예술의 성지로 변모했습니다. 바로 힙한 감성의 대명사 '성수동' 이야기인데요. 주말만 되면 이색적인 팝업스토어와 감성 카페를 방문하려는 연인들과 수많은 인파로 거리가 가득 차는 대표적인 데이트 명소입니다. 하지만 무작정 방문했다가는 끝없는 웨이팅에 지쳐 데이트를 망치기 쉽상입니다. 오늘 포스팅에서는 주말 성수동 데이트를 성공적으로 이끌어줄 알짜배기 동선과 팁을 공유해 드립니다.</p>
@@ -608,7 +608,7 @@ const posts = [
         category: "금융/테크",
         title: "금리 인하 시기 필수 체크! 발행어음과 종합자산관리계좌(CMA) 장단점 비교",
         date: "2026. 10. 02",
-        thumb: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1607532943232-a5f931d87e07?auto=format&fit=crop&w=800&q=80",
         snippet: "기준금리 변동 시기에 안전하게 단기 자금을 굴리는 방법! 발행어음과 CMA 계좌의 금리 구조 및 특징을 비교해 드립니다.",
         content: `
             <h2>1. 금리 변동기에 단기 자금 운용을 결정짓는 핵심 경제 지표</h2>
@@ -636,7 +636,7 @@ const posts = [
         category: "금융/테크",
         title: "신용점수 올리는 가장 빠른 방법! 연체 관리와 체크카드 실적 활용 실전 가이드",
         date: "2026. 10. 02",
-        thumb: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
         snippet: "대출이나 신용카드 발급 시 결정적인 역할을 하는 신용점수! 평소 생활 습관만 바꿔도 수십 점을 올릴 수 있는 비결입니다.",
         content: `
             <h2>1. 내 신용점수에 지대한 영향을 미치는 핵심 평가 지표</h2>
@@ -664,7 +664,7 @@ const posts = [
         category: "IT/스마트폰",
         title: "스마트폰 용량 정리 끝판왕! 불필요한 캐시 데이터 삭제와 클라우드 백업 요령",
         date: "2026. 10. 02",
-        thumb: "https://images.unsplash.com/photo-1598327105666-5b89351cb315?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=800&q=80",
         snippet: "사진과 앱으로 가득 찬 스마트폰 저장 공간! 기기 속도를 빠르게 만들어 주는 캐시 데이터 청소 및 백업 팁입니다.",
         content: `
             <h2>1. 스마트폰 성능 저하와 용량 부족을 유발하는 주요 원인</h2>
@@ -691,7 +691,7 @@ const posts = [
         category: "IT/스마트폰",
         title: "알뜰폰 요금제 번호이동 완벽 가이드! 유심 배송부터 개통까지 셀프 가입 꿀팁",
         date: "2026. 10. 02",
-        thumb: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://images.unsplash.com/photo-1521791136064-7986c2920216?auto=format&fit=crop&w=800&q=80",
         snippet: "매달 나가는 통신비 반으로 줄이기! 약정 없는 알뜰폰 요금제로 번호이동 셀프 개통하는 과정을 쉽게 안내합니다.",
         content: `
             <h2>1. 통신비 절감을 위해 반드시 알아야 할 알뜰폰 핵심 체크포인트</h2>
