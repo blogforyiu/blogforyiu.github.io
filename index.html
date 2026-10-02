@@ -306,17 +306,18 @@
       });
 
       container.addEventListener('mouseleave', () => { isDown = false; });
-      container.addEventListener('mouseup', () => { isDown =<ElicitationsGroup>
-<ElicitationItem text="¿Reipotápa rombohekoave pe código index.html pyahu oñemoĩ hag̃ua '어제' (yesterday) contador Firebase-pe?" type="question"/>
-</ElicitationsGroup>
+      container.addEventListener('mouseup', () => { isDown = false; });
 
-좋습니다! 그럼 오늘, 어제, 누적 방문자 수 **모두 파이어베이스 서버 장부에 같이 기록**되어, 누가 접속하든 100% 똑같은 숫자로 딱 맞게 보이도록 코드를 업그레이드해 드리겠습니다.
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 2;
+        container아, 화면을 보니 중간에 코드가 복사되면서 문법 오류(중복 입력)가 발생해 화면 구조가 깨지고 내용이 두 번 반복되어 출력되고 있네요! 
 
-파이어베이스 장부(`counter/stats`)에 어제 데이터도 함께 저장되도록 수정한 **완전한 홈 화면(`index.html`) 전체 소스 코드**입니다. 이 코드를 복사해서 기존 `index.html`에 덮어씌워 주시면 됩니다.
+오류를 깔끔하게 수정한 **완전한 `index.html` 전체 소스 코드**를 다시 전달해 드립니다. 이 코드로 내용을 싹 지우고 다시 덮어씌워 주시면 정상적으로 원래 예쁜 블로그 화면과 방문자 카운터가 작동할 것입니다.
 
----
-
-### 🏡 `index.html` 전체 소스 코드 (어제 방문자 수 서버 연동 버전)
+### 🏡 `index.html` 수정 완료된 전체 소스 코드
 
 ```html
 <!DOCTYPE html>
@@ -662,14 +663,12 @@
         lastDate = data.lastDate || "";
       }
 
-      // 날짜가 바뀌었는지 확인 (자정이 지났을 때)
       if (lastDate !== todayStr) {
-        yesterday = today; // 오늘의 방문자 수가 어제 방문자 수로 이동
+        yesterday = today;
         today = 0;
         lastDate = todayStr;
       }
 
-      // 세션당 1회 집계 체크
       if (!sessionStorage.getItem('firebase_counted')) {
         sessionStorage.setItem('firebase_counted', 'true');
         total += 1;
@@ -684,7 +683,6 @@
           console.error("방문자 데이터 업데이트 오류:", error);
         });
       } else {
-        // 이미 집계된 세션인 경우 최신 서버 값으로 동기화만 진행
         docRef.set({
           total: total,
           today: today,
@@ -693,7 +691,6 @@
         }, { merge: true }).catch(() => {});
       }
 
-      // 화면에 반영
       if (totalEl) totalEl.innerText = total.toLocaleString();
       if (todayEl) todayEl.innerText = today.toLocaleString();
       if (yesterdayEl) yesterdayEl.innerText = yesterday.toLocaleString();
@@ -701,122 +698,3 @@
       if (totalEl) {
         totalEl.classList.add('num-up');
         setTimeout(() => totalEl.classList.remove('num-up'), 500);
-      }
-    }).catch((error) => {
-      console.error("방문자 데이터를 불러오는 중 오류 발생:", error);
-      if (totalEl) totalEl.innerText = '0';
-      if (todayEl) todayEl.innerText = '0';
-      if (yesterdayEl) yesterdayEl.innerText = '0';
-    });
-  }
-
-  function renderPostsToDOM() {
-    if (typeof posts === 'undefined') return;
-    const lifestyleEl = document.getElementById('list-lifestyle');
-    const financeEl = document.getElementById('list-finance');
-    const itEl = document.getElementById('list-it');
-    const travelEl = document.getElementById('list-travel');
-
-    posts.forEach(post => {
-      const card = document.createElement('a');
-      card.className = 'post-card-mini';
-      card.href = `article.html?id=${post.id}`;
-      card.setAttribute('data-title', post.title.toLowerCase());
-      card.innerHTML = `
-        <div class="post-thumb-wrapper-mini">
-          <img class="post-thumb-mini" src="${post.thumb}" alt="썸네일" onerror="this.src='[https://cdn-icons-png.flaticon.com/512/3959/3959542.png](https://cdn-icons-png.flaticon.com/512/3959/3959542.png)'">
-        </div>
-        <div class="post-content-mini">
-          <div class="post-title-mini" title="${post.title}">${post.title}</div>
-          <div class="post-date-mini">${post.date}</div>
-        </div>
-      `;
-      if (post.category.includes('생활')) lifestyleEl?.appendChild(card);
-      else if (post.category.includes('금융')) financeEl?.appendChild(card);
-      else if (post.category.includes('IT')) itEl?.appendChild(card);
-      else travelEl?.appendChild(card);
-    });
-    renderTopPosts();
-  }
-
-  function renderTopPosts() {
-    const listEl = document.getElementById('top-posts-list');
-    if (!listEl || typeof posts === 'undefined') return;
-    const shuffled = [...posts].sort(() => 0.5 - Math.random()).slice(0, 5);
-    listEl.innerHTML = '';
-    shuffled.forEach((post, idx) => {
-      const li = document.createElement('li');
-      li.className = 'top-post-item';
-      li.onclick = () => window.location.href = `article.html?id=${post.id}`;
-      li.innerHTML = `<span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span><span title="${post.title}">${post.title}</span>`;
-      listEl.appendChild(li);
-    });
-  }
-
-  function startClock() {
-    function update() {
-      const now = new Date();
-      document.getElementById('clock-time').innerText = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-      document.getElementById('clock-date').innerText = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일`;
-    }
-    update();
-    setInterval(update, 1000);
-  }
-
-  function fetchWeather() {
-    fetch('[https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true](https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true)')
-      .then(res => res.json())
-      .then(data => {
-        if (data?.current_weather) {
-          document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
-          document.getElementById('weather-status').innerText = '맑음 ☀️';
-        }
-      }).catch(() => {});
-
-    fetch('[https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.5665&longitude=126.9780&current=pm10](https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.5665&longitude=126.9780&current=pm10)')
-      .then(res => res.json())
-      .then(data => {
-        if (data?.current && typeof data.current.pm10 !== 'undefined') {
-          const pm10 = Math.round(data.current.pm10);
-          let statusText = '좋음';
-          if (pm10 > 80) statusText = '매우나쁨';
-          else if (pm10 > 50) statusText = '나쁨';
-          else if (pm10 > 30) statusText = '보통';
-          document.getElementById('weather-dust').innerText = `미세먼지: ${pm10}㎍/m³ (${statusText})`;
-        } else {
-          document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
-        }
-      }).catch(() => {
-        document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
-      });
-  }
-
-  function renderMiniCalendar() {
-    const calendarEl = document.getElementById('mini-calendar');
-    if (!calendarEl) return;
-    const now = new Date();
-    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
-    const lastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-    let html = ['일','월','화','수','목','금','토'].map(d => `<div class="calendar-day-header">${d}</div>`).join('');
-    for (let i = 0; i < firstDay; i++) html += `<div></div>`;
-    for (let d = 1; d <= lastDate; d++) {
-      html += `<div class="calendar-cell ${d === now.getDate() ? 'today' : ''}">${d}</div>`;
-    }
-    calendarEl.innerHTML = html;
-  }
-
-  function initTips() { document.getElementById('random-tip').innerText = tipsList[0]; }
-  function showNextTip() {
-    currentTipIndex = (currentTipIndex + 1) % tipsList.length;
-    document.getElementById('random-tip').innerText = tipsList[currentTipIndex];
-  }
-
-  function filterPosts() {
-    const query = document.getElementById('search-input').value.toLowerCase();
-    document.querySelectorAll('.post-card-mini').forEach(card => {
-      card.style.display = card.getAttribute('data-title').includes(query) ? 'flex' : 'none';
-    });
-  }
-</script>
-</body>
-</html>
