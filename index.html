@@ -4,43 +4,63 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <title>에코 힐링 정보 커뮤니티</title>
+  <title>통합 정보 블로그</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <style>
+    .visitor-num {
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+    }
+    .visitor-num.num-up {
+      color: var(--primary);
+      transform: scale(1.15);
+    }
+    .blog-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .blog-menu-btn {
+      display: block;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .blog-menu-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+    .post-list-scroll {
+      cursor: grab;
+      user-select: none;
+    }
+    .post-list-scroll:active {
+      cursor: grabbing;
+    }
+  </style>
 </head>
 <body>
 
 <div class="wrapper">
-  <!-- 좌측 사이드바 -->
+  <!-- 좌측 사이드바 (PC 전용) -->
   <aside class="sidebar">
     <div class="widget-box">
-      <h3 class="widget-title">🌿 커뮤니티 메뉴</h3>
+      <h3 class="widget-title">📌 블로그 메뉴</h3>
       <div class="blog-menu-links">
-        <a href="about.html" class="blog-menu-btn">📖 사이트 소개</a>
-        <a href="privacy.html" class="blog-menu-btn">🔒 이용약관 및 정책</a>
-        <a href="contact.html" class="blog-menu-btn">✉️ 제휴 및 문의</a>
+        <a href="about.html" class="blog-menu-btn">📖 블로그 소개</a>
+        <a href="privacy.html" class="blog-menu-btn">🔒 개인정보처리방침</a>
+        <a href="contact.html" class="blog-menu-btn">✉️ 문의하기</a>
       </div>
     </div>
-
-    <!-- 방문자 현황 위젯 -->
-    <div class="widget-box">
-      <h3 class="widget-title">📊 방문자 현황</h3>
-      <div style="display: flex; justify-content: space-around; text-align: center; margin-top: 10px;">
-        <div>
-          <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">오늘</div>
-          <div id="vis-today" style="font-size: 18px; font-weight: 800; color: #03c75a;">--</div>
-        </div>
-        <div>
-          <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">어제</div>
-          <div id="vis-yesterday" style="font-size: 18px; font-weight: 800; color: #334155;">--</div>
-        </div>
-        <div>
-          <div style="font-size: 12px; color: #64748b; margin-bottom: 4px;">누적</div>
-          <div id="vis-total" style="font-size: 18px; font-weight: 800; color: #0f172a;">--</div>
-        </div>
-      </div>
-    </div>
-
     <div class="widget-box">
       <h3 class="widget-title">🕒 실시간 시계</h3>
       <div id="clock-time" class="clock-time">00:00:00</div>
@@ -52,120 +72,177 @@
         <div id="weather-temp" class="weather-temp">--°C</div>
         <div class="weather-sub">
           <div id="weather-status">불러오는 중...</div>
-          <div id="weather-dust" style="margin-top: 3px;">미세먼지: 확인 중...</div>
+          <div id="weather-dust" style="margin-top: 3px;">미세먼지: --</div>
         </div>
+      </div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">📅 이달의 달력</h3>
+      <div id="mini-calendar" class="calendar-grid"></div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">📊 방문자 현황</h3>
+      <div class="visitor-stats">
+        <div class="visitor-item"><span class="visitor-label">오늘</span><span id="visitor-today" class="visitor-num" style="color: var(--primary);">0</span></div>
+        <div class="visitor-item"><span class="visitor-label">어제</span><span id="visitor-yesterday" class="visitor-num">0</span></div>
+        <div class="visitor-item"><span class="visitor-label">누적</span><span id="visitor-total" class="visitor-num">0</span></div>
       </div>
     </div>
   </aside>
 
   <!-- 메인 콘텐츠 영역 -->
   <main class="container">
-    <!-- 1. 상단 대문 배너 -->
-    <div class="community-hero-banner">
-      <h1 class="hero-title">🌿 에코 힐링 정보 커뮤니티</h1>
-      <p class="hero-subtitle">싱그러운 일상 꿀팁과 알찬 정보들을 편하게 나눠보세요</p>
+    <div class="mobile-welcome-banner">
+      <h2>🚀 통합 정보 블로그</h2>
+      <p>매일 업데이트되는 알찬 생활 꿀팁과 테크 정보를 확인해 보세요!</p>
     </div>
 
-    <!-- 2. 공지사항 띠 배너 -->
-    <div class="notice-ticker">
-      <span>📢</span> [공지] 친환경 라이프 및 IT/여행 아카이브 업데이트가 완료되었습니다.
+    <div class="blog-section">
+      <div class="blog-header"><h2 class="blog-title">생활 / 꿀팁 모음</h2></div>
+      <div id="posts-lifestyle" class="post-list-scroll"></div>
     </div>
 
-    <!-- 3. 아이콘 바로가기 그리드 카드 -->
-    <div class="quick-grid">
-      <a href="#posts-lifestyle" class="quick-card">
-        <span class="quick-icon">🌱</span>
-        <div class="quick-card-title">인기 꿀팁</div>
-        <div class="quick-card-desc">생활 밀착형 정보</div>
-      </a>
-      <a href="#posts-finance" class="quick-card">
-        <span class="quick-icon">📈</span>
-        <div class="quick-card-title">금융/테크</div>
-        <div class="quick-card-desc">스마트 재테크</div>
-      </a>
-      <a href="#posts-it" class="quick-card">
-        <span class="quick-icon">💻</span>
-        <div class="quick-card-title">IT 스마트폰</div>
-        <div class="quick-card-desc">테크 및 설정 팁</div>
-      </a>
-      <a href="#posts-travel" class="quick-card">
-        <span class="quick-icon">🌿</span>
-        <div class="quick-card-title">여행 맛집</div>
-        <div class="quick-card-desc">힐링 탐방 후기</div>
-      </a>
+    <div class="blog-section">
+      <div class="blog-header"><h2 class="blog-title">금융 / 테크 정보</h2></div>
+      <div id="posts-finance" class="post-list-scroll"></div>
     </div>
 
-    <!-- 포스트 섹션들 -->
-    <div class="blog-section" id="posts-lifestyle">
-      <div class="blog-header"><h2 class="blog-title">🌱 생활 / 꿀팁 모음</h2></div>
-      <div class="post-list-scroll" id="list-lifestyle"></div>
+    <div class="blog-section">
+      <div class="blog-header"><h2 class="blog-title">IT / 스마트폰</h2></div>
+      <div id="posts-it" class="post-list-scroll"></div>
     </div>
 
-    <div class="blog-section" id="posts-finance">
-      <div class="blog-header"><h2 class="blog-title">📈 금융 / 테크 정보</h2></div>
-      <div class="post-list-scroll" id="list-finance"></div>
-    </div>
-
-    <div class="blog-section" id="posts-it">
-      <div class="blog-header"><h2 class="blog-title">💻 IT / 스마트폰</h2></div>
-      <div class="post-list-scroll" id="list-it"></div>
-    </div>
-
-    <div class="blog-section" id="posts-travel">
-      <div class="blog-header"><h2 class="blog-title">🌿 여행 / 맛집 탐방</h2></div>
-      <div class="post-list-scroll" id="list-travel"></div>
+    <div class="blog-section">
+      <div class="blog-header"><h2 class="blog-title">여행 / 맛집 탐방</h2></div>
+      <div id="posts-travel" class="post-list-scroll"></div>
     </div>
   </main>
 
-  <!-- 우측 사이드바 -->
+  <!-- 우측 사이드바 (PC 전용) -->
   <aside class="sidebar">
     <div class="widget-box">
       <h3 class="widget-title">🔍 포스트 검색</h3>
       <div class="search-input-box">
-        <input type="text" id="search-input" class="search-input" placeholder="키워드 입력..." onkeyup="filterPosts()">
+        <input type="text" id="search-input" class="search-input" placeholder="글 제목 키워드 입력..." onkeyup="filterPosts()">
       </div>
     </div>
     <div class="widget-box">
-      <h3 class="widget-title">🔥 실시간 인기 Top 5</h3>
+      <h3 class="widget-title">🔥 인기 포스트 Top 5</h3>
       <ul id="top-posts-list" class="top-post-list"></ul>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">💡 오늘의 꿀팁 <button class="refresh-tip-btn" onclick="showNextTip()">다음 🔄</button></h3>
+      <div id="random-tip" class="tip-box">로딩 중...</div>
     </div>
   </aside>
 </div>
 
 <script src="data.js"></script>
 <script>
+  let currentTipIndex = 0;
+  const tipsList = [
+    "전자레인지 청소 시 물과 귤껍질을 함께 넣고 2분 돌린 뒤 닦아내면 냄새와 기름때가 싹 사라집니다.",
+    "옷에 묻은 볼펜 자국은 물파스로 문지른 후 세탁하면 깔끔하게 제거됩니다.",
+    "냉장고 탈취에는 쓰고 남은 원두커피 가루나 100원짜리 동전을 넣어두면 효과적입니다.",
+    "스티커나 테이프 자국은 선크림을 발라두었다가 닦아내면 손쉽게 지워집니다."
+  ];
+
   window.onload = function() {
     startClock();
     fetchWeather();
+    renderMiniCalendar();
+    initTips();
+    initVisitorCounter();
     renderPostsToDOM();
-    initRealVisitorCounter();
+    initMouseDragScroll();
   };
 
-  function initRealVisitorCounter() {
-    const todayKey = 'eco_visitor_today_' + new Date().toDateString();
-    let totalCount = parseInt(localStorage.getItem('eco_visitor_total') || '16150', 10);
-    let todayCount = parseInt(localStorage.getItem(todayKey) || '60', 10);
-    let yesterdayCount = 61;
+  function initMouseDragScroll() {
+    const scrollContainers = document.querySelectorAll('.post-list-scroll');
+    scrollContainers.forEach(container => {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
 
-    if (!sessionStorage.getItem('visited_session')) {
+      container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
+
+      container.addEventListener('mouseleave', () => {
+        isDown = false;
+      });
+
+      container.addEventListener('mouseup', () => {
+        isDown = false;
+      });
+
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 2;
+        container.scrollLeft = scrollLeft - walk;
+      });
+    });
+  }
+
+  function initVisitorCounter() {
+    const todayStr = new Date().toISOString().slice(0, 10);
+    const savedDate = localStorage.getItem('v_last_date');
+
+    let todayCount = parseInt(localStorage.getItem('v_today') || '128');
+    let yesterdayCount = parseInt(localStorage.getItem('v_yesterday') || '342');
+    let totalCount = parseInt(localStorage.getItem('v_total') || '15480');
+
+    // 날짜가 바뀌었을 때 처리
+    if (savedDate !== todayStr) {
+      yesterdayCount = todayCount;
+      todayCount = 1;
+      localStorage.setItem('v_last_date', todayStr);
+      localStorage.setItem('v_yesterday', yesterdayCount);
+      
+      // 새로운 날이 되었으므로 현재 세션도 새로 인정
       sessionStorage.setItem('visited_session', 'true');
+      localStorage.setItem('v_today', todayCount);
       totalCount += 1;
-      todayCount += 1;
-      localStorage.setItem('eco_visitor_total', totalCount);
-      localStorage.setItem(todayKey, todayCount);
+      localStorage.setItem('v_total', totalCount);
+    } else {
+      // 같은 날일 때, 브라우저 탭/세션 기준으로 최초 접속 시에만 카운트 증가
+      if (!sessionStorage.getItem('visited_session')) {
+        todayCount += 1;
+        totalCount += 1;
+        sessionStorage.setItem('visited_session', 'true');
+        localStorage.setItem('v_today', todayCount);
+        localStorage.setItem('v_total', totalCount);
+      }
     }
 
-    document.getElementById('vis-today').innerText = todayCount;
-    document.getElementById('vis-yesterday').innerText = yesterdayCount;
-    document.getElementById('vis-total').innerText = totalCount.toLocaleString();
+    updateVisitorDOM(todayCount, yesterdayCount, totalCount, true);
+  }
+
+  function updateVisitorDOM(today, yesterday, total, animate = false) {
+    const todayEl = document.getElementById('visitor-today');
+    const yesterdayEl = document.getElementById('visitor-yesterday');
+    const totalEl = document.getElementById('visitor-total');
+
+    if (todayEl) todayEl.innerText = today.toLocaleString();
+    if (yesterdayEl) yesterdayEl.innerText = yesterday.toLocaleString();
+    if (totalEl) totalEl.innerText = total.toLocaleString();
+
+    if (animate && todayEl) {
+      todayEl.classList.add('num-up');
+      setTimeout(() => todayEl.classList.remove('num-up'), 500);
+    }
   }
 
   function renderPostsToDOM() {
     if (typeof posts === 'undefined') return;
-    const lEl = document.getElementById('list-lifestyle');
-    const fEl = document.getElementById('list-finance');
-    const iEl = document.getElementById('list-it');
-    const tEl = document.getElementById('list-travel');
+    const lifestyleEl = document.getElementById('posts-lifestyle');
+    const financeEl = document.getElementById('posts-finance');
+    const itEl = document.getElementById('posts-it');
+    const travelEl = document.getElementById('posts-travel');
 
     posts.forEach(post => {
       const card = document.createElement('a');
@@ -181,10 +258,10 @@
           <div class="post-date-mini">${post.date}</div>
         </div>
       `;
-      if (post.category.includes('생활')) lEl?.appendChild(card);
-      else if (post.category.includes('금융')) fEl?.appendChild(card);
-      else if (post.category.includes('IT')) iEl?.appendChild(card);
-      else tEl?.appendChild(card);
+      if (post.category.includes('생활')) lifestyleEl?.appendChild(card);
+      else if (post.category.includes('금융')) financeEl?.appendChild(card);
+      else if (post.category.includes('IT')) itEl?.appendChild(card);
+      else travelEl?.appendChild(card);
     });
     renderTopPosts();
   }
@@ -204,11 +281,13 @@
   }
 
   function startClock() {
-    setInterval(() => {
+    function update() {
       const now = new Date();
       document.getElementById('clock-time').innerText = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
       document.getElementById('clock-date').innerText = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일`;
-    }, 1000);
+    }
+    update();
+    setInterval(update, 1000);
   }
 
   function fetchWeather() {
@@ -220,6 +299,26 @@
           document.getElementById('weather-status').innerText = '맑음 ☀️';
         }
       }).catch(() => {});
+  }
+
+  function renderMiniCalendar() {
+    const calendarEl = document.getElementById('mini-calendar');
+    if (!calendarEl) return;
+    const now = new Date();
+    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
+    const lastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    let html = ['일','월','화','수','목','금','토'].map(d => `<div class="calendar-day-header">${d}</div>`).join('');
+    for (let i = 0; i < firstDay; i++) html += `<div></div>`;
+    for (let d = 1; d <= lastDate; d++) {
+      html += `<div class="calendar-cell ${d === now.getDate() ? 'today' : ''}">${d}</div>`;
+    }
+    calendarEl.innerHTML = html;
+  }
+
+  function initTips() { document.getElementById('random-tip').innerText = tipsList[0]; }
+  function showNextTip() {
+    currentTipIndex = (currentTipIndex + 1) % tipsList.length;
+    document.getElementById('random-tip').innerText = tipsList[currentTipIndex];
   }
 
   function filterPosts() {
