@@ -7,7 +7,7 @@
   <title>에코 힐링 정보 커뮤니티</title>
   <link rel="stylesheet" href="style.css">
   
-  <!-- 눈누 등에서 제공하는 메모먼트 꾹꾹체 웹폰트 CDN 추가 -->
+  <!-- 눈누 메모먼트 꾹꾹체 웹폰트 CDN -->
   <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2" rel="stylesheet">
 
   <!-- Firebase SDK (실시간 방문자 카운터 연동용) -->
@@ -327,8 +327,8 @@
     const todayStr = new Date().toISOString().slice(0, 10);
     const savedDate = localStorage.getItem('v_last_date');
 
-    let todayCount = parseInt(localStorage.getItem('v_today') || '67');
-    let yesterdayCount = parseInt(localStorage.getItem('v_yesterday') || '61');
+    let todayCount = parseInt(localStorage.getItem('v_today') || '0');
+    let yesterdayCount = parseInt(localStorage.getItem('v_yesterday') || '0');
 
     if (savedDate !== todayStr) {
       yesterdayCount = todayCount;
@@ -352,13 +352,13 @@
     if (yesterdayEl) yesterdayEl.innerText = yesterdayCount.toLocaleString();
     if (todayEl) todayEl.innerText = todayCount.toLocaleString();
 
-    // 파이어베이스 Firestore에서 누적 방문자(total)를 실시간으로 불러오고 1 증가시키기
+    // 파이어베이스 Firestore에서 누적 방문자(total) 불러오기 (0부터 시작)
     const docRef = db.collection("counter").doc("stats");
 
     docRef.get().then((doc) => {
       let totalCount = 0;
       if (doc.exists) {
-        totalCount = doc.data().total || 16157;
+        totalCount = doc.data().total !== undefined ? doc.data().total : 0;
         
         if (!sessionStorage.getItem('firebase_counted')) {
           totalCount += 1;
@@ -368,7 +368,7 @@
           });
         }
       } else {
-        docRef.set({ total: totalCount });
+        docRef.set({ total: 0 });
       }
 
       if (totalEl) totalEl.innerText = totalCount.toLocaleString();
