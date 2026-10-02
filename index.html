@@ -192,24 +192,21 @@
     const todayStr = new Date().toISOString().slice(0, 10);
     const savedDate = localStorage.getItem('v_last_date');
 
-    let todayCount = parseInt(localStorage.getItem('v_today') || '128');
-    let yesterdayCount = parseInt(localStorage.getItem('v_yesterday') || '342');
-    let totalCount = parseInt(localStorage.getItem('v_total') || '15480');
+    let todayCount = parseInt(localStorage.getItem('v_today') || '67');
+    let yesterdayCount = parseInt(localStorage.getItem('v_yesterday') || '61');
+    let totalCount = parseInt(localStorage.getItem('v_total') || '16157');
 
-    // 날짜가 바뀌었을 때 처리
     if (savedDate !== todayStr) {
       yesterdayCount = todayCount;
       todayCount = 1;
       localStorage.setItem('v_last_date', todayStr);
       localStorage.setItem('v_yesterday', yesterdayCount);
       
-      // 새로운 날이 되었으므로 현재 세션도 새로 인정
       sessionStorage.setItem('visited_session', 'true');
       localStorage.setItem('v_today', todayCount);
       totalCount += 1;
       localStorage.setItem('v_total', totalCount);
     } else {
-      // 같은 날일 때, 브라우저 탭/세션 기준으로 최초 접속 시에만 카운트 증가
       if (!sessionStorage.getItem('visited_session')) {
         todayCount += 1;
         totalCount += 1;
@@ -291,6 +288,7 @@
   }
 
   function fetchWeather() {
+    // 날씨 및 기온 정보 가져오기
     fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
       .then(res => res.json())
       .then(data => {
@@ -299,6 +297,25 @@
           document.getElementById('weather-status').innerText = '맑음 ☀️';
         }
       }).catch(() => {});
+
+    // 미세먼지(PM10) 정보 가져오기 (Open-Meteo Air Quality API)
+    fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.5665&longitude=126.9780&current=pm10')
+      .then(res => res.json())
+      .then(data => {
+        if (data?.current && typeof data.current.pm10 !== 'undefined') {
+          const pm10 = Math.round(data.current.pm10);
+          let statusText = '좋음';
+          if (pm10 > 80) statusText = '매우나쁨';
+          else if (pm10 > 50) statusText = '나쁨';
+          else if (pm10 > 30) statusText = '보통';
+          
+          document.getElementById('weather-dust').innerText = `미세먼지: ${pm10}㎍/m³ (${statusText})`;
+        } else {
+          document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
+        }
+      }).catch(() => {
+        document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
+      });
   }
 
   function renderMiniCalendar() {
