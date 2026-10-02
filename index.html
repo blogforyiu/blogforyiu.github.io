@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <title>통합 정보 블로그</title>
+  <title>에코 힐링 정보 커뮤니티</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <!-- 웹폰트: 함초롱바탕체 추가 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://hangeul.pstatic.net/hangeul_static/css/hamchorong-batang.css">
+  
+  <!-- Firebase SDK (실시간 방문자 카운터 연동용) -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
   <style>
+    body {
+      font-family: '함초롱바탕', 'HamchorongBatang', serif;
+    }
     .visitor-num {
       transition: color 0.3s ease, transform 0.3s ease;
       display: inline-block;
@@ -35,9 +44,9 @@
       transition: all 0.2s ease;
     }
     .blog-menu-btn:hover {
-      background: var(--primary);
+      background: #03c75a;
       color: #ffffff;
-      border-color: var(--primary);
+      border-color: #03c75a;
     }
     .post-list-scroll {
       cursor: grab;
@@ -45,6 +54,90 @@
     }
     .post-list-scroll:active {
       cursor: grabbing;
+    }
+
+    /* 상단 대문 배너 (그린 꿀통 스타일) */
+    .community-hero-banner {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #0284c7 0%, #03c75a 100%);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(3, 199, 90, 0.2);
+    }
+    .hero-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .hero-subtitle {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    /* 공지 띠 배너 */
+    .notice-ticker {
+      background: #f1fbf5;
+      border: 1px solid #c6f6d5;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #065f46;
+      margin-bottom: 20px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 바로가기 아이콘 그리드 카드 */
+    .quick-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+    .quick-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 14px;
+      padding: 18px 10px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      display: block;
+    }
+    .quick-card:hover {
+      transform: translateY(-3px);
+      border-color: #03c75a;
+      box-shadow: 0 6px 15px rgba(3, 199, 90, 0.12);
+    }
+    .quick-icon {
+      font-size: 26px;
+      margin-bottom: 6px;
+      display: block;
+    }
+    .quick-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+      margin-bottom: 2px;
+    }
+    .quick-card-desc {
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    @media (max-width: 1100px) {
+      .quick-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
   </style>
 </head>
@@ -92,29 +185,59 @@
 
   <!-- 메인 콘텐츠 영역 -->
   <main class="container">
-    <div class="mobile-welcome-banner">
-      <h2>🚀 통합 정보 블로그</h2>
-      <p>매일 업데이트되는 알찬 생활 꿀팁과 테크 정보를 확인해 보세요!</p>
+    <!-- 상단 대문 배너 -->
+    <div class="community-hero-banner">
+      <h1 class="hero-title">🌿 에코 힐링 정보 커뮤니티</h1>
+      <p class="hero-subtitle">매일 업데이트되는 알찬 생활 꿀팁과 테크 정보를 확인해 보세요!</p>
     </div>
 
-    <div class="blog-section">
+    <!-- 공지사항 띠 배너 -->
+    <div class="notice-ticker">
+      <span>📢</span> [공지] 친환경 라이프 및 IT/여행 아카이브 업데이트가 완료되었습니다.
+    </div>
+
+    <!-- 바로가기 아이콘 그리드 카드 -->
+    <div class="quick-grid">
+      <a href="#posts-lifestyle" class="quick-card">
+        <span class="quick-icon">🌱</span>
+        <div class="quick-card-title">인기 꿀팁</div>
+        <div class="quick-card-desc">생활 밀착형 정보</div>
+      </a>
+      <a href="#posts-finance" class="quick-card">
+        <span class="quick-icon">📈</span>
+        <div class="quick-card-title">금융/테크</div>
+        <div class="quick-card-desc">스마트 재테크</div>
+      </a>
+      <a href="#posts-it" class="quick-card">
+        <span class="quick-icon">💻</span>
+        <div class="quick-card-title">IT 스마트폰</div>
+        <div class="quick-card-desc">테크 및 설정 팁</div>
+      </a>
+      <a href="#posts-travel" class="quick-card">
+        <span class="quick-icon">🌿</span>
+        <div class="quick-card-title">여행 맛집</div>
+        <div class="quick-card-desc">힐링 탐방 후기</div>
+      </a>
+    </div>
+
+    <div class="blog-section" id="posts-lifestyle">
       <div class="blog-header"><h2 class="blog-title">생활 / 꿀팁 모음</h2></div>
-      <div id="posts-lifestyle" class="post-list-scroll"></div>
+      <div class="post-list-scroll" id="list-lifestyle"></div>
     </div>
 
-    <div class="blog-section">
+    <div class="blog-section" id="posts-finance">
       <div class="blog-header"><h2 class="blog-title">금융 / 테크 정보</h2></div>
-      <div id="posts-finance" class="post-list-scroll"></div>
+      <div class="post-list-scroll" id="list-finance"></div>
     </div>
 
-    <div class="blog-section">
+    <div class="blog-section" id="posts-it">
       <div class="blog-header"><h2 class="blog-title">IT / 스마트폰</h2></div>
-      <div id="posts-it" class="post-list-scroll"></div>
+      <div class="post-list-scroll" id="list-it"></div>
     </div>
 
-    <div class="blog-section">
+    <div class="blog-section" id="posts-travel">
       <div class="blog-header"><h2 class="blog-title">여행 / 맛집 탐방</h2></div>
-      <div id="posts-travel" class="post-list-scroll"></div>
+      <div class="post-list-scroll" id="list-travel"></div>
     </div>
   </main>
 
@@ -139,6 +262,22 @@
 
 <script src="data.js"></script>
 <script>
+  // 파이어베이스 설정값 (제나님 프로젝트 기준 적용)
+  const firebaseConfig = {
+    apiKey: "AIzaSyBR0wLEB88q2_aLBZPrdKFH27wxjHXsrIc",
+    authDomain: "blog-visitor-87a5c.firebaseapp.com",
+    projectId: "blog-visitor-87a5c",
+    storageBucket: "blog-visitor-87a5c.appspot.com",
+    messagingSenderId: "82038942165",
+    appId: "1:82038942165:web:9772c7c77bd3f88393f56c"
+  };
+
+  // 파이어베이스 초기화
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
+
   let currentTipIndex = 0;
   const tipsList = [
     "전자레인지 청소 시 물과 귤껍질을 함께 넣고 2분 돌린 뒤 닦아내면 냄새와 기름때가 싹 사라집니다.",
@@ -170,13 +309,8 @@
         scrollLeft = container.scrollLeft;
       });
 
-      container.addEventListener('mouseleave', () => {
-        isDown = false;
-      });
-
-      container.addEventListener('mouseup', () => {
-        isDown = false;
-      });
+      container.addEventListener('mouseleave', () => { isDown = false; });
+      container.addEventListener('mouseup', () => { isDown = false; });
 
       container.addEventListener('mousemove', (e) => {
         if (!isDown) return;
@@ -194,52 +328,65 @@
 
     let todayCount = parseInt(localStorage.getItem('v_today') || '67');
     let yesterdayCount = parseInt(localStorage.getItem('v_yesterday') || '61');
-    let totalCount = parseInt(localStorage.getItem('v_total') || '16157');
 
     if (savedDate !== todayStr) {
       yesterdayCount = todayCount;
       todayCount = 1;
       localStorage.setItem('v_last_date', todayStr);
       localStorage.setItem('v_yesterday', yesterdayCount);
-      
       sessionStorage.setItem('visited_session', 'true');
       localStorage.setItem('v_today', todayCount);
-      totalCount += 1;
-      localStorage.setItem('v_total', totalCount);
     } else {
       if (!sessionStorage.getItem('visited_session')) {
         todayCount += 1;
-        totalCount += 1;
         sessionStorage.setItem('visited_session', 'true');
         localStorage.setItem('v_today', todayCount);
-        localStorage.setItem('v_total', totalCount);
       }
     }
 
-    updateVisitorDOM(todayCount, yesterdayCount, totalCount, true);
-  }
-
-  function updateVisitorDOM(today, yesterday, total, animate = false) {
     const todayEl = document.getElementById('visitor-today');
     const yesterdayEl = document.getElementById('visitor-yesterday');
     const totalEl = document.getElementById('visitor-total');
 
-    if (todayEl) todayEl.innerText = today.toLocaleString();
-    if (yesterdayEl) yesterdayEl.innerText = yesterday.toLocaleString();
-    if (totalEl) totalEl.innerText = total.toLocaleString();
+    if (yesterdayEl) yesterdayEl.innerText = yesterdayCount.toLocaleString();
+    if (todayEl) todayEl.innerText = todayCount.toLocaleString();
 
-    if (animate && todayEl) {
-      todayEl.classList.add('num-up');
-      setTimeout(() => todayEl.classList.remove('num-up'), 500);
-    }
+    // 파이어베이스 Firestore에서 누적 방문자(total)를 실시간으로 불러오고 1 증가시키기
+    const docRef = db.collection("counter").doc("stats");
+
+    docRef.get().then((doc) => {
+      let totalCount = 16157;
+      if (doc.exists) {
+        totalCount = doc.data().total || 16157;
+        
+        if (!sessionStorage.getItem('firebase_counted')) {
+          totalCount += 1;
+          sessionStorage.setItem('firebase_counted', 'true');
+          docRef.update({ total: totalCount }).catch(() => {
+            docRef.set({ total: totalCount });
+          });
+        }
+      } else {
+        docRef.set({ total: totalCount });
+      }
+
+      if (totalEl) totalEl.innerText = totalCount.toLocaleString();
+      if (totalEl) {
+        totalEl.classList.add('num-up');
+        setTimeout(() => totalEl.classList.remove('num-up'), 500);
+      }
+    }).catch((error) => {
+      console.error("방문자 데이터를 불러오는 중 오류 발생:", error);
+      if (totalEl) totalEl.innerText = '16,157';
+    });
   }
 
   function renderPostsToDOM() {
     if (typeof posts === 'undefined') return;
-    const lifestyleEl = document.getElementById('posts-lifestyle');
-    const financeEl = document.getElementById('posts-finance');
-    const itEl = document.getElementById('posts-it');
-    const travelEl = document.getElementById('posts-travel');
+    const lifestyleEl = document.getElementById('list-lifestyle');
+    const financeEl = document.getElementById('list-finance');
+    const itEl = document.getElementById('list-it');
+    const travelEl = document.getElementById('list-travel');
 
     posts.forEach(post => {
       const card = document.createElement('a');
@@ -288,7 +435,6 @@
   }
 
   function fetchWeather() {
-    // 날씨 및 기온 정보 가져오기
     fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
       .then(res => res.json())
       .then(data => {
@@ -298,7 +444,6 @@
         }
       }).catch(() => {});
 
-    // 미세먼지(PM10) 정보 가져오기 (Open-Meteo Air Quality API)
     fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.5665&longitude=126.9780&current=pm10')
       .then(res => res.json())
       .then(data => {
@@ -308,7 +453,6 @@
           if (pm10 > 80) statusText = '매우나쁨';
           else if (pm10 > 50) statusText = '나쁨';
           else if (pm10 > 30) statusText = '보통';
-          
           document.getElementById('weather-dust').innerText = `미세먼지: ${pm10}㎍/m³ (${statusText})`;
         } else {
           document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
