@@ -22,7 +22,7 @@
       </div>
     </div>
 
-    <!-- 진짜 누적되는 방문자 현황 위젯 -->
+    <!-- 방문자 현황 위젯 -->
     <div class="widget-box">
       <h3 class="widget-title">📊 방문자 현황</h3>
       <div style="display: flex; justify-content: space-around; text-align: center; margin-top: 10px;">
@@ -141,14 +141,12 @@
     initRealVisitorCounter();
   };
 
-  // 진짜 방문자 누적 로직 (localStorage 활용)
   function initRealVisitorCounter() {
     const todayKey = 'eco_visitor_today_' + new Date().toDateString();
     let totalCount = parseInt(localStorage.getItem('eco_visitor_total') || '16150', 10);
     let todayCount = parseInt(localStorage.getItem(todayKey) || '60', 10);
-    let yesterdayCount = 61; // 어제 방문자 고정값
+    let yesterdayCount = 61;
 
-    // 첫 방문 또는 세션당 1회 증가 체크
     if (!sessionStorage.getItem('visited_session')) {
       sessionStorage.setItem('visited_session', 'true');
       totalCount += 1;
