@@ -227,52 +227,10 @@
       <span>📢</span> [공지] 친환경 라이프 및 IT/여행 아카이브 업데이트가 완료되었습니다.
     </div>
 
-    <!-- 🔥 에디터 추천 하이라이트 4개 배너 영역 -->
+    <!-- 🔥 에디터 추천 하이라이트 4개 배너 영역 (실제 포스트 연동) -->
     <div class="highlight-section-title">⭐ 에디터 추천 하이라이트 포스트</div>
-    <div class="highlight-grid">
-      <!-- 1. 엔화 환율 -->
-      <a href="article.html?id=finance-1" class="highlight-card">
-        <div class="highlight-thumb-box">
-          <img src="https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500&auto=format&fit=crop&q=60" alt="엔화 환율" class="highlight-thumb">
-        </div>
-        <div class="highlight-content">
-          <div class="highlight-title">엔화 환율 전망 분석과 초보자를 위한 엔테크 투자 방법 3가지 비교</div>
-          <div class="highlight-date">2026. 09. 23</div>
-        </div>
-      </a>
-
-      <!-- 2. 스마트폰 배터리 -->
-      <a href="article.html?id=it-1" class="highlight-card">
-        <div class="highlight-thumb-box">
-          <img src="https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&auto=format&fit=crop&q=60" alt="스마트폰 배터리" class="highlight-thumb">
-        </div>
-        <div class="highlight-content">
-          <div class="highlight-title">스마트폰 배터리 수명 2배 늘리는 실전 충전 및 설정 습관 4가지</div>
-          <div class="highlight-date">2026. 09. 23</div>
-        </div>
-      </a>
-
-      <!-- 3. 윈도우 PC 용량 -->
-      <a href="article.html?id=it-2" class="highlight-card">
-        <div class="highlight-thumb-box">
-          <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500&auto=format&fit=crop&q=60" alt="PC 용량 정리" class="highlight-thumb">
-        </div>
-        <div class="highlight-content">
-          <div class="highlight-title">윈도우 PC 용량 부족할 때 5분 만에 용량 확보하는 정리 꿀팁 3가지</div>
-          <div class="highlight-date">2026. 09. 23</div>
-        </div>
-      </a>
-
-      <!-- 4. 서울 근교 드라이브 -->
-      <a href="article.html?id=travel-1" class="highlight-card">
-        <div class="highlight-thumb-box">
-          <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500&auto=format&fit=crop&q=60" alt="드라이브 코스" class="highlight-thumb">
-        </div>
-        <div class="highlight-content">
-          <div class="highlight-title">주말 당일치기 힐링 여행! 서울 근교 드라이브 코스 베스트 3 추천</div>
-          <div class="highlight-date">2026. 09. 23</div>
-        </div>
-      </a>
+    <div class="highlight-grid" id="highlight-container">
+      <!-- 자바스크립트로 data.js의 실제 글을 불러와서 동적으로 꽂아줍니다 -->
     </div>
 
     <div class="blog-section" id="posts-lifestyle">
@@ -345,9 +303,38 @@
     renderMiniCalendar();
     initTips();
     initVisitorCounter();
+    renderHighlights(); // 추천 하이라이트 연동
     renderPostsToDOM();
     initMouseDragScroll();
   };
+
+  // 실제 data.js의 글 중에서 하이라이트로 보여줄 4개 자동 렌더링
+  function renderHighlights() {
+    const container = document.getElementById('highlight-container');
+    if (!container || typeof posts === 'undefined') return;
+
+    // 제나님이 고르신 주제와 매칭되는 실제 포스트 ID들 (또는 상위 4개)
+    const highlightIds = ['finance-1', 'it-1', 'it-2', 'travel-1'];
+    let html = '';
+
+    highlightIds.forEach(id => {
+      const post = posts.find(p => p.id === id) || posts[0]; // 없으면 첫 번째 글 대체
+      if (post) {
+        html += `
+          <a href="article.html?id=${post.id}" class="highlight-card">
+            <div class="highlight-thumb-box">
+              <img src="${post.thumb}" alt="썸네일" class="highlight-thumb" onerror="this.src='https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500&auto=format&fit=crop&q=60'">
+            </div>
+            <div class="highlight-content">
+              <div class="highlight-title">${post.title}</div>
+              <div class="highlight-date">${post.date}</div>
+            </div>
+          </a>
+        `;
+      }
+    });
+    container.innerHTML = html;
+  }
 
   function initMouseDragScroll() {
     const scrollContainers = document.querySelectorAll('.post-list-scroll');
