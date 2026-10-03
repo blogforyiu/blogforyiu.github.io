@@ -97,46 +97,425 @@
       gap: 8px;
     }
 
-    /* 바로가기 아이콘 그리드 카드 */
-    .quick-grid {
+    /* 에디터 추천 하이라이트 4개 카드 그리드 */
+    .highlight-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 12px;
       margin-bottom: 24px;
     }
-    .quick-card {
+    .highlight-card {
       background: #ffffff;
       border: 1px solid #e2e8f0;
       border-radius: 14px;
-      padding: 18px 10px;
-      text-align: center;
+      overflow: hidden;
       text-decoration: none;
       transition: all 0.2s ease;
-      display: block;
+      display: flex;
+      flex-direction: column;
     }
-    .quick-card:hover {
-      transform: translateY(-3px);
+    .highlight-card:hover {
+      transform: translateY(-4px);
       border-color: #03c75a;
-      box-shadow: 0 6px 15px rgba(3, 199, 90, 0.12);
+      box-shadow: 0 8px 20px rgba(3, 199, 90, 0.15);
     }
-    .quick-icon {
-      font-size: 26px;
-      margin-bottom: 6px;
-      display: block;
+    .highlight-thumb {
+      width: 100%;
+      height: 110px;
+      object-fit: cover;
     }
-    .quick-card-title {
-      font-size: 14px;
+    .highlight-info {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+    .highlight-title {
+      font-size: 13px;
       font-weight: 700;
       color: #1e293b;
-      margin-bottom: 2px;
+      line-height: 1.4;
+      margin-bottom: 6px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
     }
-    .quick-card-desc {
+    .highlight-date {
       font-size: 11px;
       color: #64748b;
     }
 
     @media (max-width: 1100px) {
-      .quick-grid {
+      .highlight-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+  <!-- 좌측 사이드바 (PC 전용) -->
+  <aside class="sidebar">
+    <div class="widget-box">
+      <h3 class="widget-title">📌 블로그 메뉴</h3>
+      <div class="blog-menu-links">
+        <a href="about.html" class="blog-menu-btn">📖 블로그 소개</a>
+        <a href="privacy.html" class="blog-menu-btn">🔒 개인정보처리방침</a>
+        <a href="contact.html" class="blog-menu-btn">✉️ 1:1 문의하기</a>
+      </div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">🕒 실시간 시계</h3>
+      <div id="clock-time" class="clock-time">00:00:00</div>
+      <div id="clock-date" class="clock-date">2026년 0월 0일</div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">☀️ 실시간 날씨</h3>
+      <div class="weather-info">
+        <div id="weather-temp" class="weather-temp">--°C</div>
+        <div class="weather-sub">
+          <div id="weather-status">불러오는 중...</div>
+          <div id="weather-dust" style="margin-top: 3px;">미세먼지: --</div>
+        </div>
+      </div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">📅 이달의 달력</h3>
+      <div id="mini-calendar" class="calendar-grid"></div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">📊 방문자 현황</h3>
+      <div class="visitor-stats">
+        <div class="visitor-item"><span class="visitor-label">오늘</span><span id="visitor-today" class="visitor-num" style="color: var(--primary);">0</span></div>
+        <div class="visitor-item"><span class="visitor-label">어제</span><span id="visitor-yesterday" class="visitor-num">0</span></div>
+        <div class="visitor-item"><span class="visitor-label">누적</span><span id="visitor-total" class="visitor-num">0</span></div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- 메인 콘텐츠 영역 -->
+  <main class="container">
+    <div class="community-hero-banner">
+      <h1 class="hero-title">🌿 에코 힐링 정보 커뮤니티</h1>
+      <p class="hero-subtitle">매일 업데이트되는 알찬 생활 꿀팁과 테크 정보를 확인해 보세요!</p>
+    </div>
+
+    <div class="notice-ticker">
+      <span>📢</span> [공지] 에디터 추천 핵심 하이라이트 콘텐츠가 업데이트되었습니다.
+    </div>
+
+    <!-- 에디터 추천 하이라이트 4개 카드 영역 -->
+    <div class="highlight-grid">
+      <a href="article.html?id=finance-1" class="highlight-card">
+        <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80" alt="엔화 환율" class="highlight-thumb">
+        <div class="highlight-info">
+          <div class="highlight-title">엔화 환율 전망 분석과 초보자를 위한 엔테크 투자 방법 3가지 비교</div>
+          <div class="highlight-date">2026. 09. 23</div>
+        </div>
+      </a>
+      <a href="article.html?id=it-1" class="highlight-card">
+        <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80" alt="스마트폰 배터리" class="highlight-thumb">
+        <div class="highlight-info">
+          <div class="highlight-title">스마트폰 배터리 수명 2배 늘리는 실전 충전 및 설정 습관 4가지</div>
+          <div class="highlight-date">2026. 09. 23</div>
+        </div>
+      </a>
+      <a href="article.html?id=it-2" class="highlight-card">
+        <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=600&q=80" alt="윈도우 PC 용량" class="highlight-thumb">
+        <div class="highlight-info">
+          <div class="highlight-title">윈도우 PC 용량 부족할 때 5분 만에 용량 확보하는 정리 꿀팁 3가지</div>
+          <div class="highlight-date">2026. 09. 23</div>
+        </div>
+      </a>
+      <a href="article.html?id=travel-1" class="highlight-card">
+        <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=600&q=80" alt="서울 근교 드라이브" class="highlight-thumb">
+        <div class="highlight-info">
+          <div class="highlight-title">주말 당일치기 힐링 여행! 서울 근교 드라이브 코스 베스트 3 추천</div>
+          <div class="highlight-date">2026. 09. 23</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="blog-section" id="posts-lifestyle">
+      <div class="blog-header"><h2 class="blog-title">생활 / 꿀팁 모음</h2></div>
+      <div class="post-list-scroll" id="list-lifestyle"></div>
+    </div>
+
+    <div class="blog-section" id="posts-finance">
+      <div class="blog-header"><h2 class="blog-title">금융 / 테크 정보</h2></div>
+      <div class="post-list-scroll" id="list-finance"></div>
+    </div>
+
+    <div class="blog-section" id="posts-it">
+      <div class="blog-header"><h2 class="blog-title">IT / 스마트폰</h2></div>
+      <div class="post-list-scroll" id="list-it"></div>
+    </div>
+
+    <div class="blog-section" id="posts-travel">
+      <div class="blog-header"><h2 class="blog-title">여행 / 맛집 탐방</h2></div>
+      <div class="post-list-scroll" id="list-travel"></div>
+    </div>
+  </main>
+
+  <!-- 우측 사이드바 (PC 전용) -->
+  <aside class="sidebar">
+    <div class="widget-box">
+      <h3 class="widget-title">🔍 포스트 검색</h3>
+      <div class="search-input-box">
+        <input type="text" id="search-input" class="search-input" placeholder="글 제목 키워드 입력..." onkeyup="filterPosts()">
+      </div>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">🔥 인기 포스트 Top 5</h3>
+      <ul id="top-posts-list" class="top-post-list"></ul>
+    </div>
+    <div class="widget-box">
+      <h3 class="widget-title">💡 오늘의 꿀팁 <button class="refresh-tip-btn" onclick="showNextTip()">다음 🔄</button></h3>
+      <div id="random-tip" class="tip-box">로딩 중...</div>
+    </div>
+  </aside>
+</div>
+
+<script src="data.js"></script>
+<script>
+  const firebaseConfig = {
+    apiKey: "AIzaSyBR0wLEB88q2_aLBZPrdKFH27wxjHXsrIc",
+    authDomain: "blog-visitor-87a5c.firebaseapp.com",
+    projectId: "blog-visitor-87a5c",
+    storageBucket: "blog-visitor-87a5c.appspot.com",
+    messagingSenderId: "82038942165",
+    appId: "1:82038942165:web:9772c7c77bd3f88393f56c"
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
+
+  let currentTipIndex = 0;
+  const tipsList = [
+    "전자레인지 청소 시 물과 귤껍질을 함께 넣고 2분 돌린 뒤 닦아내면 냄새와 기름때가 싹 사라집니다.",
+    "옷에 묻은 볼펜 자국은 물파스로 문지른 후 세탁하면 깔끔하게 제거됩니다.",
+    "냉장고 탈취에는 쓰고 남은 원두커피 가루나 100원짜리 동전을 넣어두면 효과적입니다.",
+    "스티커나 테이프 자국은 선크림을 발라두었다가 닦아내면 손쉽게 지워집니다."
+  ];
+
+  window.onload = function() {
+    startClock();
+    fetchWeather();
+    renderMiniCalendar();
+    initTips();
+    initVisitorCounter();
+    renderPostsToDOM();
+    initMouseDragScroll();
+  };
+
+  function initMouseDragScroll() {
+    const scrollContainers = document.querySelectorAll('.post-list-scroll');
+    scrollContainers.forEach(container => {
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
+
+      container.addEventListener('mouseleave', () => { isDown = false; });
+      container.addEventListener('mouseup', () => { isDown = false; });
+
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x -오, 보여주신 이 4가지 핵심 콘텐츠 아주 좋습니다! 
+엔화 환율/엔테크, 스마트폰 배터리 수명, 윈도우 PC 용량 정리, 서울 근교 드라이브 코스까지 사람들이 검색을 정말 많이 하고 실속 있는 알짜배기 주제들입니다.
+
+기존에 있던 쓸모없는 '바로가기 아이콘 카드' 영역을 통째로 들어내고, 이 **인기 하이라이트 글 4개를 방문자들이 한눈에 보고 바로 클릭할 수 있는 예쁜 추천 배너 카드 영역**으로 완벽하게 교체해 드리겠습니다.
+
+---
+
+### 🏡 `index.html` 전체 소스 코드 (하이라이트 4개 배너 적용 버전)
+
+아래 전체 코드를 복사해서 기존 `index.html` 파일에 **전부 덮어쓰기** 해보세요!
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="referrer" content="no-referrer">
+  <title>에코 힐링 정보 커뮤니티</title>
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- 눈누 메모먼트 꾹꾹체 웹폰트 CDN -->
+  <link href="[https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2](https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2)" rel="stylesheet">
+
+  <!-- Firebase SDK (실시간 방문자 카운터 연동용) -->
+  <script src="[https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js](https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js)"></script>
+  <script src="[https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js](https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js)"></script>
+
+  <style>
+    body {
+      font-family: 'MomentsKkugKkug', 'Pretendard Variable', Pretendard, sans-serif !important;
+    }
+    .visitor-num {
+      transition: color 0.3s ease, transform 0.3s ease;
+      display: inline-block;
+    }
+    .visitor-num.num-up {
+      color: var(--primary);
+      transform: scale(1.15);
+    }
+    .blog-menu-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .blog-menu-btn {
+      display: block;
+      padding: 10px 14px;
+      background: #f8fafc;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      color: var(--text-sub);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+    .blog-menu-btn:hover {
+      background: #03c75a;
+      color: #ffffff;
+      border-color: #03c75a;
+    }
+    .post-list-scroll {
+      cursor: grab;
+      user-select: none;
+    }
+    .post-list-scroll:active {
+      cursor: grabbing;
+    }
+
+    /* 상단 대문 배너 (그린 꿀통 스타일) */
+    .community-hero-banner {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #0284c7 0%, #03c75a 100%);
+      border-radius: 18px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 20px;
+      box-shadow: 0 8px 20px rgba(3, 199, 90, 0.2);
+    }
+    .hero-title {
+      font-size: 28px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .hero-subtitle {
+      font-size: 14px;
+      opacity: 0.95;
+    }
+
+    /* 공지 띠 배너 */
+    .notice-ticker {
+      background: #f1fbf5;
+      border: 1px solid #c6f6d5;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 14px;
+      color: #065f46;
+      margin-bottom: 20px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 에디터 추천 하이라이트 4개 카드 그리드 */
+    .highlight-section-title {
+      font-size: 18px;
+      font-weight: 800;
+      color: #0f172a;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .highlight-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+    .highlight-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      overflow: hidden;
+      text-decoration: none;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+    .highlight-card:hover {
+      transform: translateY(-5px);
+      border-color: #03c75a;
+      box-shadow: 0 8px 20px rgba(3, 199, 90, 0.15);
+    }
+    .highlight-thumb-box {
+      width: 100%;
+      height: 130px;
+      overflow: hidden;
+      background: #f1f5f9;
+    }
+    .highlight-thumb {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+    .highlight-card:hover .highlight-thumb {
+      transform: scale(1.05);
+    }
+    .highlight-content {
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-grow: 1;
+    }
+    .highlight-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #1e293b;
+      line-height: 1.4;
+      margin-bottom: 8px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .highlight-date {
+      font-size: 11px;
+      color: #64748b;
+    }
+
+    @media (max-width: 1100px) {
+      .highlight-grid {
         grid-template-columns: repeat(2, 1fr);
       }
     }
@@ -195,26 +574,51 @@
       <span>📢</span> [공지] 친환경 라이프 및 IT/여행 아카이브 업데이트가 완료되었습니다.
     </div>
 
-    <div class="quick-grid">
-      <a href="#posts-lifestyle" class="quick-card">
-        <span class="quick-icon">🌱</span>
-        <div class="quick-card-title">인기 꿀팁</div>
-        <div class="quick-card-desc">생활 밀착형 정보</div>
+    <!-- 🔥 에디터 추천 하이라이트 4개 배너 영역 -->
+    <div class="highlight-section-title">⭐ 에디터 추천 하이라이트 포스트</div>
+    <div class="highlight-grid">
+      <!-- 1. 엔화 환율 -->
+      <a href="article.html?id=finance-1" class="highlight-card">
+        <div class="highlight-thumb-box">
+          <img src="[https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500&auto=format&fit=crop&q=60](https://images.unsplash.com/photo-1580519542036-c47de6196ba5?w=500&auto=format&fit=crop&q=60)" alt="엔화 환율" class="highlight-thumb">
+        </div>
+        <div class="highlight-content">
+          <div class="highlight-title">엔화 환율 전망 분석과 초보자를 위한 엔테크 투자 방법 3가지 비교</div>
+          <div class="highlight-date">2026. 09. 23</div>
+        </div>
       </a>
-      <a href="#posts-finance" class="quick-card">
-        <span class="quick-icon">📈</span>
-        <div class="quick-card-title">금융/테크</div>
-        <div class="quick-card-desc">스마트 재테크</div>
+
+      <!-- 2. 스마트폰 배터리 -->
+      <a href="article.html?id=it-1" class="highlight-card">
+        <div class="highlight-thumb-box">
+          <img src="[https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&auto=format&fit=crop&q=60](https://images.unsplash.com/photo-1583863788434-e58a36330cf0?w=500&auto=format&fit=crop&q=60)" alt="스마트폰 배터리" class="highlight-thumb">
+        </div>
+        <div class="highlight-content">
+          <div class="highlight-title">스마트폰 배터리 수명 2배 늘리는 실전 충전 및 설정 습관 4가지</div>
+          <div class="highlight-date">2026. 09. 23</div>
+        </div>
       </a>
-      <a href="#posts-it" class="quick-card">
-        <span class="quick-icon">💻</span>
-        <div class="quick-card-title">IT 스마트폰</div>
-        <div class="quick-card-desc">테크 및 설정 팁</div>
+
+      <!-- 3. 윈도우 PC 용량 -->
+      <a href="article.html?id=it-2" class="highlight-card">
+        <div class="highlight-thumb-box">
+          <img src="[https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500&auto=format&fit=crop&q=60](https://images.unsplash.com/photo-1587202372775-e229f172b9d7?w=500&auto=format&fit=crop&q=60)" alt="PC 용량 정리" class="highlight-thumb">
+        </div>
+        <div class="highlight-content">
+          <div class="highlight-title">윈도우 PC 용량 부족할 때 5분 만에 용량 확보하는 정리 꿀팁 3가지</div>
+          <div class="highlight-date">2026. 09. 23</div>
+        </div>
       </a>
-      <a href="#posts-travel" class="quick-card">
-        <span class="quick-icon">🌿</span>
-        <div class="quick-card-title">여행 맛집</div>
-        <div class="quick-card-desc">힐링 탐방 후기</div>
+
+      <!-- 4. 서울 근교 드라이브 -->
+      <a href="article.html?id=travel-1" class="highlight-card">
+        <div class="highlight-thumb-box">
+          <img src="[https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500&auto=format&fit=crop&q=60](https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=500&auto=format&fit=crop&q=60)" alt="드라이브 코스" class="highlight-thumb">
+        </div>
+        <div class="highlight-content">
+          <div class="highlight-title">주말 당일치기 힐링 여행! 서울 근교 드라이브 코스 베스트 3 추천</div>
+          <div class="highlight-date">2026. 09. 23</div>
+        </div>
       </a>
     </div>
 
@@ -328,7 +732,7 @@
     docRef.get().then((doc) => {
       let total = 0;
       let today = 0;
-      let yesterday = 251; // 기본 어제 방문자 초기값
+      let yesterday = 251;
       let lastDate = "";
 
       const todayStr = new Date().toISOString().slice(0, 10);
@@ -380,7 +784,7 @@
     }).catch((error) => {
       console.error("방문자 데이터를 불러오는 중 오류 발생:", error);
       if (totalEl) totalEl.innerText = '0';
-      if (todayEl) todayEl.innerText = '0';
+      if (todayEl) totalEl.innerText = '0';
       if (yesterdayEl) yesterdayEl.innerText = '251';
     });
   }
@@ -393,105 +797,4 @@
     const travelEl = document.getElementById('list-travel');
 
     posts.forEach(post => {
-      const card = document.createElement('a');
-      card.className = 'post-card-mini';
-      card.href = `article.html?id=${post.id}`;
-      card.setAttribute('data-title', post.title.toLowerCase());
-      card.innerHTML = `
-        <div class="post-thumb-wrapper-mini">
-          <img class="post-thumb-mini" src="${post.thumb}" alt="썸네일" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3959/3959542.png'">
-        </div>
-        <div class="post-content-mini">
-          <div class="post-title-mini" title="${post.title}">${post.title}</div>
-          <div class="post-date-mini">${post.date}</div>
-        </div>
-      `;
-      if (post.category.includes('생활')) lifestyleEl?.appendChild(card);
-      else if (post.category.includes('금융')) financeEl?.appendChild(card);
-      else if (post.category.includes('IT')) itEl?.appendChild(card);
-      else travelEl?.appendChild(card);
-    });
-    renderTopPosts();
-  }
-
-  function renderTopPosts() {
-    const listEl = document.getElementById('top-posts-list');
-    if (!listEl || typeof posts === 'undefined') return;
-    const shuffled = [...posts].sort(() => 0.5 - Math.random()).slice(0, 5);
-    listEl.innerHTML = '';
-    shuffled.forEach((post, idx) => {
-      const li = document.createElement('li');
-      li.className = 'top-post-item';
-      li.onclick = () => window.location.href = `article.html?id=${post.id}`;
-      li.innerHTML = `<span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span><span title="${post.title}">${post.title}</span>`;
-      listEl.appendChild(li);
-    });
-  }
-
-  function startClock() {
-    function update() {
-      const now = new Date();
-      document.getElementById('clock-time').innerText = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}:${String(now.getSeconds()).padStart(2, '0')}`;
-      document.getElementById('clock-date').innerText = `${now.getFullYear()}년 ${now.getMonth() + 1}월 ${now.getDate()}일`;
-    }
-    update();
-    setInterval(update, 1000);
-  }
-
-  function fetchWeather() {
-    fetch('https://api.open-meteo.com/v1/forecast?latitude=37.5665&longitude=126.9780&current_weather=true')
-      .then(res => res.json())
-      .then(data => {
-        if (data?.current_weather) {
-          document.getElementById('weather-temp').innerText = `${Math.round(data.current_weather.temperature)}°C`;
-          document.getElementById('weather-status').innerText = '맑음 ☀️';
-        }
-      }).catch(() => {});
-
-    fetch('https://air-quality-api.open-meteo.com/v1/air-quality?latitude=37.5665&longitude=126.9780&current=pm10')
-      .then(res => res.json())
-      .then(data => {
-        if (data?.current && typeof data.current.pm10 !== 'undefined') {
-          const pm10 = Math.round(data.current.pm10);
-          let statusText = '좋음';
-          if (pm10 > 80) statusText = '매우나쁨';
-          else if (pm10 > 50) statusText = '나쁨';
-          else if (pm10 > 30) statusText = '보통';
-          document.getElementById('weather-dust').innerText = `미세먼지: ${pm10}㎍/m³ (${statusText})`;
-        } else {
-          document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
-        }
-      }).catch(() => {
-        document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
-      });
-  }
-
-  function renderMiniCalendar() {
-    const calendarEl = document.getElementById('mini-calendar');
-    if (!calendarEl) return;
-    const now = new Date();
-    const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
-    const lastDate = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
-    let html = ['일','월','화','수','목','금','토'].map(d => `<div class="calendar-day-header">${d}</div>`).join('');
-    for (let i = 0; i < firstDay; i++) html += `<div></div>`;
-    for (let d = 1; d <= lastDate; d++) {
-      html += `<div class="calendar-cell ${d === now.getDate() ? 'today' : ''}">${d}</div>`;
-    }
-    calendarEl.innerHTML = html;
-  }
-
-  function initTips() { document.getElementById('random-tip').innerText = tipsList[0]; }
-  function showNextTip() {
-    currentTipIndex = (currentTipIndex + 1) % tipsList.length;
-    document.getElementById('random-tip').innerText = tipsList[currentTipIndex];
-  }
-
-  function filterPosts() {
-    const query = document.getElementById('search-input').value.toLowerCase();
-    document.querySelectorAll('.post-card-mini').forEach(card => {
-      card.style.display = card.getAttribute('data-title').includes(query) ? 'flex' : 'none';
-    });
-  }
-</script>
-</body>
-</html>
+      const
