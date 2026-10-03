@@ -57,23 +57,32 @@
       cursor: grabbing;
     }
 
-    /* 🔥 Top 5 포스트 타이틀 오버 시 부드럽게 옆으로 흐르는 스타일 */
+    /* 🔥 Top 5 포스트 타이틀 겹침 없는 깔끔한 마우스 오버 마퀴 스타일 */
     .top-post-item {
-      overflow: hidden !important;
-      white-space: nowrap !important;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      overflow: hidden;
+    }
+    .top-post-badge {
+      flex-shrink: 0; /* 숫자 뱃지는 절대 찌그러지거나 이동하지 않게 고정 */
+    }
+    .top-post-text-wrap {
+      overflow: hidden;
+      white-space: nowrap;
+      flex-grow: 1;
       position: relative;
     }
-    .top-post-item span:last-child {
+    .top-post-title {
       display: inline-block;
       transition: transform 0.3s ease;
     }
-    .top-post-item:hover span:last-child {
-      /* 제목이 길 경우 좌측으로 스크롤되는 애니메이션 */
-      animation: marqueeScroll 4s linear infinite;
+    .top-post-item:hover .top-post-title {
+      animation: marqueeScroll 5s linear infinite;
     }
     @keyframes marqueeScroll {
       0% { transform: translateX(0); }
-      50% { transform: translateX(-35%); }
+      50% { transform: translateX(-40%); }
       100% { transform: translateX(0); }
     }
 
@@ -546,7 +555,7 @@
     renderTopPosts();
   }
 
-  // 🔥 Firebase Firestore 조회수 연동 및 마우스 오버 마퀴 호환 렌더링
+  // 🔥 Firebase Firestore 조회수 연동 및 완벽한 마루키 구조 렌더링
   function renderTopPosts() {
     const listEl = document.getElementById('top-posts-list');
     if (!listEl || typeof posts === 'undefined') return;
@@ -568,7 +577,14 @@
         const li = document.createElement('li');
         li.className = 'top-post-item';
         li.onclick = () => window.location.href = `article.html?id=${post.id}`;
-        li.innerHTML = `<span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span><span title="${post.title}">${post.title}</span>`;
+        
+        // 뱃지와 텍스트 영역을 완벽하게 분리한 HTML 구조 적용
+        li.innerHTML = `
+          <span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span>
+          <div class="top-post-text-wrap">
+            <span class="top-post-title" title="${post.title}">${post.title}</span>
+          </div>
+        `;
         listEl.appendChild(li);
       });
     }).catch((error) => {
@@ -579,7 +595,12 @@
         const li = document.createElement('li');
         li.className = 'top-post-item';
         li.onclick = () => window.location.href = `article.html?id=${post.id}`;
-        li.innerHTML = `<span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span><span title="${post.title}">${post.title}</span>`;
+        li.innerHTML = `
+          <span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span>
+          <div class="top-post-text-wrap">
+            <span class="top-post-title" title="${post.title}">${post.title}</span>
+          </div>
+        `;
         listEl.appendChild(li);
       });
     });
@@ -613,7 +634,7 @@
           let statusText = '좋음';
           if (pm10 > 80) statusText = '매우나쁨';
           else if (pm10 > 50) statusText = '나쁨';
-          else if (pm10 > 30) statusTest = '보통';
+          else if (pm10 > 30) statusText = '보통';
           document.getElementById('weather-dust').innerText = `미세먼지: ${pm10}㎍/m³ (${statusText})`;
         } else {
           document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
