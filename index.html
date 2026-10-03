@@ -57,6 +57,26 @@
       cursor: grabbing;
     }
 
+    /* 🔥 Top 5 포스트 타이틀 오버 시 부드럽게 옆으로 흐르는 스타일 */
+    .top-post-item {
+      overflow: hidden !important;
+      white-space: nowrap !important;
+      position: relative;
+    }
+    .top-post-item span:last-child {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .top-post-item:hover span:last-child {
+      /* 제목이 길 경우 좌측으로 스크롤되는 애니메이션 */
+      animation: marqueeScroll 4s linear infinite;
+    }
+    @keyframes marqueeScroll {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(-35%); }
+      100% { transform: translateX(0); }
+    }
+
     /* 🌿 상단 대문 배너 업그레이드 버전 */
     .community-hero-banner {
       width: 100%;
@@ -526,7 +546,7 @@
     renderTopPosts();
   }
 
-  // 🔥 Firebase Firestore 조회수 연동 (오타 수정 완료 및 안전한 폴백 처리)
+  // 🔥 Firebase Firestore 조회수 연동 및 마우스 오버 마퀴 호환 렌더링
   function renderTopPosts() {
     const listEl = document.getElementById('top-posts-list');
     if (!listEl || typeof posts === 'undefined') return;
@@ -593,7 +613,7 @@
           let statusText = '좋음';
           if (pm10 > 80) statusText = '매우나쁨';
           else if (pm10 > 50) statusText = '나쁨';
-          else if (pm10 > 30) statusText = '보통';
+          else if (pm10 > 30) statusTest = '보통';
           document.getElementById('weather-dust').innerText = `미세먼지: ${pm10}㎍/m³ (${statusText})`;
         } else {
           document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
