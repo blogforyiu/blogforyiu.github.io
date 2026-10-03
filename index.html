@@ -10,7 +10,7 @@
   <!-- 눈누 메모먼트 꾹꾹체 웹폰트 CDN -->
   <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2" rel="stylesheet">
 
-  <!-- Firebase SDK (실시간 방문자 카운터 연동용) -->
+  <!-- Firebase SDK (실시간 방문자 카운터 및 조회수 연동용) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 
@@ -57,7 +57,7 @@
       cursor: grabbing;
     }
 
-    /* 🌿 상단 대문 배너 업그레이드 버전 (입체 패턴 및 심볼 추가) */
+    /* 🌿 상단 대문 배너 업그레이드 버전 */
     .community-hero-banner {
       width: 100%;
       height: 220px;
@@ -74,7 +74,6 @@
       position: relative;
       overflow: hidden;
     }
-    /* 배너 배경 은은한 원형 장식 효과 */
     .community-hero-banner::before {
       content: '';
       position: absolute;
@@ -269,7 +268,6 @@
 
   <!-- 메인 콘텐츠 영역 -->
   <main class="container">
-    <!-- 🌿 업그레이드된 풍성한 상단 대문 배너 -->
     <div class="community-hero-banner">
       <div class="hero-badge">🌿 ECO HEALING COMMUNITY</div>
       <h1 class="hero-title">에코 힐링 정보 커뮤니티</h1>
@@ -528,17 +526,44 @@
     renderTopPosts();
   }
 
+  // 🔥 Firebase Firestore에서 각 포스트의 실제 조회수(views)를 가져와서 Top 5 정렬
   function renderTopPosts() {
     const listEl = document.getElementById('top-posts-list');
     if (!listEl || typeof posts === 'undefined') return;
-    const shuffled = [...posts].sort(() => 0.5 - Math.random()).slice(0, 5);
-    listEl.innerHTML = '';
-    shuffled.forEach((post, idx) => {
-      const li = document.createElement('li');
-      li.className = 'top-post-item';
-      li.onclick = () => window.location.href = `article.html?id=${post.id}`;
-      li.innerHTML = `<span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span><span title="${post.title}">${post.title}</span>`;
-      listEl.appendChild(li);
+
+    db.collection("article_views").get().then((querySnapshot) => {
+      const viewCounts = {};
+      querySnapshot.forEach((doc) => {
+        viewCounts[doc.id] = doc.data().views || 0;
+      });
+
+      // 조회수(views)가 높은 순서대로 정렬 (조회수 데이터가 없으면 기존 id순 유지)
+      const sortedPosts = [...posts].sort((a, b) => {
+        const viewsA = viewCounts[String(a.id)] || 0;
+        const viewsB = viewCounts[String(b.id)] || 0;
+        return viewsB - viewsA;
+      }).slice(0, 5);
+
+      listEl.innerHTML = '';
+      sortedPosts.forEach((post, idx) => {
+        const li = document.createElement('li');
+        li.className = 'top-post-item';
+        li.onclick = () => window.location.href = `article.html?id=${post.id}`;
+        li.innerHTML = `<span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span><span title="${post.title}">${post.title}</span>`;
+        listEl.appendChild(li);
+      });
+    }).catch((error) => {
+      console.error("인기 포스트 조회수 연동 오류:", error);
+      // 에러 발생 시 기본 순서 상위 5개 출력
+      const fallbackPosts = [...posts].slice(0, 5);
+      listEl.innerHTML = '';
+      fallbackPosts.forEach((post, idx) => {
+        const li = document.createElement('li');
+        li.className = 'top-post-item';
+        li.onclick = () => window.location.href = `article.html?id=${post.id}`;
+        li.innerHTML = `<span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span><span title="${post.title}">${post.title}</span>`;
+        listEl.appendChild(li);
+      });
     });
   }
 
@@ -570,7 +595,7 @@
           let statusText = '좋음';
           if (pm10 > 80) statusText = '매우나쁨';
           else if (pm10 > 50) statusText = '나쁨';
-          else if (pm10 > 30) statusText = '보통';
+          else if (pm10 > 30) statusTest = '보통';
           document.getElementById('weather-dust').innerText = `미세먼지: ${pm10}㎍/m³ (${statusText})`;
         } else {
           document.getElementById('weather-dust').innerText = '미세먼지: 보통 (32㎍/m³)';
@@ -581,7 +606,7 @@
   }
 
   function renderMiniCalendar() {
-    const calendarEl = document.getElementById('mini-calendar');
+    The calendarEl = document.getElementById('mini-calendar');
     if (!calendarEl) return;
     const now = new Date();
     const firstDay = new Date(now.getFullYear(), now.getMonth(), 1).getDay();
