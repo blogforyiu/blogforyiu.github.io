@@ -65,7 +65,7 @@
       overflow: hidden;
     }
     .top-post-badge {
-      flex-shrink: 0; /* 숫자 뱃지는 절대 찌그러지거나 이동하지 않게 고정 */
+      flex-shrink: 0;
     }
     .top-post-text-wrap {
       overflow: hidden;
@@ -84,6 +84,17 @@
       0% { transform: translateX(0); }
       50% { transform: translateX(-40%); }
       100% { transform: translateX(0); }
+    }
+
+    /* ✨ 오늘의 꿀팁 부드러운 페이드인/아웃 애니메이션 효과 */
+    #random-tip {
+      transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    #random-tip.fade-out {
+      opacity: 0;
+      transform: translateY(-5px);
     }
 
     /* 🌿 상단 대문 배너 업그레이드 버전 */
@@ -522,7 +533,7 @@
       console.error("방문자 데이터를 불러오는 중 오류 발생:", error);
       if (totalEl) totalEl.innerText = '0';
       if (todayEl) totalEl.innerText = '0';
-      if (yesterdayEl) yesterdayEl.innerText = '251';
+      if (yesterdayEl) totalEl.innerText = '251';
     });
   }
 
@@ -555,7 +566,6 @@
     renderTopPosts();
   }
 
-  // 🔥 Firebase Firestore 조회수 연동 및 완벽한 마루키 구조 렌더링
   function renderTopPosts() {
     const listEl = document.getElementById('top-posts-list');
     if (!listEl || typeof posts === 'undefined') return;
@@ -577,8 +587,6 @@
         const li = document.createElement('li');
         li.className = 'top-post-item';
         li.onclick = () => window.location.href = `article.html?id=${post.id}`;
-        
-        // 뱃지와 텍스트 영역을 완벽하게 분리한 HTML 구조 적용
         li.innerHTML = `
           <span class="top-post-badge rank-${idx < 3 ? idx + 1 : ''}">${idx + 1}</span>
           <div class="top-post-text-wrap">
@@ -658,10 +666,31 @@
     calendarEl.innerHTML = html;
   }
 
-  function initTips() { document.getElementById('random-tip').innerText = tipsList[0]; }
+  // ✨ 오늘의 꿀팁 초기화 및 10초 자동 순환 타이머 + 페이드 애니메이션 적용
+  function initTips() {
+    const tipEl = document.getElementById('random-tip');
+    if (!tipEl) return;
+    tipEl.innerText = tipsList[currentTipIndex];
+    
+    // 10초마다 자동 전환
+    setInterval(() => {
+      showNextTip();
+    }, 10000);
+  }
+
   function showNextTip() {
-    currentTipIndex = (currentTipIndex + 1) % tipsList.length;
-    document.getElementById('random-tip').innerText = tipsList[currentTipIndex];
+    const tipEl = document.getElementById('random-tip');
+    if (!tipEl) return;
+
+    // 사라지는 애니메이션 클래스 추가
+    tipEl.classList.add('fade-out');
+
+    setTimeout(() => {
+      currentTipIndex = (currentTipIndex + 1) % tipsList.length;
+      tipEl.innerText = tipsList[currentTipIndex];
+      // 나타나는 애니메이션을 위해 클래스 제거
+      tipEl.classList.remove('fade-out');
+    }, 500); // 0.5초 동안 페이드 아웃 후 텍스트 변경
   }
 
   function filterPosts() {
