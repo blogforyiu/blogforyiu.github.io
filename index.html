@@ -57,12 +57,12 @@
       cursor: grabbing;
     }
 
-    /* 상단 대문 배너 (그린 꿀통 스타일) */
+    /* 🌿 상단 대문 배너 업그레이드 버전 (입체 패턴 및 심볼 추가) */
     .community-hero-banner {
       width: 100%;
-      height: 200px;
+      height: 220px;
       background: linear-gradient(135deg, #0284c7 0%, #03c75a 100%);
-      border-radius: 18px;
+      border-radius: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -70,16 +70,52 @@
       text-align: center;
       color: #ffffff;
       margin-bottom: 20px;
-      box-shadow: 0 8px 20px rgba(3, 199, 90, 0.2);
+      box-shadow: 0 10px 25px rgba(3, 199, 90, 0.25);
+      position: relative;
+      overflow: hidden;
+    }
+    /* 배너 배경 은은한 원형 장식 효과 */
+    .community-hero-banner::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 50%;
+      top: -100px;
+      right: -80px;
+      pointer-events: none;
+    }
+    .community-hero-banner::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 50%;
+      bottom: -70px;
+      left: -50px;
+      pointer-events: none;
+    }
+    .hero-badge {
+      background: rgba(255, 255, 255, 0.2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      backdrop-filter: blur(4px);
     }
     .hero-title {
-      font-size: 28px;
+      font-size: 30px;
       font-weight: 800;
       margin-bottom: 6px;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
     .hero-subtitle {
       font-size: 14px;
       opacity: 0.95;
+      font-weight: 500;
     }
 
     /* 공지 띠 배너 */
@@ -130,7 +166,6 @@
       border-color: #03c75a;
       box-shadow: 0 8px 20px rgba(3, 199, 90, 0.15);
     }
-    /* 실시간 핫토픽 라이브 뱃지 */
     .hot-badge {
       position: absolute;
       top: 10px;
@@ -234,8 +269,10 @@
 
   <!-- 메인 콘텐츠 영역 -->
   <main class="container">
+    <!-- 🌿 업그레이드된 풍성한 상단 대문 배너 -->
     <div class="community-hero-banner">
-      <h1 class="hero-title">🌿 에코 힐링 정보 커뮤니티</h1>
+      <div class="hero-badge">🌿 ECO HEALING COMMUNITY</div>
+      <h1 class="hero-title">에코 힐링 정보 커뮤니티</h1>
       <p class="hero-subtitle">매일 업데이트되는 알찬 생활 꿀팁과 테크 정보를 확인해 보세요!</p>
     </div>
 
@@ -457,7 +494,7 @@
     }).catch((error) => {
       console.error("방문자 데이터를 불러오는 중 오류 발생:", error);
       if (totalEl) totalEl.innerText = '0';
-      if (todayEl) totalEl.innerText = '0';
+      if (todayEl) todayEl.innerText = '0';
       if (yesterdayEl) yesterdayEl.innerText = '251';
     });
   }
