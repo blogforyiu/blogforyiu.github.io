@@ -558,10 +558,17 @@
           <div class="post-date-mini">${post.date}</div>
         </div>
       `;
-      if (post.category.includes('생활')) lifestyleEl?.appendChild(card);
-      else if (post.category.includes('금융')) financeEl?.appendChild(card);
-      else if (post.category.includes('IT')) itEl?.appendChild(card);
-      else travelEl?.appendChild(card);
+      
+      const cat = post.category.replace(/\s+/g, '');
+      if (cat.includes('생활') || cat.includes('꿀팁')) {
+        lifestyleEl?.appendChild(card);
+      } else if (cat.includes('금융') || cat.includes('테크')) {
+        financeEl?.appendChild(card);
+      } else if (cat.includes('IT') || cat.includes('스마트폰')) {
+        itEl?.appendChild(card);
+      } else {
+        travelEl?.appendChild(card);
+      }
     });
     renderTopPosts();
   }
@@ -666,13 +673,11 @@
     calendarEl.innerHTML = html;
   }
 
-  // ✨ 오늘의 꿀팁 초기화 및 10초 자동 순환 타이머 + 페이드 애니메이션 적용
   function initTips() {
     const tipEl = document.getElementById('random-tip');
     if (!tipEl) return;
     tipEl.innerText = tipsList[currentTipIndex];
     
-    // 10초마다 자동 전환
     setInterval(() => {
       showNextTip();
     }, 10000);
@@ -682,15 +687,13 @@
     const tipEl = document.getElementById('random-tip');
     if (!tipEl) return;
 
-    // 사라지는 애니메이션 클래스 추가
     tipEl.classList.add('fade-out');
 
     setTimeout(() => {
       currentTipIndex = (currentTipIndex + 1) % tipsList.length;
       tipEl.innerText = tipsList[currentTipIndex];
-      // 나타나는 애니메이션을 위해 클래스 제거
       tipEl.classList.remove('fade-out');
-    }, 500); // 0.5초 동안 페이드 아웃 후 텍스트 변경
+    }, 500);
   }
 
   function filterPosts() {
