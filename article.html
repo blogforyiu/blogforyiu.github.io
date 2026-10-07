@@ -81,13 +81,17 @@
     .article-content p {
       margin-bottom: 18px;
     }
+    
+    /* 🖼️ 본문 안의 이미지 깨짐 완벽 방지 스타일 설정 */
     .article-content img {
-      display: block;
-      max-width: 100%;
-      height: auto;
-      border-radius: 12px;
-      margin: 24px auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+      display: block !important;
+      width: 100% !important;
+      max-width: 100% !important;
+      height: auto !important;
+      border-radius: 12px !important;
+      margin: 24px 0 !important;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      object-fit: cover;
     }
     
     /* 하단 홈으로 돌아가기 버튼 영역 스타일 */
@@ -109,7 +113,7 @@
     <h2 style="text-align: center; color: var(--text-muted);">포스트를 불러오는 중입니다...</h2>
   </div>
 
-  <!-- 💡 본문 아래 추가된 하단 홈으로 돌아가기 버튼 영역 -->
+  <!-- 하단 홈으로 돌아가기 버튼 영역 -->
   <div class="article-footer-nav">
     <a href="index.html" class="back-btn">🏠 홈으로 돌아가기</a>
   </div>
