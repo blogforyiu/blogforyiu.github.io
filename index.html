@@ -316,7 +316,7 @@
       <span>📢</span> [공지] 실시간 핫토픽 이슈 포스트가 업데이트되었습니다.
     </div>
 
-    <!-- 🔥 실시간 핫토픽 4개 카드 (존재하는 ID: 1, 2, 5, 8번으로 완벽 연동) -->
+    <!-- 🔥 실시간 핫토픽 4개 카드 -->
     <div class="highlight-section-title">🔥 지금 가장 뜨거운 실시간 핫토픽</div>
     <div class="highlight-grid">
       <a href="article.html?id=1" class="highlight-card">
@@ -385,22 +385,9 @@
     </div>
   </main>
 
-  <!-- 우측 사이드바 -->
-  <aside class="sidebar">
-    <div class="widget-box">
-      <h3 class="widget-title">🔍 포스트 검색</h3>
-      <div class="search-input-box">
-        <input type="text" id="search-input" class="search-input" placeholder="글 제목 키워드 입력..." onkeyup="filterPosts()">
-      </div>
-    </div>
-    <div class="widget-box">
-      <h3 class="widget-title">🔥 인기 포스트 Top 5</h3>
-      <ul id="top-posts-list" class="top-post-list"></ul>
-    </div>
-    <div class="widget-box">
-      <h3 class="widget-title">💡 오늘의 꿀팁 <button class="refresh-tip-btn" onclick="showNextTip()">다음 🔄</button></h3>
-      <div id="random-tip" class="tip-box">로딩 중...</div>
-    </div>
+  <!-- 우측 사이드바 (필요시 활성화 혹은 빈 공간 유지) -->
+  <aside class="sidebar" style="visibility: hidden; pointer-events: none;">
+    <!-- 레이아웃 균형용 여백 사이드바 -->
   </aside>
 </div>
 
@@ -526,7 +513,7 @@
     }).catch((error) => {
       console.error("방문자 데이터를 불러오는 중 오류 발생:", error);
       if (totalEl) totalEl.innerText = '0';
-      if (todayEl) todayEl.innerText = '0';
+      if (todayEl) totalEl.innerText = '0';
       if (yesterdayEl) yesterdayEl.innerText = '251';
     });
   }
@@ -678,7 +665,6 @@
   }
 
   function showNextTip() {
-    const tip.el = document.getElementById('random-tip');
     const tipEl = document.getElementById('random-tip');
     if (!tipEl) return;
 
