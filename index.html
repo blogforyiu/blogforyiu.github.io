@@ -57,7 +57,7 @@
       cursor: grabbing;
     }
 
-    /* 🔥 Top 5 포스트 타이틀 겹침 없는 깔끔한 마우스 오버 마퀴 스타일 */
+    /* 🔥 Top 5 포스트 타이틀 마퀴 스타일 */
     .top-post-item {
       display: flex;
       align-items: center;
@@ -86,7 +86,7 @@
       100% { transform: translateX(0); }
     }
 
-    /* ✨ 오늘의 꿀팁 부드러운 페이드인/아웃 애니메이션 효과 */
+    /* ✨ 오늘의 꿀팁 애니메이션 */
     #random-tip {
       transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
       opacity: 1;
@@ -97,7 +97,7 @@
       transform: translateY(-5px);
     }
 
-    /* 🌿 상단 대문 배너 업그레이드 버전 */
+    /* 🌿 상단 대문 배너 */
     .community-hero-banner {
       width: 100%;
       height: 220px;
@@ -157,7 +157,6 @@
       font-weight: 500;
     }
 
-    /* 공지 띠 배너 */
     .notice-ticker {
       background: #f1fbf5;
       border: 1px solid #c6f6d5;
@@ -172,7 +171,6 @@
       gap: 8px;
     }
 
-    /* 실시간 핫토픽 4개 카드 그리드 */
     .highlight-section-title {
       font-size: 18px;
       font-weight: 800;
@@ -267,7 +265,7 @@
 <body>
 
 <div class="wrapper">
-  <!-- 좌측 사이드바 (PC 전용) -->
+  <!-- 좌측 사이드바 -->
   <aside class="sidebar">
     <div class="widget-box">
       <h3 class="widget-title">📌 블로그 메뉴</h3>
@@ -318,54 +316,50 @@
       <span>📢</span> [공지] 실시간 핫토픽 이슈 포스트가 업데이트되었습니다.
     </div>
 
-    <!-- 🔥 실시간 핫토픽 4개 카드 그리드 영역 -->
+    <!-- 🔥 실시간 핫토픽 4개 카드 (존재하는 ID: 1, 2, 5, 8번으로 완벽 연동) -->
     <div class="highlight-section-title">🔥 지금 가장 뜨거운 실시간 핫토픽</div>
     <div class="highlight-grid">
-      <!-- 1. 엔화 환율 (id: 2) -->
-      <a href="article.html?id=2" class="highlight-card">
+      <a href="article.html?id=1" class="highlight-card">
         <div class="hot-badge">HOT 🔥</div>
         <div class="highlight-thumb-box">
-          <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80" alt="엔화 환율" class="highlight-thumb">
+          <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=800&q=80" alt="배터리" class="highlight-thumb">
         </div>
         <div class="highlight-content">
-          <div class="highlight-title">엔화 환율 전망 분석과 초보자를 위한 엔테크 투자 방법 3가지 비교</div>
-          <div class="highlight-date">2026. 09. 23</div>
+          <div class="highlight-title">스마트폰 배터리 수명 극대화 가이드: 2배 늘리는 실전 충전 습관</div>
+          <div class="highlight-date">2026. 10. 07</div>
         </div>
       </a>
 
-      <!-- 2. 스마트폰 배터리 (id: 4) -->
-      <a href="article.html?id=4" class="highlight-card">
+      <a href="article.html?id=2" class="highlight-card">
         <div class="hot-badge">POPULAR ⭐</div>
         <div class="highlight-thumb-box">
-          <img src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=800&q=80" alt="스마트폰 배터리" class="highlight-thumb">
+          <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80" alt="PC용량" class="highlight-thumb">
         </div>
         <div class="highlight-content">
-          <div class="highlight-title">스마트폰 배터리 수명 2배 늘리는 실전 충전 및 설정 습관 4가지</div>
-          <div class="highlight-date">2026. 09. 23</div>
+          <div class="highlight-title">윈도우 PC 및 노트북 용량 부족 해결 5단계 대청소하기</div>
+          <div class="highlight-date">2026. 10. 07</div>
         </div>
       </a>
 
-      <!-- 3. 윈도우 PC 용량 (id: 10) -->
-      <a href="article.html?id=10" class="highlight-card">
+      <a href="article.html?id=5" class="highlight-card">
         <div class="hot-badge">TRENDING 💡</div>
         <div class="highlight-thumb-box">
-          <img src="https://images.unsplash.com/photo-1587202372775-e229f172b9d7?auto=format&fit=crop&w=800&q=80" alt="PC 용량 정리" class="highlight-thumb">
+          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="드라이브" class="highlight-thumb">
         </div>
         <div class="highlight-content">
-          <div class="highlight-title">윈도우 PC 용량 부족할 때 5분 만에 용량 확보하는 정리 꿀팁 3가지</div>
-          <div class="highlight-date">2026. 09. 23</div>
+          <div class="highlight-title">국내 주말 근교 드라이브 코스 추천 및 소요 시간 분석</div>
+          <div class="highlight-date">2026. 10. 07</div>
         </div>
       </a>
 
-      <!-- 4. 서울 근교 드라이브 (id: 7) -->
-      <a href="article.html?id=7" class="highlight-card">
+      <a href="article.html?id=8" class="highlight-card">
         <div class="hot-badge">REALTIME 🚗</div>
         <div class="highlight-thumb-box">
-          <img src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="드라이브 코스" class="highlight-thumb">
+          <img src="https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80" alt="이어폰" class="highlight-thumb">
         </div>
         <div class="highlight-content">
-          <div class="highlight-title">주말 당일치기 힐링 여행! 서울 근교 드라이브 코스 베스트 3 추천</div>
-          <div class="highlight-date">2026. 09. 23</div>
+          <div class="highlight-title">블루투스 이어폰 끊김 현상 해결 및 음질 최적화 설정 가이드</div>
+          <div class="highlight-date">2026. 10. 07</div>
         </div>
       </a>
     </div>
@@ -391,7 +385,7 @@
     </div>
   </main>
 
-  <!-- 우측 사이드바 (PC 전용) -->
+  <!-- 우측 사이드바 -->
   <aside class="sidebar">
     <div class="widget-box">
       <h3 class="widget-title">🔍 포스트 검색</h3>
@@ -532,8 +526,8 @@
     }).catch((error) => {
       console.error("방문자 데이터를 불러오는 중 오류 발생:", error);
       if (totalEl) totalEl.innerText = '0';
-      if (todayEl) totalEl.innerText = '0';
-      if (yesterdayEl) totalEl.innerText = '251';
+      if (todayEl) todayEl.innerText = '0';
+      if (yesterdayEl) yesterdayEl.innerText = '251';
     });
   }
 
@@ -684,6 +678,7 @@
   }
 
   function showNextTip() {
+    const tip.el = document.getElementById('random-tip');
     const tipEl = document.getElementById('random-tip');
     if (!tipEl) return;
 
