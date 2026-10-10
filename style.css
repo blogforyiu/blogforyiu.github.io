@@ -2,8 +2,8 @@
   --bg-color: #f7f5f0;
   --header-bg: #ffffff;
   --card-bg: #ffffff;
-  --primary: #2f3e46;      /* 차분하고 고급스러운 메인 차콜 톤 */
-  --accent: #52796f;       /* 세련된 서브 포인트 톤 */
+  --primary: #2f3e46;      /* 고급스러운 차콜 톤 */
+  --accent: #52796f;       /* 세련된 포인트 톤 */
   --text-main: #2b2d42;
   --text-sub: #6c757d;
   --border-color: #e5e0d8;
@@ -129,7 +129,7 @@ body {
   transform: scale(1.03);
 }
 
-/* 🌟 포스트 섹션 디자인 고도화 */
+/* 🌟 포스트 섹션 디자인 */
 .blog-section {
   background: #ffffff;
   border-radius: 24px;
@@ -216,7 +216,27 @@ body {
   font-weight: 700;
 }
 
-/* 📄 문의하기 및 서브 페이지 폼 스타일 (버튼 색상 차콜로 통일) */
+/* 🖼️ 상세 본문 및 서브 페이지 이미지 깨짐 완벽 방지 (핵심 수정) */
+.article-content img, article img, .post-body img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 200px !important;
+  max-height: 550px !important;
+  object-fit: cover !important;
+  border-radius: 16px !important;
+  margin: 35px 0 !important;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  background-color: #f1f3f5;
+}
+
+/* 주소가 잘못된 이미지 빈 박스 숨김 처리 */
+img:-moz-broken, img:not([src]), img[src=""] {
+  display: none !important;
+}
+
+/* 📄 서브 페이지 및 상세 본문 공통 스타일 */
 .contact-container, .article-wrapper, .policy-wrapper {
   max-width: 860px;
   margin: 40px auto;
@@ -232,6 +252,13 @@ body {
   color: var(--primary);
   margin-bottom: 10px;
 }
+.article-content {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #4a5568;
+}
+
+/* 폼 스타일 */
 .form-group {
   margin-bottom: 24px;
 }
@@ -264,7 +291,7 @@ body {
 }
 .submit-btn {
   width: 100%;
-  background: var(--primary);  /* 👈 쨍한 초록색 대신 고급스러운 차콜 톤 적용 */
+  background: var(--primary);
   color: #ffffff;
   border: none;
   padding: 16px;
@@ -303,17 +330,4 @@ body {
   .contact-container, .article-wrapper, .policy-wrapper { padding: 30px; }
   .site-header { padding: 18px 24px; }
   .hero-text-side { padding: 40px; }
-}
-
-/* 🖼️ 상세 본문 내부 이미지 깨짐 완벽 방지 및 비율 고정 */
-.article-content img, article img, .post-body img {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  min-height: 250px !important;
-  object-fit: cover !important;
-  border-radius: 16px !important;
-  margin: 35px 0 !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
