@@ -1,19 +1,18 @@
 :root {
-  /* 🌿 고급스러운 웜 베이지 배경과 차분한 톤 (60-30-10 법칙 적용) */
-  --bg-gradient: linear-gradient(135deg, #f7f6f0 0%, #ebe7de 100%);
-  --card-bg: rgba(255, 255, 255, 0.95);
-  --card-border: rgba(214, 208, 196, 0.6);
+  /* 🌿 모니터 속 사진 같은 따뜻한 웜 베이지 & 크림 톤 */
+  --bg-color: #f7f5f0;
+  --header-bg: #ffffff;
+  --card-bg: #ffffff;
+  --card-soft-green: #d8e2dc; /* 사진 속 민트/그린 카드 배경 톤 */
+  --card-soft-beige: #f0ebd8;
   
-  --primary: #03c75a;
-  --primary-hover: #02b350;
+  --primary: #2f3e46;
+  --accent: #52796f;
   
-  --text-main: #212529;
-  --text-sub: #495057;
-  --text-muted: #868e96;
+  --text-main: #2b2d42;
+  --text-sub: #8d99ae;
   
-  --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 20px 40px rgba(3, 199, 90, 0.12);
+  --shadow-subtle: 0 4px 20px rgba(0, 0, 0, 0.03);
 }
 
 * { 
@@ -21,196 +20,272 @@
 }
 
 body {
-  /* 깔끔하고 모던한 Pretendard 폰트 적용 */
   font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif !important;
-  background: var(--bg-gradient);
-  background-attachment: fixed;
-  min-height: 100vh;
+  background-color: var(--bg-color);
   color: var(--text-main);
   margin: 0;
-  padding: 36px 24px;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
-  line-height: 1.75;
-  font-size: 16px;
+  line-height: 1.7;
 }
 
-/* 📐 3단 레이아웃 그리드 (좌측 사이드바, 메인, 우측 사이드바) */
-.wrapper {
-  max-width: 1520px;
-  width: 100%;
-  margin: 0 auto;
+/* 🌟 상단 미니멀 네비게이션 바 */
+.site-header {
+  background: var(--header-bg);
+  border-bottom: 1px solid #e5e5e5;
+  padding: 20px 40px;
   display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  gap: 28px;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.site-logo {
+  font-size: 20px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: var(--primary);
+  text-decoration: none;
+}
+.site-nav {
+  display: flex;
+  gap: 30px;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-sub);
+}
+.site-nav a {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.2s;
+}
+.site-nav a:hover {
+  color: var(--accent);
 }
 
-/* 좌우 사이드바 너비 고정 */
-.sidebar {
-  width: 300px;
-  flex-shrink: 0;
+/* 📐 전체 레이아웃 (사이드바 제거, 와이드 중앙 집중형) */
+.wrapper {
+  max-width: 1280px;
+  width: 100%;
+  margin: 40px auto;
+  padding: 0 24px;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 50px;
 }
 
-/* 중앙 메인 콘텐츠 영역 (여유 있는 공간감) */
-.container {
-  flex: 1;
-  min-width: 0;
-  max-width: 880px;
-}
-
-/* 위젯 박스 (글래스모피즘 + 부드러운 테두리) */
-.widget-box {
-  background: var(--card-bg);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 26px;
-  border: 1px solid var(--card-border);
-  box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.widget-box:hover {
-  box-shadow: var(--shadow-md);
-}
-
-.widget-title {
-  font-size: 18px;
-  font-weight: 800;
-  color: var(--text-main);
-  margin-top: 0;
-  margin-bottom: 18px;
-  padding-bottom: 12px;
-  border-bottom: 2px solid #e9ecef;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.widget-text { font-size: 15px; color: var(--text-sub); line-height: 1.7; margin: 0; }
-.clock-time { font-size: 34px; font-weight: 900; color: var(--primary); text-align: center; letter-spacing: 1px; }
-.clock-date { font-size: 15px; color: var(--text-sub); text-align: center; margin-top: 8px; font-weight: 700; }
-
-.weather-info { display: flex; align-items: center; justify-content: space-between; }
-.weather-temp { font-size: 30px; font-weight: 900; color: var(--text-main); }
-.weather-sub { font-size: 15px; color: var(--text-sub); text-align: right; font-weight: 600; }
-
-.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; font-size: 14px; }
-.calendar-day-header { font-weight: 800; color: var(--text-muted); padding-bottom: 6px; }
-.calendar-day-header:nth-child(1) { color: #e03131; }
-.calendar-day-header:nth-child(7) { color: #1971c2; }
-.calendar-cell { padding: 6px 0; border-radius: 8px; color: var(--text-sub); font-weight: 700; }
-.calendar-cell.today { background: var(--primary); color: #ffffff; font-weight: 800; box-shadow: 0 3px 10px rgba(3, 199, 90, 0.3); }
-
-.visitor-stats { display: flex; justify-content: space-around; text-align: center; }
-.visitor-item { display: flex; flex-direction: column; }
-.visitor-label { font-size: 13.5px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
-.visitor-num { font-size: 20px; font-weight: 900; color: var(--text-main); }
-
-.top-post-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
-.top-post-item { font-size: 15px; font-weight: 600; color: var(--text-sub); display: flex; align-items: center; gap: 12px; cursor: pointer; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; transition: color 0.2s; }
-.top-post-item:hover { color: var(--primary); }
-.top-post-badge { background: #e9ecef; color: var(--text-main); font-size: 12px; font-weight: 900; padding: 4px 10px; border-radius: 8px; flex-shrink: 0; }
-.top-post-badge.rank-1 { background: #e03131; color: #fff; }
-.top-post-badge.rank-2 { background: #f76707; color: #fff; }
-.top-post-badge.rank-3 { background: #f59f00; color: #fff; }
-
-.search-input-box { width: 100%; }
-.search-input { width: 100%; padding: 14px 18px; border: 1px solid #ced4da; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s; }
-.search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(3, 199, 90, 0.15); }
-
-.tip-box { font-size: 15px; color: var(--text-sub); background: #f8f9fa; padding: 18px; border-radius: 12px; border-left: 4px solid var(--primary); line-height: 1.7; min-height: 85px; display: flex; align-items: center; font-weight: 600; }
-.refresh-tip-btn { background: none; border: none; font-size: 13.5px; color: var(--primary); cursor: pointer; padding: 4px 8px; font-weight: 800; border-radius: 6px; transition: background 0.2s; }
-.refresh-tip-btn:hover { background: rgba(3, 199, 90, 0.1); }
-
-/* 광고 박스 숨기기 */
-.adsense-sidebar-tall, .adsense-box, .adsense-banner-main {
+/* 좌우 사이드바는 감성적인 블로그 스타일에 맞춰 숨김 처리 */
+.sidebar {
   display: none !important;
 }
 
-.blog-section { 
-  background: var(--card-bg); 
-  backdrop-filter: blur(12px); 
-  -webkit-backdrop-filter: blur(12px); 
-  border-radius: 22px; 
-  padding: 32px; 
-  margin-bottom: 28px; 
-  border: 1px solid var(--card-border); 
-  box-shadow: var(--shadow-sm); 
-  width: 100%; 
-}
-.blog-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; margin-bottom: 24px; border-bottom: 2px solid #e9ecef; }
-.blog-title { font-size: 26px; font-weight: 900; color: var(--text-main); margin: 0; }
-
-/* 🌟 카테고리별 포스트 목록 카드들을 깔끔하게 격자(그리드) 형태로 배치 */
-.post-list-scroll { 
-  display: grid; 
-  grid-template-columns: repeat(4, 1fr); 
-  gap: 20px; 
-  width: 100%; 
-  overflow: visible;
+.container {
+  width: 100%;
+  max-width: 100%;
 }
 
-/* 개별 포스트 카드 디자인 */
-.post-card-mini { 
-  background: #ffffff; 
-  border: 1px solid #dee2e6; 
-  border-radius: 16px; 
-  overflow: hidden; 
-  cursor: pointer; 
-  transition: all 0.3s ease; 
-  box-shadow: var(--shadow-sm); 
-  display: flex; 
-  flex-direction: column; 
-  text-decoration: none; 
+/* 🌿 모니터 속 사진 같은 대형 와이드 히어로 배너 (좌우 2분할 감성) */
+.hero-banner-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--shadow-subtle);
+  border: 1px solid #eae5df;
+  min-height: 420px;
 }
-.post-card-mini:hover { 
-  transform: translateY(-8px); 
-  box-shadow: var(--shadow-lg); 
-  border-color: var(--primary); 
+.hero-text-side {
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #fbf9f5;
 }
-.post-thumb-wrapper-mini { width: 100%; height: 160px; overflow: hidden; background-color: #f1f3f5; }
-.post-thumb-mini { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-.post-card-mini:hover .post-thumb-mini { transform: scale(1.08); }
-.post-content-mini { padding: 18px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-.post-title-mini { font-size: 15px; font-weight: 800; color: var(--text-main); margin: 0 0 10px 0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 48px; }
-.post-date-mini { font-size: 13px; color: var(--text-muted); font-weight: 700; margin-top: 8px; }
-
-/* 🖼️ 상세 본문 안의 이미지 깨짐 완벽 방지 및 세련된 여백 설정 */
-article img, .article-content img, .post-body img {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  border-radius: 16px !important;
-  margin: 36px 0 !important;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+.hero-subtitle-tag {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  margin-bottom: 14px;
+  text-transform: uppercase;
+}
+.hero-main-title {
+  font-size: 38px;
+  font-weight: 900;
+  line-height: 1.3;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+.hero-desc {
+  font-size: 16px;
+  color: #6c757d;
+  margin-bottom: 30px;
+}
+.hero-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  background: var(--primary);
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: 8px;
+  text-decoration: none;
+  width: fit-content;
+  transition: background 0.2s;
+}
+.hero-btn:hover {
+  background: var(--accent);
+}
+.hero-img-side {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+.hero-img-side img {
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
-/* 📐 상세 본문 페이지 너비를 넉넉하게 확장 */
-.article-container, .post-container, main.article-main {
-  max-width: 950px !important;
-  width: 100% !important;
-  margin: 0 auto;
+/* 🌟 콘텐츠 섹션 스타일 */
+.blog-section {
+  background: transparent;
+  padding: 0;
+  margin-bottom: 60px;
+  border: none;
+  box-shadow: none;
+}
+.blog-header {
+  border-bottom: none;
+  margin-bottom: 24px;
+  padding-bottom: 0;
+}
+.blog-title {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--primary);
 }
 
-/* 반응형 대응 (태블릿 및 모바일 화면에서는 2열 또는 1열로 변환) */
-@media (max-width: 1350px) {
+/* 🌟 모니터 속 카드처럼 파스텔 톤 배경이 들어간 감성 그리드 */
+.post-list-scroll {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+  overflow: visible;
+}
+
+.post-card-mini {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-subtle);
+  border: 1px solid #eae5df;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.post-card-mini:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* 카드 상단 썸네일 박스 (사진처럼 깔끔한 면 분할) */
+.post-thumb-wrapper-mini {
+  width: 100%;
+  height: 180px;
+  background: var(--card-soft-green); /* 감성적인 파스텔 톤 기본 배경 */
+  overflow: hidden;
+}
+.post-card-mini:nth-child(even) .post-thumb-wrapper-mini {
+  background: var(--card-soft-beige); /* 번갈아가며 다른 파스텔 톤 적용 */
+}
+.post-thumb-mini {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply; /* 사진이 배경 톤과 자연스럽게 어우러짐 */
+  opacity: 0.9;
+  transition: transform 0.4s ease;
+}
+.post-card-mini:hover .post-thumb-mini {
+  transform: scale(1.05);
+}
+
+.post-content-mini {
+  padding: 20px;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+.post-title-mini {
+  font-size: 16px;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1.4;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.post-date-mini {
+  font-size: 13px;
+  color: var(--text-sub);
+  font-weight: 600;
+}
+
+/* 🖼️ 본문 페이지 스타일 (모니터 속 웹사이트 본문 감성) */
+.article-wrapper {
+  max-width: 900px;
+  margin: 40px auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 60px;
+  box-shadow: var(--shadow-subtle);
+  border: 1px solid #eae5df;
+}
+.article-title {
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+.article-content {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #4a4a4a;
+}
+.article-content img {
+  width: 100% !important;
+  height: auto !important;
+  border-radius: 12px !important;
+  margin: 35px 0 !important;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+}
+.back-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background: var(--primary);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+/* 반응형 미디어쿼리 */
+@media (max-width: 1200px) {
+  .hero-banner-grid { grid-template-columns: 1fr; }
+  .hero-img-side { height: 260px; }
   .post-list-scroll { grid-template-columns: repeat(2, 1fr); }
 }
-
-@media (max-width: 1200px) {
-  .sidebar { display: none !important; }
-  .wrapper { display: block; padding: 0; }
-  .container { width: 100%; max-width: none; }
-  body { padding: 16px; }
-  .blog-section { padding: 20px; }
-}
-
-@media (max-width: 600px) {
+@media (max-width: 650px) {
   .post-list-scroll { grid-template-columns: 1fr; }
+  .hero-text-side { padding: 30px; }
+  .article-wrapper { padding: 25px; }
 }
