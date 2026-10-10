@@ -69,7 +69,7 @@ const posts = [
         category: "생활/꿀팁",
         title: "생활 속 찌든 때 및 얼룩 제거 실전 노하우: 과탄산소다와 물파스의 마법",
         date: "2026. 10. 07",
-        thumb: "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20231115_199%2F1700041620738bFBJJ_JPEG%2F29132791975122029_1370597687.jpg&type=sc960_832",
         snippet: "옷에 묻은 볼펜 자국, 화장품 얼룩, 기름때, 텀블러 물때를 집에서 흔한 재료(과탄산소다, 물파스 등)로 지우는 법.",
         content: `
             <p>아끼는 흰색 와이셔츠나 티셔츠 목깃에 거뭇하게 낀 찌든 때나, 외출했다 돌아오니 옷 소매에 묻어 있는 정체 모를 볼펜 자국을 발견했을 때의 그 짜증스러움이란 말로 다 할 수 없죠. 세탁소에 고급 드라이클리닝을 맡기자니 비용이 아깝고, 일반 세제를 풀어 손으로 박박 비벼 빨아도 지워지지 않아 결국 아끼던 옷을 쓰레기통에 버리게 되는 경우가 허다합니다. 하지만 우리 주변에 흔히 있는 과탄산소다, 약국 물파스, 식초 같은 천연 재료들의 화학적 성질과 반응 원리만 정확히 이해하면 웬만한 골칫거리 얼룩은 집에서 감쪽같이 지워낼 수 있답니다. 제가 직접 주말마다 살림을 하며 실천하고 효과를 톡톡히 본 실전 노하우를 상세히 공유해 드리겠습니다.</p>
@@ -101,7 +101,7 @@ const posts = [
         category: "생활/꿀팁",
         title: "전자레인지 만능 청소 및 냄새 제거법: 귤껍질과 식초로 묵은 때 불리기",
         date: "2026. 10. 07",
-        thumb: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDEwMTBfNzAg%2FMDAxNzI4NTQyNjIxNTc3.9m5unhSvYTtZCxcYmPY3ukexkpTMt3Gr8qluBhgZD5gg.22mxL5aRrqwJ5F2USRcXrg1RT4tSkf_1lMxRnwezwy8g.JPEG%2FDSC09007.JPG&type=sc960_832",
         snippet: "식초, 레몬, 귤껍질 등을 활용해 묵은 기름때를 불리고 렌지 내부 탈취를 완벽하게 끝내는 과정 리뷰.",
         content: `
             <p>자취생들이나 주부들이 매일같이 가장 자주 사용하지만, 막상 청소하려고 마음먹으면 가장 귀찮고 기피하게 되는 가전제품을 꼽으라면 단연 '전자레인지'가 아닐까요? 냉동실에 있던 피자나 즉석식품, 각종 찌개류를 데워 먹다가 국물이 튀고 사방에 기름때와 양념이 굳어버려, 나중에 문을 열어보면 꼬릿한 음식물 냄새와 함께 내부가 엉망진창으로 오염되어 있기 일쑤입니다. 수세미를 들고 거품을 내어 박박 긁어내려 해도 내부에 흠집만 나고 잘 닦이지 않아 스트레스만 받죠. 오늘은 화학세제 없이 집에서 흔히 구할 수 있는 재료로 전자레인지를 힘들이지 않고 새 것처럼 되돌리는 천연 스팀 세척법을 알려드립니다.</p>
@@ -110,7 +110,7 @@ const posts = [
             <p>전자레인지는 마이크로파를 이용해 음식물 속 수분 분자를 진동시켜 가열하는 원리를 가집니다. 이 과정에서 가열되는 음식물 속 미세한 기름방울과 양념 국물이 폭발하듯 사방으로 튀어 내부 벽면에 밀착되고, 고온에 반복 노출되면서 단단하게 눌어붙게 됩니다. 여기에 다양한 음식 냄새가 섞여 내부 단열재와 벽면에 배어들기 때문에, 독한 화학 세제로 표면을 닦아내는 것만으로는 근본적인 냄새 제거와 찌든 때 불리기가 어렵습니다. 뜨거운 증기와 천연 산성 성분을 활용한 스팀 사우나 방식이 가장 과학적이고 효과적인 이유입니다.</p>
             <p>화학성분이 강한 주방 세제를 전자레인지 내부에 무분별하게 분사하면 플라스틱 코팅면을 부식시킬 뿐만 아니라, 다음 사용 시 음식물에 세제 잔여물이 스며들 위험이 있습니다. 따라서 식초의 아세트산 성분과 감귤류의 테르펜 성분을 활용한 천연 세척법은 위생과 안전 측면에서 가장 완벽한 대안이 됩니다.</p>
 
-            <img src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" alt="천연 세척 재료">
+            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MjJfMTE1%2FMDAxNjI0MzI0MDk1NTM5.nKzNMvvrUPHrlnN5pXXqUAdVG6Kg3xd0rkLxAK4-iZ4g.GCkk3WAJDLb43LN2mAziRmADvMwfoUG9e7pSG1uhwFog.JPEG.ps717942%2FIMG_4382.jpg&type=sc960_832" alt="천연 세척 재료">
 
             <h2>2. 힘들이지 않고 전자레인지를 정화하는 단계별 실전 노하우 3가지</h2>
             <p><strong>첫째, 식초와 귤껍질을 활용한 스팀 용액 준비하기:</strong> 내열용기나 오븐용 유리 그릇에 물을 절반쯤 붓고 식초 2~3스푼을 섞은 뒤 먹고 남은 귤껍질이나 레몬 조각을 담아줍니다. 식초의 산성 성분과 감귤류의 시트러스 정유 성분이 세척 효과를 극대화합니다.</p>
@@ -193,7 +193,7 @@ const posts = [
         category: "생활/꿀팁",
         title: "냉장고 식재료 신선 보관 및 유통기한 관리 팁: 종류별 맞춤 보관법 완벽 정리",
         date: "2026. 10. 07",
-        thumb: "https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNjA5MDVfMTY1%2FMDAxNzg4NTkxNjI0OTA5.eIPMSkz25WM6hfa2eLQJJS0relNUlOakHsQrt5HE6T4g.AmAF0zHiR5Q1Zv1kwua5AfA9-0amIfPoF5aIxh9iLrUg.JPEG%2FGrapes_stored_in_refrigerator_co%25A1%25A6_202609051553.jpeg&type=sc960_832",
         snippet: "육류, 채소, 과일 종류별 맞춤 냉동·냉장 보관법과 상한 음식 판별하는 구체적인 기준.",
         content: `
             <p>마트에서 대형 세일을 한다고 이것저것 식재료를 장바구니에 가득 담아와 냉장고에 대충 쑤셔 넣다 보면, 일주일 뒤 냉장고 구석에서 짓무르고 썩어버린 채 발견되는 채소와 고기들을 보며 깊은 한숨을 쉰 적 있으신가요? 식재료마다 고유의 호흡 방식과 적정 수분 함량이 제각기 다르기 때문에, 무조건 냉장고에 집어넣는다고 능사무죄가 아닙니다. 특히 식재료의 특성을 무시한 채 한데 섞어 보관하면 교차 오염이 발생할 뿐만 아니라 부패 속도가 빨라져 소중한 식비가 그대로 쓰레기통으로 향하게 되죠. 오늘은 제가 자취 생활과 살림을 하며 뼈저리게 터득한, 식재료별 신선함을 극대화하는 맞춤형 보관 노하우를 상세히 공개해 드리겠습니다.</p>
@@ -204,7 +204,7 @@ const posts = [
             <p>냉장고는 저온을 유지해 미생물의 증식을 억제하지만 세균의 활동을 완벽하게 차단하지는 못합니다. 대다수의 신선 식품이 상하는 주원인은 자체 호흡으로 인한 수분 손실, 에틸렌 가스에 의한 조기 숙성, 그리고 공기와의 접촉으로 인한 산화 작용 때문입니다. 따라서 각 식재료가 좋아하는 온도와 습도 환경을 만들어 주는 것이 보관의 핵심입니다.</p>
             <p>또한 냉장고 내부에서도 위치에 따라 온도 편차가 존재합니다. 문쪽은 여닫을 때 온도 변화가 심하므로 금방 상하지 않는 소스류를 두고, 안쪽 깊은 곳은 가장 온도가 안정적이므로 쉽게 상하는 육류와 유제품을 배치하는 구역별 수납 원칙을 철저히 지켜야 식재료의 수명을 극대화할 수 있습니다.</p>
 
-            <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80" alt="신선한 채소와 과일">
+            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNTA1MjhfNjgg%2FMDAxNzQ4NDM4MzY3Nzk3.85lRJI5VHDZ-Aru6AoWOmxryDey95PEkX6QXpHX2054g.zBYHkFfLTrBqAdEO9xtP8ec5RF1vbB_W0BfMhcMlW4gg.PNG%2F13eed202-242f-4ebb-aa12-8ede652b1782.png&type=sc960_832" alt="신선한 채소와 과일">
 
             <h2>2. 식재료의 신선함을 지켜주는 단계별 맞춤 보관 노하우 3가지</h2>
             <p><strong>첫째, 잎채소와 뿌리채소의 수분 방어선 구축하기:</strong> 대파, 깻잎, 상추 같은 연약한 잎채소는 씻지 않은 상태로 키친타올에 겉면의 물기를 제거하고 감싼 뒤, 밀폐용기에 눕히지 않고 '세워서' 보관해야 무르지 않습니다. 감자나 양파는 습기에 약하므로 종이 상자에 담아 통풍이 잘 되는 서늘한 그늘에 보관합니다.</p>
