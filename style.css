@@ -1,14 +1,11 @@
 :root {
-  --bg-color: #f7f5f0;
+  --bg-color: #f7f5f0;           /* 따뜻한 웜 베이지 바탕색 */
   --header-bg: #ffffff;
-  --card-bg: #ffffff;
-  --primary: #2f3e46;      /* 고급스러운 차콜 톤 */
-  --accent: #52796f;       /* 세련된 포인트 톤 */
+  --primary: #2f3e46;            /* 차분하고 고급스러운 다크 차콜 */
+  --accent: #849887;             /* 사진 속 차분한 세이지 그린 톤 */
   --text-main: #2b2d42;
-  --text-sub: #6c757d;
+  --text-sub: #718096;
   --border-color: #e5e0d8;
-  --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.04);
-  --shadow-hover: 0 20px 40px rgba(47, 62, 70, 0.08);
 }
 
 * { 
@@ -25,29 +22,28 @@ body {
   line-height: 1.8;
 }
 
-/* 🌟 상단 네비게이션 헤더 */
+/* 🌟 상단 미니멀 네비게이션 헤더 */
 .site-header {
   background: var(--header-bg);
   border-bottom: 1px solid var(--border-color);
-  padding: 22px 48px;
+  padding: 24px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   position: sticky;
   top: 0;
   z-index: 100;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.02);
 }
 .site-logo {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 900;
-  letter-spacing: 2px;
+  letter-spacing: 3px;
   color: var(--primary);
   text-decoration: none;
 }
 .site-nav {
   display: flex;
-  gap: 32px;
+  gap: 35px;
   font-size: 15px;
   font-weight: 600;
   color: var(--text-sub);
@@ -63,51 +59,65 @@ body {
 
 /* 메인 wrapper */
 .wrapper {
-  max-width: 1320px;
+  max-width: 1400px;
   width: 100%;
   margin: 40px auto;
-  padding: 0 28px;
+  padding: 0 32px;
   display: flex;
   flex-direction: column;
-  gap: 45px;
+  gap: 60px;
 }
 
 .sidebar {
   display: none !important;
 }
 
-/* 🌿 히어로 배너 */
+/* 🌿 [참고 사진 스타일] 감성적인 와이드 히어로 배너 (좌우 파스텔 블록 분할) */
 .hero-banner-grid {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-columns: 1fr 1fr;
   background: #ffffff;
-  border-radius: 24px;
+  border-radius: 20px;
   overflow: hidden;
-  box-shadow: var(--shadow-subtle);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.03);
   border: 1px solid var(--border-color);
-  min-height: 440px;
+  min-height: 480px;
 }
 .hero-text-side {
-  padding: 60px;
+  padding: 80px 70px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: linear-gradient(135deg, #fbf9f5 0%, #f4f0e6 100%);
+  background: #eae5dc; /* 사진 속 감성적인 웜 베이지 블록 톤 */
+  position: relative;
+}
+/* 사진 속 모서리 장식용 파스텔 포인트 요소 구현 */
+.hero-text-side::before {
+  content: "";
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: rgba(132, 152, 135, 0.25); /* 세이지 그린 포인트 원 */
+  border-radius: 50%;
+  z-index: 1;
 }
 .hero-subtitle-tag {
   font-size: 12px;
   font-weight: 900;
-  letter-spacing: 2px;
-  color: var(--accent);
-  margin-bottom: 16px;
+  letter-spacing: 2.5px;
+  color: var(--primary);
+  margin-bottom: 18px;
   text-transform: uppercase;
 }
 .hero-main-title {
-  font-size: 38px;
+  font-size: 42px;
   font-weight: 900;
   line-height: 1.25;
   color: var(--primary);
-  margin-bottom: 20px;
+  margin-bottom: 22px;
+  letter-spacing: -1px;
 }
 .hero-desc {
   font-size: 16px;
@@ -129,59 +139,54 @@ body {
   transform: scale(1.03);
 }
 
-/* 🌟 포스트 섹션 디자인 */
+/* 🌟 포스트 섹션 (하얀 박스 테두리를 없애고 배경과 자연스럽게 어우러지는 미니멀 스타일) */
 .blog-section {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 36px 40px;
-  box-shadow: var(--shadow-subtle);
-  border: 1px solid var(--border-color);
+  background: transparent;
+  padding: 0;
   width: 100%;
 }
 .blog-header {
-  margin-bottom: 26px;
+  margin-bottom: 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 2px solid #f1f3f5;
+  border-bottom: 1px solid var(--border-color);
   padding-bottom: 16px;
 }
 .blog-title {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: 900;
   color: var(--primary);
   letter-spacing: -0.5px;
 }
 
-/* 4열 그리드 카드 스타일 */
+/* 4열 그리드 카드 스타일 (테두리 없는 감성 매거진 레이아웃) */
 .post-list-scroll {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 22px;
+  gap: 28px;
   width: 100%;
 }
 
 .post-card-mini {
-  background: #ffffff;
-  border-radius: 16px;
+  background: transparent; /* 박스 배경을 투명하게 하여 사진 속 느낌 연출 */
+  border-radius: 0;
   overflow: hidden;
   text-decoration: none;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-  border: 1px solid var(--border-color);
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition: transform 0.3s ease;
 }
 .post-card-mini:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--primary);
 }
 .post-thumb-wrapper-mini {
   width: 100%;
-  height: 170px;
-  background: #f1f3f5;
+  height: 190px;
+  background: #eae5dc;
+  border-radius: 14px;
   overflow: hidden;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.04);
 }
 .post-thumb-mini {
   width: 100%;
@@ -190,34 +195,54 @@ body {
   transition: transform 0.5s ease;
 }
 .post-card-mini:hover .post-thumb-mini {
-  transform: scale(1.08);
+  transform: scale(1.06);
 }
 .post-content-mini {
-  padding: 18px;
+  padding: 16px 4px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
 }
 .post-title-mini {
-  font-size: 15px;
+  font-size: 16px;
   font-weight: 800;
   color: var(--primary);
-  line-height: 1.5;
-  margin-bottom: 12px;
+  line-height: 1.45;
+  margin-bottom: 8px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
 .post-date-mini {
-  font-size: 12px;
+  font-size: 13px;
   color: var(--text-sub);
-  font-weight: 700;
+  font-weight: 600;
 }
 
-/* 🖼️ 상세 본문 및 서브 페이지 이미지 깨짐 완벽 방지 & 회색 빈 박스 원천 차단 */
-.article-content img, article img, .post-body img {
+/* 🖼️ 상세 본문 및 서브 페이지 스타일 */
+.contact-container, .article-wrapper, .policy-wrapper {
+  max-width: 900px;
+  margin: 50px auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 60px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.03);
+  border: 1px solid var(--border-color);
+}
+.contact-title, .article-title, .policy-title {
+  font-size: 34px;
+  font-weight: 900;
+  color: var(--primary);
+  margin-bottom: 15px;
+}
+.article-content {
+  font-size: 17px;
+  line-height: 1.9;
+  color: #4a5568;
+}
+.article-content img {
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
@@ -226,38 +251,8 @@ body {
   object-fit: cover !important;
   border-radius: 16px !important;
   margin: 35px 0 !important;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
   background-color: transparent !important;
-}
-
-/* 로드되지 않거나 비어있는 이미지 박스 숨김 처리 */
-img:-moz-broken, img:not([src]), img[src=""], img[src="#"] {
-  display: none !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 0 !important;
-}
-
-/* 📄 서브 페이지 및 상세 본문 공통 스타일 */
-.contact-container, .article-wrapper, .policy-wrapper {
-  max-width: 860px;
-  margin: 40px auto;
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 50px;
-  box-shadow: var(--shadow-subtle);
-  border: 1px solid var(--border-color);
-}
-.contact-title, .article-title, .policy-title {
-  font-size: 32px;
-  font-weight: 900;
-  color: var(--primary);
-  margin-bottom: 10px;
-}
-.article-content {
-  font-size: 17px;
-  line-height: 1.9;
-  color: #4a5568;
 }
 
 /* 폼 스타일 */
@@ -273,19 +268,18 @@ img:-moz-broken, img:not([src]), img[src=""], img[src="#"] {
 }
 .form-input, .form-textarea {
   width: 100%;
-  padding: 14px 18px;
-  border: 1px solid #ced4da;
+  padding: 15px 20px;
+  border: 1px solid var(--border-color);
   border-radius: 12px;
   font-size: 15px;
   font-family: inherit;
   outline: none;
-  background: #fbf9f5;
+  background: #ffffff;
   transition: all 0.2s ease;
 }
 .form-input:focus, .form-textarea:focus {
-  border-color: var(--primary);
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(47, 62, 70, 0.1);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(132, 152, 135, 0.15);
 }
 .form-textarea {
   resize: vertical;
@@ -324,7 +318,7 @@ img:-moz-broken, img:not([src]), img[src=""], img[src="#"] {
 /* 반응형 미디어쿼리 */
 @media (max-width: 1200px) {
   .hero-banner-grid { grid-template-columns: 1fr; }
-  .hero-img-side { height: 260px; }
+  .hero-img-side { height: 280px; }
   .post-list-scroll { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 650px) {
