@@ -21,6 +21,44 @@
       padding: 30px 20px;
       margin: 0;
     }
+
+    /* 상단 네비게이션 헤더 스타일 통일 */
+    .site-header {
+      max-width: 950px;
+      margin: 0 auto 30px auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 20px 30px;
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      box-shadow: var(--shadow-sm);
+    }
+    .site-logo {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .site-nav {
+      display: flex;
+      gap: 20px;
+    }
+    .site-nav a {
+      text-decoration: none;
+      color: var(--text-sub);
+      font-weight: 700;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+    .site-nav a:hover {
+      color: var(--primary);
+    }
+
     .article-wrapper {
       max-width: 950px;
       margin: 0 auto;
@@ -104,6 +142,17 @@
   </style>
 </head>
 <body>
+
+<!-- 상단 네비게이션 헤더 -->
+<header class="site-header">
+  <a href="index.html" class="site-logo">ECO & TECH</a>
+  <nav class="site-nav">
+    <a href="index.html">홈</a>
+    <a href="about.html">소개</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="contact.html">문의하기</a>
+  </nav>
+</header>
 
 <div class="article-wrapper">
   <!-- 상단 홈으로 돌아가기 버튼 -->
