@@ -216,24 +216,26 @@ body {
   font-weight: 700;
 }
 
-/* 🖼️ 상세 본문 및 서브 페이지 이미지 깨짐 완벽 방지 (핵심 수정) */
+/* 🖼️ 상세 본문 및 서브 페이지 이미지 깨짐 완벽 방지 & 회색 빈 박스 원천 차단 */
 .article-content img, article img, .post-body img {
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
-  min-height: 200px !important;
-  max-height: 550px !important;
+  max-height: 500px !important;
   object-fit: cover !important;
   border-radius: 16px !important;
   margin: 35px 0 !important;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-  background-color: #f1f3f5;
+  background-color: transparent !important;
 }
 
-/* 주소가 잘못된 이미지 빈 박스 숨김 처리 */
-img:-moz-broken, img:not([src]), img[src=""] {
+/* 로드되지 않거나 비어있는 이미지 박스 숨김 처리 */
+img:-moz-broken, img:not([src]), img[src=""], img[src="#"] {
   display: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  height: 0 !important;
 }
 
 /* 📄 서브 페이지 및 상세 본문 공통 스타일 */
