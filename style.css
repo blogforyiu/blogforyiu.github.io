@@ -304,3 +304,16 @@ body {
   .site-header { padding: 18px 24px; }
   .hero-text-side { padding: 40px; }
 }
+
+/* 🖼️ 상세 본문 내부 이미지 깨짐 완벽 방지 및 비율 고정 */
+.article-content img, article img, .post-body img {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  height: auto !important;
+  min-height: 250px !important;
+  object-fit: cover !important;
+  border-radius: 16px !important;
+  margin: 35px 0 !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
