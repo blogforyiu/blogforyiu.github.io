@@ -7,126 +7,6 @@
   <title>1:1 문의하기 - ECO & TECH</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-  <style>
-    body {
-      background-color: #f7f5f0 !important;
-      font-family: "Pretendard Variable", Pretendard, sans-serif !important;
-      margin: 0;
-      padding: 0;
-    }
-    .site-header {
-      background: #ffffff;
-      border-bottom: 1px solid #e5e0d8;
-      padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .site-logo {
-      font-size: 20px;
-      font-weight: 900;
-      letter-spacing: 2px;
-      color: #2f3e46;
-      text-decoration: none;
-    }
-    .site-nav {
-      display: flex;
-      gap: 30px;
-      font-size: 15px;
-      font-weight: 600;
-      color: #6c757d;
-    }
-    .site-nav a {
-      text-decoration: none;
-      color: inherit;
-      transition: color 0.2s;
-    }
-    .site-nav a:hover {
-      color: #03c75a;
-    }
-    .contact-container {
-      max-width: 800px;
-      margin: 50px auto;
-      background: #ffffff;
-      border-radius: 20px;
-      padding: 50px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
-      border: 1px solid #e5e0d8;
-    }
-    .contact-title {
-      font-size: 32px;
-      font-weight: 900;
-      color: #2f3e46;
-      margin-bottom: 10px;
-    }
-    .contact-desc {
-      font-size: 15px;
-      color: #6c757d;
-      margin-bottom: 35px;
-    }
-    .form-group {
-      margin-bottom: 24px;
-    }
-    .form-label {
-      display: block;
-      font-size: 14px;
-      font-weight: 700;
-      color: #2f3e46;
-      margin-bottom: 8px;
-    }
-    .form-input, .form-textarea {
-      width: 100%;
-      padding: 14px 18px;
-      border: 1px solid #ced4da;
-      border-radius: 12px;
-      font-size: 15px;
-      font-family: inherit;
-      outline: none;
-      background: #fbf9f5;
-      transition: all 0.2s ease;
-    }
-    .form-input:focus, .form-textarea:focus {
-      border-color: #03c75a;
-      background: #ffffff;
-      box-shadow: 0 0 0 4px rgba(3, 199, 90, 0.12);
-    }
-    .form-textarea {
-      resize: vertical;
-      min-height: 160px;
-    }
-    .submit-btn {
-      width: 100%;
-      background: #03c75a;
-      color: #ffffff;
-      border: none;
-      padding: 16px;
-      font-size: 16px;
-      font-weight: 800;
-      border-radius: 12px;
-      cursor: pointer;
-      transition: background 0.2s, transform 0.1s;
-      box-shadow: 0 4px 12px rgba(3, 199, 90, 0.25);
-      margin-top: 10px;
-    }
-    .submit-btn:hover {
-      background: #02b350;
-      transform: translateY(-2px);
-    }
-    .back-home-link {
-      display: inline-block;
-      margin-bottom: 25px;
-      font-size: 14px;
-      font-weight: 700;
-      color: #2f3e46;
-      text-decoration: none;
-    }
-    .back-home-link:hover {
-      color: #03c75a;
-    }
-  </style>
 </head>
 <body>
 
@@ -137,14 +17,14 @@
     <a href="index.html">홈</a>
     <a href="about.html">소개</a>
     <a href="privacy.html">개인정보처리방침</a>
-    <a href="contact.html" style="color: #03c75a;">문의하기</a>
+    <a href="contact.html" style="color: var(--primary); font-weight: 800;">문의하기</a>
   </nav>
 </header>
 
 <div class="contact-container">
   <a href="index.html" class="back-home-link">← 홈으로 돌아가기</a>
   <h1 class="contact-title">✉️ 1:1 문의하기</h1>
-  <p class="contact-desc">궁금하신 점이나 제안사항을 남겨주시면 확인 후 빠르게 답변해 드리겠습니다.</p>
+  <p style="color: var(--text-sub); margin-bottom: 30px; font-size: 15px;">궁금하신 점이나 제안사항을 남겨주시면 확인 후 빠르게 답변해 드리겠습니다.</p>
 
   <form onsubmit="event.preventDefault(); alert('문의가 정상적으로 접수되었습니다. 감사합니다!'); location.href='index.html';">
     <div class="form-group">
