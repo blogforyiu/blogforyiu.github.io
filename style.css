@@ -327,3 +327,18 @@ body {
   .site-header { padding: 18px 24px; }
   .hero-text-side { padding: 40px; }
 }
+
+/* 🚫 주소가 잘못되었거나 깨진 본문 이미지는 공간을 차지하지 않도록 완전히 숨김 */
+.article-content img:not([src]), 
+.article-content img[src=""], 
+.article-content img[src="#"], 
+.article-content img[alt*="블루투스 이어폰 연결"],
+.article-content img[alt*="주방 청소"],
+.article-content img[alt*="식재료 보관"],
+.article-content img[alt*="세탁 얼룩 제거"] {
+  display: none !important;
+  height: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+}
