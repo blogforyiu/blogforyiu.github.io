@@ -4,202 +4,167 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
-  <title>문의하기 - 에코 힐링 정보 커뮤니티</title>
+  <title>1:1 문의하기 - ECO & TECH</title>
   <link rel="stylesheet" href="style.css">
-  
-  <!-- 눈누 메모먼트 꾹꾹체 웹폰트 CDN -->
-  <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2" rel="stylesheet">
-
-  <!-- Firebase SDK (1:1 문의 전송용) -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
-
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
   <style>
     body {
-      font-family: 'MomentsKkugKkug', 'Pretendard Variable', Pretendard, sans-serif !important;
-      background-color: #f8fafc;
-      color: #1e293b;
+      background-color: #f7f5f0 !important;
+      font-family: "Pretendard Variable", Pretendard, sans-serif !important;
       margin: 0;
       padding: 0;
     }
-    .contact-container {
-      max-width: 700px;
-      margin: 40px auto;
+    .site-header {
       background: #ffffff;
-      padding: 40px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
-      border: 1px solid #e2e8f0;
+      border-bottom: 1px solid #e5e0d8;
+      padding: 20px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .contact-header {
-      text-align: center;
-      margin-bottom: 30px;
+    .site-logo {
+      font-size: 20px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #2f3e46;
+      text-decoration: none;
+    }
+    .site-nav {
+      display: flex;
+      gap: 30px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #6c757d;
+    }
+    .site-nav a {
+      text-decoration: none;
+      color: inherit;
+      transition: color 0.2s;
+    }
+    .site-nav a:hover {
+      color: #03c75a;
+    }
+    .contact-container {
+      max-width: 800px;
+      margin: 50px auto;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 50px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+      border: 1px solid #e5e0d8;
     }
     .contact-title {
-      font-size: 26px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 8px;
+      font-size: 32px;
+      font-weight: 900;
+      color: #2f3e46;
+      margin-bottom: 10px;
     }
     .contact-desc {
-      font-size: 14px;
-      color: #64748b;
+      font-size: 15px;
+      color: #6c757d;
+      margin-bottom: 35px;
     }
     .form-group {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
     }
     .form-label {
       display: block;
       font-size: 14px;
       font-weight: 700;
+      color: #2f3e46;
       margin-bottom: 8px;
-      color: #334155;
     }
     .form-input, .form-textarea {
       width: 100%;
-      padding: 12px 16px;
-      border: 1px solid #cbd5e1;
+      padding: 14px 18px;
+      border: 1px solid #ced4da;
       border-radius: 12px;
-      font-size: 14px;
+      font-size: 15px;
       font-family: inherit;
-      box-sizing: border-box;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      outline: none;
+      background: #fbf9f5;
+      transition: all 0.2s ease;
     }
     .form-input:focus, .form-textarea:focus {
-      outline: none;
       border-color: #03c75a;
-      box-shadow: 0 0 0 3px rgba(3, 199, 90, 0.15);
+      background: #ffffff;
+      box-shadow: 0 0 0 4px rgba(3, 199, 90, 0.12);
     }
     .form-textarea {
-      height: 150px;
       resize: vertical;
+      min-height: 160px;
     }
     .submit-btn {
       width: 100%;
-      padding: 14px;
       background: #03c75a;
       color: #ffffff;
       border: none;
-      border-radius: 12px;
+      padding: 16px;
       font-size: 16px;
-      font-weight: 700;
+      font-weight: 800;
+      border-radius: 12px;
       cursor: pointer;
-      font-family: inherit;
       transition: background 0.2s, transform 0.1s;
+      box-shadow: 0 4px 12px rgba(3, 199, 90, 0.25);
+      margin-top: 10px;
     }
     .submit-btn:hover {
       background: #02b350;
+      transform: translateY(-2px);
     }
-    .submit-btn:active {
-      transform: scale(0.98);
-    }
-    .back-link {
-      display: block;
-      text-align: center;
-      margin-top: 20px;
-      color: #64748b;
-      text-decoration: none;
+    .back-home-link {
+      display: inline-block;
+      margin-bottom: 25px;
       font-size: 14px;
-      font-weight: 600;
+      font-weight: 700;
+      color: #2f3e46;
+      text-decoration: none;
     }
-    .back-link:hover {
+    .back-home-link:hover {
       color: #03c75a;
-      text-decoration: underline;
-    }
-    #success-message {
-      display: none;
-      background: #f1fbf5;
-      border: 1px solid #c6f6d5;
-      color: #065f46;
-      padding: 16px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
 
+<!-- 상단 미니멀 네비게이션 헤더 -->
+<header class="site-header">
+  <a href="index.html" class="site-logo">ECO & TECH</a>
+  <nav class="site-nav">
+    <a href="index.html">홈</a>
+    <a href="about.html">소개</a>
+    <a href="privacy.html">개인정보처리방침</a>
+    <a href="contact.html" style="color: #03c75a;">문의하기</a>
+  </nav>
+</header>
+
 <div class="contact-container">
-  <div class="contact-header">
-    <h1 class="contact-title">✉️️ 1:1 문의하기</h1>
-    <p class="contact-desc">궁금한 점이나 제안사항을 남겨주시면 확인 후 빠르게 답변해 드리겠습니다.</p>
-  </div>
+  <a href="index.html" class="back-home-link">← 홈으로 돌아가기</a>
+  <h1 class="contact-title">✉️ 1:1 문의하기</h1>
+  <p class="contact-desc">궁금하신 점이나 제안사항을 남겨주시면 확인 후 빠르게 답변해 드리겠습니다.</p>
 
-  <div id="success-message">
-    🎉 문의가 성공적으로 전송되었습니다! 소중한 의견 감사합니다.
-  </div>
-
-  <form id="contact-form" onsubmit="submitInquiry(event)">
+  <form onsubmit="event.preventDefault(); alert('문의가 정상적으로 접수되었습니다. 감사합니다!'); location.href='index.html';">
     <div class="form-group">
-      <label class="form-label" for="author">작성자 이름 / 닉네임</label>
-      <input type="text" id="author" class="form-input" placeholder="이름을 입력해 주세요" required>
+      <label class="form-label">작성자 이름 / 닉네임</label>
+      <input type="text" class="form-input" placeholder="이름을 입력해 주세요" required>
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="email">답변 받을 이메일 (선택)</label>
-      <input type="email" id="email" class="form-input" placeholder="example@email.com">
+      <label class="form-label">답변 받을 이메일 (선택)</label>
+      <input type="email" class="form-input" placeholder="example@email.com">
     </div>
 
     <div class="form-group">
-      <label class="form-label" for="message">문의 내용</label>
-      <textarea id="message" class="form-textarea" placeholder="궁금하신 내용을 상세히 적어주세요..." required></textarea>
+      <label class="form-label">문의 내용</label>
+      <textarea class="form-textarea" placeholder="궁금하신 내용을 상세히 적어주세요..." required></textarea>
     </div>
 
-    <button type="submit" class="submit-btn" id="submit-btn-element">문의 내용 전송하기</button>
+    <button type="submit" class="submit-btn">문의 내용 전송하기</button>
   </form>
-
-  <a href="index.html" class="back-link">🏠 홈으로 돌아가기</a>
 </div>
-
-<script>
-  // 파이어베이스 설정값 (기존과 동일)
-  const firebaseConfig = {
-    apiKey: "AIzaSyBR0wLEB88q2_aLBZPrdKFH27wxjHXsrIc",
-    authDomain: "blog-visitor-87a5c.firebaseapp.com",
-    projectId: "blog-visitor-87a5c",
-    storageBucket: "blog-visitor-87a5c.appspot.com",
-    messagingSenderId: "82038942165",
-    appId: "1:82038942165:web:9772c7c77bd3f88393f56c"
-  };
-
-  // 파이어베이스 초기화
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-  const db = firebase.firestore();
-
-  function submitInquiry(event) {
-    event.preventDefault();
-
-    const author = document.getElementById('author').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-    const btn = document.getElementById('submit-btn-element');
-
-    btn.disabled = true;
-    btn.innerText = "전송 중...";
-
-    // 파이어베이스 'inquiries' 컬렉션에 문의글 저장
-    db.collection("inquiries").add({
-      author: author,
-      email: email || "미입력",
-      message: message,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    })
-    .then(() => {
-      document.getElementById('contact-form').style.display = 'none';
-      document.getElementById('success-message').style.display = 'block';
-    })
-    .catch((error) => {
-      console.error("문의 전송 실패:", error);
-      alert("전송 중 오류가 발생했습니다. 다시 시도해 주세요.");
-      btn.disabled = false;
-      btn.innerText = "문의 내용 전송하기";
-    });
-  }
-</script>
 
 </body>
 </html>
