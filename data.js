@@ -225,7 +225,7 @@ const posts = [
         category: "IT/스마트폰",
         title: "블루투스 이어폰 끊김 현상 해결 및 음질 최적화 설정 완벽 가이드",
         date: "2026. 10. 07",
-        thumb: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=800&q=80",
+        thumb: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNjA2MjhfMjcw%2FMDAxNzgyNjI2NTIwODcy.V7XzGAvZfgWMfKXgP32Lg0bCBmeSIV3aM1quoNqQAaUg.4grQKj4yY1DvANRktfYwCqJYcdUpNSDIF1Km1LIzF3kg.JPEG%2Fphoto_20260628_150121_219_raw.jpg&type=sc960_832",
         snippet: "주변 전파 방해 대처법, 스마트폰 개발자 옵션 활용, 페어링 초기화 등 실생활 트러블슈팅 정리.",
         content: `
             <p>출퇴근길 복잡한 지하철 안이나 인파가 몰리는 번화가에서 무선 이어폰으로 음악을 듣거나 중요한 통화를 하는데, 유독 연결이 툭툭 끊기거나 한쪽 소리가 먹통이 되는 지직거리는 노이즈가 발생하면 정말 스트레스가 머리끝까지 차오르죠. 과거 유선 이어폰 시절에는 상상도 할 수 없었던 무선 통신 고유의 간섭 현상 때문에 기기 불량인가 싶어 서비스센터 방문을 심각하게 고민해 보신 분들이 적지 않을 것입니다. 하지만 스마트폰과 무선 이어폰이 맞물려 돌아가는 무선 주파수 환경과 세부 설정값을 먼저 점검하고 올바른 트러블슈팅을 거치면, 복잡한 도심 속에서도 얼마든지 끊김 없는 쾌적한 오디오 환경을 되찾을 수 있습니다. 오늘은 블루투스 이어폰의 연결 불안정을 완벽하게 해소하고 음질을 극대화하는 실전 노하우를 상세히 안내해 드립니다.</p>
