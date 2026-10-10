@@ -1,21 +1,19 @@
 :root {
-  /* 🌿 'AURA' 스타일의 차분하고 고급스러운 배색 (60-30-10 법칙 적용) */
-  --bg-gradient: linear-gradient(135deg, #f8f7f2 0%, #e8e5de 100%); /* 주조색: 따뜻한 웜 베이지 배경 */
+  /* 🌿 고급스러운 웜 베이지 배경과 차분한 톤 (60-30-10 법칙 적용) */
+  --bg-gradient: linear-gradient(135deg, #f7f6f0 0%, #ebe7de 100%);
   --card-bg: rgba(255, 255, 255, 0.95);
-  --card-border: rgba(197, 189, 170, 0.5);
+  --card-border: rgba(214, 208, 196, 0.6);
   
-  /* 포인트 색상 (10%): 자연스럽고 싱그러운 에코 포인트 그린 */
   --primary: #03c75a;
   --primary-hover: #02b350;
   
-  /* 주조색 및 보조색 (60% / 30%) */
-  --text-main: #2d3748; /* 차콜 그레이 텍스트 (너무 진한 블랙은 피함) */
-  --text-sub: #4a5568;
-  --text-muted: #718096;
+  --text-main: #212529;
+  --text-sub: #495057;
+  --text-muted: #868e96;
   
-  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
-  --shadow-md: 0 10px 25px rgba(197, 189, 170, 0.2);
-  --shadow-lg: 0 15px 35px rgba(197, 189, 170, 0.3);
+  --shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 25px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 20px 40px rgba(3, 199, 90, 0.12);
 }
 
 * { 
@@ -23,51 +21,53 @@
 }
 
 body {
-  /* 폰트 변경: 깔끔하고 전문적인 인상을 주는 Pretendard Variable로 변경 */
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  /* 깔끔하고 모던한 Pretendard 폰트 적용 */
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif !important;
   background: var(--bg-gradient);
   background-attachment: fixed;
   min-height: 100vh;
   color: var(--text-main);
   margin: 0;
-  padding: 40px 24px; /* 넉넉한 상하 패딩 */
+  padding: 36px 24px;
   -webkit-font-smoothing: antialiased;
-  line-height: 1.8; /* 아주 넉넉한 행간 확보 (가독성의 핵심) */
-  font-size: 17px;   /* 본문 폰트 크기 17px로 상향 조정 */
+  line-height: 1.75;
+  font-size: 16px;
 }
 
-/* 📐 3단 레이아웃 */
+/* 📐 3단 레이아웃 그리드 (좌측 사이드바, 메인, 우측 사이드바) */
 .wrapper {
-  max-width: 1500px;
+  max-width: 1520px;
   width: 100%;
   margin: 0 auto;
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  gap: 32px; /* 요소 간의 간격도 넉넉하게 */
+  gap: 28px;
 }
 
-/* 사이드바 너비 고정 */
+/* 좌우 사이드바 너비 고정 */
 .sidebar {
   width: 300px;
   flex-shrink: 0;
   display: flex;
   flex-direction: column;
-  gap: 28px;
+  gap: 24px;
 }
 
-/* 중앙 메인 콘텐츠 영역 */
+/* 중앙 메인 콘텐츠 영역 (여유 있는 공간감) */
 .container {
   flex: 1;
   min-width: 0;
-  max-width: 880px; /* 본문 최대 너비를 제한하여 집중도 높임 */
+  max-width: 880px;
 }
 
-/* 위젯 박스 디자인 (부드러운 그림자) */
+/* 위젯 박스 (글래스모피즘 + 부드러운 테두리) */
 .widget-box {
   background: var(--card-bg);
-  border-radius: 16px; /* 각진 모서리를 부드럽게 */
-  padding: 28px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-radius: 20px;
+  padding: 26px;
   border: 1px solid var(--card-border);
   box-shadow: var(--shadow-sm);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -78,72 +78,86 @@ body {
 }
 
 .widget-title {
-  font-size: 20px; /* 제목 크기 확대 */
-  font-weight: 800; /* 더 굵은 웨이트 사용 */
+  font-size: 18px;
+  font-weight: 800;
   color: var(--text-main);
   margin-top: 0;
-  margin-bottom: 22px;
-  padding-bottom: 14px;
-  border-bottom: 2px solid #e2e8f0;
+  margin-bottom: 18px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid #e9ecef;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.clock-time { font-size: 36px; font-weight: 900; color: var(--primary); text-align: center; letter-spacing: 1px; }
-.clock-date { font-size: 16px; color: var(--text-sub); text-align: center; margin-top: 8px; font-weight: 700; }
+.widget-text { font-size: 15px; color: var(--text-sub); line-height: 1.7; margin: 0; }
+.clock-time { font-size: 34px; font-weight: 900; color: var(--primary); text-align: center; letter-spacing: 1px; }
+.clock-date { font-size: 15px; color: var(--text-sub); text-align: center; margin-top: 8px; font-weight: 700; }
 
 .weather-info { display: flex; align-items: center; justify-content: space-between; }
-.weather-temp { font-size: 32px; font-weight: 800; color: var(--text-main); }
-.weather-sub { font-size: 16px; color: var(--text-sub); text-align: right; font-weight: 600; }
+.weather-temp { font-size: 30px; font-weight: 900; color: var(--text-main); }
+.weather-sub { font-size: 15px; color: var(--text-sub); text-align: right; font-weight: 600; }
 
-.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; font-size: 15px; }
-.calendar-day-header { font-weight: 800; color: var(--text-muted); padding-bottom: 8px; }
-.calendar-cell { padding: 8px 0; border-radius: 8px; color: var(--text-sub); font-weight: 700; }
-.calendar-cell.today { background: var(--primary); color: #ffffff; font-weight: 800; box-shadow: 0 3px 10px rgba(3, 199, 90, 0.4); }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 6px; text-align: center; font-size: 14px; }
+.calendar-day-header { font-weight: 800; color: var(--text-muted); padding-bottom: 6px; }
+.calendar-day-header:nth-child(1) { color: #e03131; }
+.calendar-day-header:nth-child(7) { color: #1971c2; }
+.calendar-cell { padding: 6px 0; border-radius: 8px; color: var(--text-sub); font-weight: 700; }
+.calendar-cell.today { background: var(--primary); color: #ffffff; font-weight: 800; box-shadow: 0 3px 10px rgba(3, 199, 90, 0.3); }
 
 .visitor-stats { display: flex; justify-content: space-around; text-align: center; }
-.visitor-label { font-size: 14px; color: var(--text-muted); margin-bottom: 8px; font-weight: 700; }
-.visitor-num { font-size: 22px; font-weight: 900; color: var(--text-main); }
+.visitor-item { display: flex; flex-direction: column; }
+.visitor-label { font-size: 13.5px; color: var(--text-muted); margin-bottom: 6px; font-weight: 700; }
+.visitor-num { font-size: 20px; font-weight: 900; color: var(--text-main); }
 
-.top-post-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 16px; }
-.top-post-item { font-size: 16px; font-weight: 600; color: var(--text-sub); display: flex; align-items: center; gap: 12px; cursor: pointer; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; transition: color 0.2s; }
+.top-post-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 14px; }
+.top-post-item { font-size: 15px; font-weight: 600; color: var(--text-sub); display: flex; align-items: center; gap: 12px; cursor: pointer; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; transition: color 0.2s; }
 .top-post-item:hover { color: var(--primary); }
-.top-post-badge { background: #edf2f7; color: var(--text-main); font-size: 13px; font-weight: 900; padding: 6px 10px; border-radius: 8px; flex-shrink: 0; }
+.top-post-badge { background: #e9ecef; color: var(--text-main); font-size: 12px; font-weight: 900; padding: 4px 10px; border-radius: 8px; flex-shrink: 0; }
+.top-post-badge.rank-1 { background: #e03131; color: #fff; }
+.top-post-badge.rank-2 { background: #f76707; color: #fff; }
+.top-post-badge.rank-3 { background: #f59f00; color: #fff; }
 
-.search-input { width: 100%; padding: 16px 20px; border: 1px solid #cbd5e1; border-radius: 12px; font-size: 16px; outline: none; transition: all 0.3s; }
+.search-input-box { width: 100%; }
+.search-input { width: 100%; padding: 14px 18px; border: 1px solid #ced4da; border-radius: 12px; font-size: 15px; outline: none; transition: all 0.2s; }
 .search-input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(3, 199, 90, 0.15); }
 
-.tip-box { font-size: 16px; color: var(--text-sub); background: #f9fafb; padding: 20px; border-radius: 12px; border-left: 5px solid var(--primary); line-height: 1.8; min-height: 90px; display: flex; align-items: center; font-weight: 600; }
-.refresh-tip-btn { font-size: 14px; color: var(--primary); font-weight: 800; padding: 5px 10px; border-radius: 8px; }
+.tip-box { font-size: 15px; color: var(--text-sub); background: #f8f9fa; padding: 18px; border-radius: 12px; border-left: 4px solid var(--primary); line-height: 1.7; min-height: 85px; display: flex; align-items: center; font-weight: 600; }
+.refresh-tip-btn { background: none; border: none; font-size: 13.5px; color: var(--primary); cursor: pointer; padding: 4px 8px; font-weight: 800; border-radius: 6px; transition: background 0.2s; }
+.refresh-tip-btn:hover { background: rgba(3, 199, 90, 0.1); }
 
-.adsense-sidebar-tall, .adsense-box, .adsense-banner-main { display: none !important; }
+/* 광고 박스 숨기기 */
+.adsense-sidebar-tall, .adsense-box, .adsense-banner-main {
+  display: none !important;
+}
 
 .blog-section { 
   background: var(--card-bg); 
-  border-radius: 20px; 
-  padding: 36px; /* 섹션 내부 여백 대폭 확대 */
-  margin-bottom: 36px; 
+  backdrop-filter: blur(12px); 
+  -webkit-backdrop-filter: blur(12px); 
+  border-radius: 22px; 
+  padding: 32px; 
+  margin-bottom: 28px; 
   border: 1px solid var(--card-border); 
   box-shadow: var(--shadow-sm); 
   width: 100%; 
 }
-.blog-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 24px; margin-bottom: 28px; border-bottom: 2px solid #e2e8f0; }
-.blog-title { font-size: 28px; font-weight: 900; color: var(--text-main); margin: 0; }
+.blog-header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; margin-bottom: 24px; border-bottom: 2px solid #e9ecef; }
+.blog-title { font-size: 26px; font-weight: 900; color: var(--text-main); margin: 0; }
 
-/* 🌟 PC 화면: 카드 그리드 (시원하게 펼쳐지도록 변경) */
+/* 🌟 카테고리별 포스트 목록 카드들을 깔끔하게 격자(그리드) 형태로 배치 */
 .post-list-scroll { 
   display: grid; 
   grid-template-columns: repeat(4, 1fr); 
-  gap: 24px; /* 카드 간 간격 확대 */
+  gap: 20px; 
   width: 100%; 
   overflow: visible;
 }
 
-/* 개별 포스트 카드 디자인 고도화 */
+/* 개별 포스트 카드 디자인 */
 .post-card-mini { 
   background: #ffffff; 
-  border: 1px solid #e2e8f0; 
+  border: 1px solid #dee2e6; 
   border-radius: 16px; 
   overflow: hidden; 
   cursor: pointer; 
@@ -154,30 +168,30 @@ body {
   text-decoration: none; 
 }
 .post-card-mini:hover { 
-  transform: translateY(-8px); /* 호버 시 더 높게 떠오르는 효과 */
+  transform: translateY(-8px); 
   box-shadow: var(--shadow-lg); 
   border-color: var(--primary); 
 }
-.post-thumb-wrapper-mini { width: 100%; height: 180px; /* 썸네일 높이 확대 */ overflow: hidden; background-color: #f1f5f9; }
+.post-thumb-wrapper-mini { width: 100%; height: 160px; overflow: hidden; background-color: #f1f3f5; }
 .post-thumb-mini { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
 .post-card-mini:hover .post-thumb-mini { transform: scale(1.08); }
-.post-content-mini { padding: 20px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
-.post-title-mini { font-size: 17px; font-weight: 800; color: var(--text-main); margin: 0 0 10px 0; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 55px; }
-.post-date-mini { font-size: 14px; color: var(--text-muted); font-weight: 700; margin-top: 10px; }
+.post-content-mini { padding: 18px; display: flex; flex-direction: column; justify-content: space-between; flex-grow: 1; }
+.post-title-mini { font-size: 15px; font-weight: 800; color: var(--text-main); margin: 0 0 10px 0; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; height: 48px; }
+.post-date-mini { font-size: 13px; color: var(--text-muted); font-weight: 700; margin-top: 8px; }
 
-/* 🖼️ 상세 본문 안의 이미지 깨짐 방지 및 여백 설정 */
+/* 🖼️ 상세 본문 안의 이미지 깨짐 완벽 방지 및 세련된 여백 설정 */
 article img, .article-content img, .post-body img {
   display: block !important;
   width: 100% !important;
   max-width: 100% !important;
   height: auto !important;
   border-radius: 16px !important;
-  margin: 40px 0 !important; /* 이미지 위아래 여백 확대 */
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  margin: 36px 0 !important;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
   object-fit: cover;
 }
 
-/* 📐 상세 본문 페이지 너비 확장 */
+/* 📐 상세 본문 페이지 너비를 넉넉하게 확장 */
 .article-container, .post-container, main.article-main {
   max-width: 950px !important;
   width: 100% !important;
@@ -185,7 +199,7 @@ article img, .article-content img, .post-body img {
 }
 
 /* 반응형 대응 (태블릿 및 모바일 화면에서는 2열 또는 1열로 변환) */
-@media (max-width: 1400px) {
+@media (max-width: 1350px) {
   .post-list-scroll { grid-template-columns: repeat(2, 1fr); }
 }
 
@@ -193,9 +207,8 @@ article img, .article-content img, .post-body img {
   .sidebar { display: none !important; }
   .wrapper { display: block; padding: 0; }
   .container { width: 100%; max-width: none; }
-  body { padding: 20px; }
+  body { padding: 16px; }
   .blog-section { padding: 20px; }
-  .post-list-scroll { gap: 16px; }
 }
 
 @media (max-width: 600px) {
