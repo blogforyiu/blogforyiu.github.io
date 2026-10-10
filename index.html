@@ -7,8 +7,8 @@
   <title>에코 힐링 정보 커뮤니티</title>
   <link rel="stylesheet" href="style.css">
   
-  <!-- 눈누 메모먼트 꾹꾹체 웹폰트 CDN -->
-  <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2" rel="stylesheet">
+  <!-- Pretendard 웹폰트 폰트 로드 -->
+  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 
   <!-- Firebase SDK (실시간 방문자 카운터 및 조회수 연동용) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -16,7 +16,7 @@
 
   <style>
     body {
-      font-family: 'MomentsKkugKkug', 'Pretendard Variable', Pretendard, sans-serif !important;
+      font-family: "Pretendard Variable", Pretendard, sans-serif !important;
     }
     .visitor-num {
       transition: color 0.3s ease, transform 0.3s ease;
@@ -29,39 +29,32 @@
     .blog-menu-links {
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
     .blog-menu-btn {
       display: block;
-      padding: 10px 14px;
+      padding: 12px 16px;
       background: #f8fafc;
       border: 1px solid #cbd5e1;
-      border-radius: 10px;
+      border-radius: 12px;
       color: var(--text-sub);
       text-decoration: none;
-      font-size: 14px;
-      font-weight: 600;
+      font-size: 15px;
+      font-weight: 700;
       text-align: center;
       transition: all 0.2s ease;
     }
     .blog-menu-btn:hover {
-      background: #03c75a;
+      background: var(--primary);
       color: #ffffff;
-      border-color: #03c75a;
-    }
-    .post-list-scroll {
-      cursor: grab;
-      user-select: none;
-    }
-    .post-list-scroll:active {
-      cursor: grabbing;
+      border-color: var(--primary);
     }
 
     /* 🔥 Top 5 포스트 타이틀 마퀴 스타일 */
     .top-post-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       overflow: hidden;
     }
     .top-post-badge {
@@ -100,8 +93,8 @@
     /* 🌿 상단 대문 배너 */
     .community-hero-banner {
       width: 100%;
-      height: 220px;
-      background: linear-gradient(135deg, #0284c7 0%, #03c75a 100%);
+      height: 240px;
+      background: linear-gradient(135deg, #2b6cb0 0%, #03c75a 100%);
       border-radius: 20px;
       display: flex;
       flex-direction: column;
@@ -109,82 +102,59 @@
       justify-content: center;
       text-align: center;
       color: #ffffff;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 25px rgba(3, 199, 90, 0.25);
+      margin-bottom: 24px;
+      box-shadow: 0 10px 30px rgba(3, 199, 90, 0.2);
       position: relative;
       overflow: hidden;
     }
-    .community-hero-banner::before {
-      content: '';
-      position: absolute;
-      width: 300px;
-      height: 300px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 50%;
-      top: -100px;
-      right: -80px;
-      pointer-events: none;
-    }
-    .community-hero-banner::after {
-      content: '';
-      position: absolute;
-      width: 200px;
-      height: 200px;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 50%;
-      bottom: -70px;
-      left: -50px;
-      pointer-events: none;
-    }
     .hero-badge {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 4px 12px;
+      background: rgba(255, 255, 255, 0.25);
+      padding: 6px 14px;
       border-radius: 20px;
-      font-size: 12px;
-      font-weight: 700;
-      margin-bottom: 10px;
+      font-size: 13px;
+      font-weight: 800;
+      margin-bottom: 12px;
       backdrop-filter: blur(4px);
     }
     .hero-title {
-      font-size: 30px;
-      font-weight: 800;
-      margin-bottom: 6px;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      font-size: 32px;
+      font-weight: 900;
+      margin-bottom: 8px;
     }
     .hero-subtitle {
-      font-size: 14px;
+      font-size: 15px;
       opacity: 0.95;
-      font-weight: 500;
+      font-weight: 600;
     }
 
     .notice-ticker {
-      background: #f1fbf5;
-      border: 1px solid #c6f6d5;
-      padding: 12px 16px;
-      border-radius: 12px;
-      font-size: 14px;
-      color: #065f46;
-      margin-bottom: 20px;
-      font-weight: 600;
+      background: #f0fdf4;
+      border: 1px solid #bbf7d0;
+      padding: 14px 18px;
+      border-radius: 14px;
+      font-size: 15px;
+      color: #166534;
+      margin-bottom: 24px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .highlight-section-title {
+      font-size: 20px;
+      font-weight: 900;
+      color: var(--text-main);
+      margin-bottom: 16px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-
-    .highlight-section-title {
-      font-size: 18px;
-      font-weight: 800;
-      color: #0f172a;
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
     .highlight-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 14px;
-      margin-bottom: 28px;
+      gap: 18px;
+      margin-bottom: 32px;
     }
     .highlight-card {
       background: #ffffff;
@@ -192,58 +162,56 @@
       border-radius: 16px;
       overflow: hidden;
       text-decoration: none;
-      transition: all 0.25s ease;
+      transition: all 0.3s ease;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
       position: relative;
     }
     .highlight-card:hover {
-      transform: translateY(-5px);
-      border-color: #03c75a;
-      box-shadow: 0 8px 20px rgba(3, 199, 90, 0.15);
+      transform: translateY(-6px);
+      border-color: var(--primary);
+      box-shadow: 0 10px 25px rgba(3, 199, 90, 0.15);
     }
     .hot-badge {
       position: absolute;
-      top: 10px;
-      left: 10px;
+      top: 12px;
+      left: 12px;
       background: #ef4444;
       color: #ffffff;
-      font-size: 10px;
-      font-weight: 800;
-      padding: 3px 8px;
+      font-size: 11px;
+      font-weight: 900;
+      padding: 4px 10px;
       border-radius: 20px;
       z-index: 2;
-      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.4);
     }
     .highlight-thumb-box {
       width: 100%;
-      height: 130px;
+      height: 140px;
       overflow: hidden;
       background: #f1f5f9;
-      position: relative;
     }
     .highlight-thumb {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.3s ease;
+      transition: transform 0.35s ease;
     }
     .highlight-card:hover .highlight-thumb {
-      transform: scale(1.05);
+      transform: scale(1.08);
     }
     .highlight-content {
-      padding: 14px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       flex-grow: 1;
     }
     .highlight-title {
-      font-size: 14px;
-      font-weight: 700;
-      color: #1e293b;
-      line-height: 1.4;
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.5;
       margin-bottom: 8px;
       display: -webkit-box;
       -webkit-line-clamp: 2;
@@ -251,13 +219,19 @@
       overflow: hidden;
     }
     .highlight-date {
-      font-size: 11px;
-      color: #64748b;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
     }
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1300px) {
       .highlight-grid {
         grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 600px) {
+      .highlight-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
@@ -286,7 +260,7 @@
         <div id="weather-temp" class="weather-temp">--°C</div>
         <div class="weather-sub">
           <div id="weather-status">불러오는 중...</div>
-          <div id="weather-dust" style="margin-top: 3px;">미세먼지: --</div>
+          <div id="weather-dust" style="margin-top: 4px;">미세먼지: --</div>
         </div>
       </div>
     </div>
@@ -385,7 +359,7 @@
     </div>
   </main>
 
-  <!-- 우측 사이드바 (검색, 인기 포스트, 오늘의 꿀팁) 복구 완료 -->
+  <!-- 우측 사이드바 -->
   <aside class="sidebar">
     <div class="widget-box">
       <h3 class="widget-title">🔍 포스트 검색</h3>
@@ -435,34 +409,7 @@
     initTips();
     initVisitorCounter();
     renderPostsToDOM();
-    initMouseDragScroll();
   };
-
-  function initMouseDragScroll() {
-    const scrollContainers = document.querySelectorAll('.post-list-scroll');
-    scrollContainers.forEach(container => {
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-
-      container.addEventListener('mousedown', (e) => {
-        isDown = true;
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-      });
-
-      container.addEventListener('mouseleave', () => { isDown = false; });
-      container.addEventListener('mouseup', () => { isDown = false; });
-
-      container.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - container.offsetLeft;
-        const walk = (x - startX) * 2;
-        container.scrollLeft = scrollLeft - walk;
-      });
-    });
-  }
 
   function initVisitorCounter() {
     const todayEl = document.getElementById('visitor-today');
