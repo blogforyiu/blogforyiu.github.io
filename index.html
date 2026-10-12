@@ -32,7 +32,7 @@
 </head>
 <body>
 
-<!-- 🌟 상단 미니멀 네비게이션 헤더 (모니터 사진 속 그 느낌) -->
+<!-- 🌟 상단 미니멀 네비게이션 헤더 -->
 <header class="site-header">
   <a href="index.html" class="site-logo">ECO & TECH</a>
   <nav class="site-nav">
@@ -56,51 +56,13 @@
     </div>
   </div>
 
-  <!-- 🔥 지금 가장 뜨거운 실시간 핫토픽 -->
+  <!-- ⭐ 오늘의 추천 글 (매일 자동으로 변경) -->
   <div class="blog-section">
     <div class="blog-header">
-      <h2 class="blog-title">🔥 실시간 핫토픽</h2>
+      <h2 class="blog-title">⭐ 오늘의 추천 글</h2>
     </div>
-    <div class="post-list-scroll">
-      <a href="article.html?id=1" class="post-card-mini">
-        <div class="post-thumb-wrapper-mini">
-          <img class="post-thumb-mini" src="https://images.unsplash.com/photo-1556656793-08538906a9f8?auto=format&fit=crop&w=800&q=80" alt="배터리">
-        </div>
-        <div class="post-content-mini">
-          <div class="post-title-mini">스마트폰 배터리 수명 극대화 가이드: 2배 늘리는 실전 충전 습관</div>
-          <div class="post-date-mini">2026. 10. 07</div>
-        </div>
-      </a>
-
-      <a href="article.html?id=2" class="post-card-mini">
-        <div class="post-thumb-wrapper-mini">
-          <img class="post-thumb-mini" src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=800&q=80" alt="PC용량">
-        </div>
-        <div class="post-content-mini">
-          <div class="post-title-mini">윈도우 PC 및 노트북 용량 부족 해결 5단계 대청소하기</div>
-          <div class="post-date-mini">2026. 10. 07</div>
-        </div>
-      </a>
-
-      <a href="article.html?id=5" class="post-card-mini">
-        <div class="post-thumb-wrapper-mini">
-          <img class="post-thumb-mini" src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=800&q=80" alt="드라이브">
-        </div>
-        <div class="post-content-mini">
-          <div class="post-title-mini">국내 주말 근교 드라이브 코스 추천 및 소요 시간 분석</div>
-          <div class="post-date-mini">2026. 10. 07</div>
-        </div>
-      </a>
-
-      <a href="article.html?id=8" class="post-card-mini">
-        <div class="post-thumb-wrapper-mini">
-          <img class="post-thumb-mini" src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNjA2MjhfMjcw%2FMDAxNzgyNjI2NTIwODcy.V7XzGAvZfgWMfKXgP32Lg0bCBmeSIV3aM1quoNqQAaUg.4grQKj4yY1DvANRktfYwCqJYcdUpNSDIF1Km1LIzF3kg.JPEG%2Fphoto_20260628_150121_219_raw.jpg&type=sc960_832" alt="이어폰">
-        </div>
-        <div class="post-content-mini">
-          <div class="post-title-mini">블루투스 이어폰 끊김 현상 해결 및 음질 최적화 설정 가이드</div>
-          <div class="post-date-mini">2026. 10. 07</div>
-        </div>
-      </a>
+    <div class="post-list-scroll" id="today-recommend-container">
+      <!-- 자바스크립트로 매일 다른 포스트 4개가 동적으로 채워집니다 -->
     </div>
   </div>
 
@@ -145,7 +107,48 @@
 
   window.onload = function() {
     renderPostsToDOM();
+    renderTodayRecommendations(); // 페이지 로드 시 오늘의 추천 글 렌더링
   };
+
+  // 🔄 매일 자정마다 포스트 ID 그룹을 순환하며 보여주는 함수
+  function renderTodayRecommendations() {
+    if (typeof posts === 'undefined') return;
+
+    // 현재 보유하신 포스트 ID(1~22)들을 활용한 추천 그룹 세트
+    const recommendationGroups = [
+      [1, 15, 16, 17],
+      [18, 19, 20, 21],
+      [2, 5, 8, 22]
+    ];
+
+    const today = new Date();
+    const dateKey = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+    const groupIndex = dateKey % recommendationGroups.length;
+    const targetIds = recommendationGroups[groupIndex];
+
+    const container = document.getElementById('today-recommend-container');
+    if (!container) return;
+    container.innerHTML = '';
+
+    targetIds.forEach(id => {
+      const post = posts.find(p => p.id === id);
+      if (post) {
+        const card = document.createElement('a');
+        card.className = 'post-card-mini';
+        card.href = `article.html?id=${post.id}`;
+        card.innerHTML = `
+          <div class="post-thumb-wrapper-mini">
+            <img class="post-thumb-mini" src="${post.thumb}" alt="썸네일" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3959/3959542.png'">
+          </div>
+          <div class="post-content-mini">
+            <div class="post-title-mini" title="${post.title}">${post.title}</div>
+            <div class="post-date-mini">${post.date}</div>
+          </div>
+        `;
+        container.appendChild(card);
+      }
+    });
+  }
 
   function renderPostsToDOM() {
     if (typeof posts === 'undefined') return;
