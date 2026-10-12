@@ -222,7 +222,6 @@ body {
   max-width: 100% !important;
   height: auto !important;
   max-height: 500px !important;
-  object-fit: cover !important;
   border-radius: 16px !important;
   margin: 35px 0 !important;
   box-shadow: var(--shadow-subtle);
