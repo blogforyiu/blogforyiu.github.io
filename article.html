@@ -120,14 +120,15 @@
       margin-bottom: 18px;
     }
     
-    /* 🖼️ 본문 안의 이미지 원본 비율 유지 설정 (object-fit 제거 완료) */
+    /* 🖼️ 본문 안의 이미지 비율 유지 및 가운데 정렬 설정 (옆으로 늘어남 방지) */
     .article-content img {
       display: block !important;
-      width: 100% !important;
       max-width: 100% !important;
+      width: auto !important;
       height: auto !important;
+      max-height: 500px !important;
       border-radius: 12px !important;
-      margin: 24px 0 !important;
+      margin: 30px auto !important;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
     }
     
