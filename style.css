@@ -1,8 +1,8 @@
 :root {
-  --bg-color: #fcfbfa;           /* 아주 미세하게 화사한 웜 아이보리 바탕색 */
+  --bg-color: #fcfbfa;            /* 아주 미세하게 화사한 웜 아이보리 바탕색 */
   --header-bg: #ffffff;
   --primary: #1a202c;            /* 깊이감 있는 딥 다크 차콜 */
-  --accent: #319795;             /* 세련된 틸(Teal) 포인트 컬러 */
+  --accent: #319795;              /* 세련된 틸(Teal) 포인트 컬러 */
   --text-main: #2d3748;
   --text-sub: #718096;
   --border-color: #edf2f7;
@@ -215,7 +215,7 @@ body {
   font-weight: 700;
 }
 
-/* 🖼️ 상세 본문 및 서브 페이지 이미지 깨짐 완벽 방지 & 납작한 깨진 박스 완전 차단 */
+/* 🖼️ 상세 본문 및 서브 페이지 이미지 비율 유지 및 깨진 박스 완전 차단 */
 .article-content img, article img, .post-body img {
   display: block !important;
   width: 100% !important;
