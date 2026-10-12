@@ -56,13 +56,13 @@
     </div>
   </div>
 
-  <!-- ⭐ 오늘의 추천 글 (매일 자동으로 변경) -->
+  <!-- ⭐ 오늘의 추천 글 (작성한 글에서 매일 자동 랜덤 추천) -->
   <div class="blog-section">
     <div class="blog-header">
       <h2 class="blog-title">⭐ 오늘의 추천 글</h2>
     </div>
     <div class="post-list-scroll" id="today-recommend-container">
-      <!-- 자바스크립트로 매일 다른 포스트 4개가 동적으로 채워집니다 -->
+      <!-- 자바스크립트로 자동 렌더링됩니다 -->
     </div>
   </div>
 
@@ -107,46 +107,51 @@
 
   window.onload = function() {
     renderPostsToDOM();
-    renderTodayRecommendations(); // 페이지 로드 시 오늘의 추천 글 렌더링
+    renderTodayRecommendations();
   };
 
-  // 🔄 매일 자정마다 포스트 ID 그룹을 순환하며 보여주는 함수
+  // 🎲 날짜를 기반으로 전체 글 중 4개를 똑똑하게 무작위 추출하는 함수 (시드 랜덤 방식)
   function renderTodayRecommendations() {
-    if (typeof posts === 'undefined') return;
-
-    // 현재 보유하신 포스트 ID(1~22)들을 활용한 추천 그룹 세트
-    const recommendationGroups = [
-      [1, 15, 16, 17],
-      [18, 19, 20, 21],
-      [2, 5, 8, 22]
-    ];
-
-    const today = new Date();
-    const dateKey = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
-    const groupIndex = dateKey % recommendationGroups.length;
-    const targetIds = recommendationGroups[groupIndex];
+    if (typeof posts === 'undefined' || posts.length === 0) return;
 
     const container = document.getElementById('today-recommend-container');
     if (!container) return;
     container.innerHTML = '';
 
-    targetIds.forEach(id => {
-      const post = posts.find(p => p.id === id);
-      if (post) {
-        const card = document.createElement('a');
-        card.className = 'post-card-mini';
-        card.href = `article.html?id=${post.id}`;
-        card.innerHTML = `
-          <div class="post-thumb-wrapper-mini">
-            <img class="post-thumb-mini" src="${post.thumb}" alt="썸네일" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3959/3959542.png'">
-          </div>
-          <div class="post-content-mini">
-            <div class="post-title-mini" title="${post.title}">${post.title}</div>
-            <div class="post-date-mini">${post.date}</div>
-          </div>
-        `;
-        container.appendChild(card);
-      }
+    // 오늘 날짜를 숫자로 고정 (예: 20261012) -> 하루 동안은 모든 방문자에게 같은 글이 보임
+    const today = new Date();
+    const seed = today.getFullYear() * 10000 + (today.getMonth() + 1) * 100 + today.getDate();
+
+    // 간단한 난수 생성기 (시드값 고정용)
+    function pseudoRandom(s) {
+      var x = Math.sin(s++) * 10000;
+      return x - Math.floor(x);
+    }
+
+    // 전체 포스트 배열을 복사한 뒤 날짜 시드값 기준으로 섞음
+    let shuffled = [...posts];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(pseudoRandom(seed + i) * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    // 앞에서 4개만 추출 (포스트가 4개보다 적을 경우 전체 출력)
+    const selectedPosts = shuffled.slice(0, 4);
+
+    selectedPosts.forEach(post => {
+      const card = document.createElement('a');
+      card.className = 'post-card-mini';
+      card.href = `article.html?id=${post.id}`;
+      card.innerHTML = `
+        <div class="post-thumb-wrapper-mini">
+          <img class="post-thumb-mini" src="${post.thumb}" alt="썸네일" onerror="this.src='https://cdn-icons-png.flaticon.com/512/3959/3959542.png'">
+        </div>
+        <div class="post-content-mini">
+          <div class="post-title-mini" title="${post.title}">${post.title}</div>
+          <div class="post-date-mini">${post.date}</div>
+        </div>
+      `;
+      container.appendChild(card);
     });
   }
 
