@@ -1,7 +1,7 @@
 const posts = [
     {
         id: 1,
-        category: "생활/꿀팁",
+        category: "IT/스마트폰",
         title: "스마트폰 배터리 수명 극대화 가이드: 2배 늘리는 실전 충전 습관과 과학적 진실",
         date: "2026. 10. 07",
         thumb: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAou_9gG13qH1EnckeG4dAIfkxXoAqlfzT4177PMKq6KYlU-dbpIrLpPQ&s=10",
