@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="referrer" content="no-referrer">
   <title>포스트 상세 - 에코 힐링 정보 커뮤니티</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
   
   <!-- 눈누 메모먼트 꾹꾹체 웹폰트 CDN -->
   <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2" rel="stylesheet">
@@ -120,7 +120,7 @@
       margin-bottom: 18px;
     }
     
-    /* 🖼️ 본문 안의 이미지 깨짐 완벽 방지 스타일 설정 */
+    /* 🖼️ 본문 안의 이미지 원본 비율 유지 설정 (object-fit 제거 완료) */
     .article-content img {
       display: block !important;
       width: 100% !important;
@@ -129,7 +129,6 @@
       border-radius: 12px !important;
       margin: 24px 0 !important;
       box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-      object-fit: cover;
     }
     
     /* 하단 홈으로 돌아가기 버튼 영역 스타일 */
