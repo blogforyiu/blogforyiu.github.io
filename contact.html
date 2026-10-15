@@ -3,47 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="referrer" content="no-referrer">
-  <title>1:1 문의하기 - ECO & TECH</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+  <title>문의하기 - ECO & TECH</title>
+  <link rel="stylesheet" href="style.css?v=8">
+  
+  <style>
+    @font-face {
+      font-family: 'MomentsKkugKkug';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
 </head>
 <body>
 
-<header class="site-header">
+<!-- 상단 네비게이션 헤더 -->
+<header class="site-header" id="siteHeader">
   <a href="index.html" class="site-logo">ECO & TECH</a>
   <nav class="site-nav">
-    <a href="index.html">홈</a>
-    <a href="about.html">소개</a>
-    <a href="privacy.html">개인정보처리방침</a>
-    <a href="contact.html" style="color: var(--accent); font-weight: 800;">문의하기</a>
+    <a href="index.html">HOME</a>
+    <a href="index.html">IT / Tech</a>
+    <a href="index.html">Life / Tips</a>
+    <a href="index.html">Travel / Food</a>
+    <a href="index.html">Finance</a>
   </nav>
+  <div class="header-right-menu">
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="contact.html" style="color: #ff5722; font-weight: 800;">Contact</a>
+  </div>
 </header>
 
-<div class="contact-container">
-  <a href="index.html" class="back-home-link">← 홈으로 돌아가기</a>
-  <h1 class="contact-title">✉️ 1:1 문의하기</h1>
-  <p style="color: var(--text-sub); margin-bottom: 30px; font-size: 15px;">궁금하신 점이나 제안사항을 남겨주시면 확인 후 빠르게 답변해 드리겠습니다.</p>
+<div class="article-wrapper">
+  <a href="index.html" class="back-btn">← BACK TO HOME</a>
 
-  <form onsubmit="event.preventDefault(); alert('문의가 정상적으로 접수되었습니다. 감사합니다!'); location.href='index.html';">
-    <div class="form-group">
-      <label class="form-label">작성자 이름 / 닉네임</label>
-      <input type="text" class="form-input" placeholder="이름을 입력해 주세요" required>
-    </div>
+  <div class="article-content" style="padding-top: 20px;">
+    <h1 class="article-title" style="margin-bottom: 20px;">📬 1:1 문의하기</h1>
+    <div class="article-date" style="margin-bottom: 30px;">궁금하신 점이나 제안사항을 남겨주세요.</div>
 
-    <div class="form-group">
-      <label class="form-label">답변 받을 이메일 (선택)</label>
-      <input type="email" class="form-input" placeholder="example@email.com">
-    </div>
+    <form style="display: flex; flex-direction: column; gap: 20px; max-width: 600px;">
+      <div>
+        <label style="display: block; font-weight: 700; margin-bottom: 8px;">작성자 이름 / 닉네임</label>
+        <input type="text" placeholder="이름을 입력해 주세요" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit;">
+      </div>
+      <div>
+        <label style="display: block; font-weight: 700; margin-bottom: 8px;">답변 받을 이메일 (선택)</label>
+        <input type="email" placeholder="example@email.com" style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit;">
+      </div>
+      <div>
+        <label style="display: block; font-weight: 700; margin-bottom: 8px;">문의 내용</label>
+        <textarea rows="6" placeholder="궁금하신 내용을 상세히 적어주세요..." style="width: 100%; padding: 12px; border: 1px solid var(--border-color); border-radius: 8px; font-family: inherit; resize: vertical;"></textarea>
+      </div>
+      <button type="button" onclick="alert('문의가 정상적으로 접수되었습니다. 감사합니다!')" style="padding: 14px; background: #000; color: #fff; font-weight: 800; border: none; border-radius: 8px; cursor: pointer; transition: background 0.2s;">문의 내용 전송하기</button>
+    </form>
+  </div>
 
-    <div class="form-group">
-      <label class="form-label">문의 내용</label>
-      <textarea class="form-textarea" placeholder="궁금하신 내용을 상세히 적어주세요..." required></textarea>
-    </div>
-
-    <button type="submit" class="submit-btn">문의 내용 전송하기</button>
-  </form>
+  <div class="article-footer-nav">
+    <a href="index.html" class="back-btn">🏠 BACK TO HOME</a>
+  </div>
 </div>
+
+<script>
+  let lastScrollTop = 0;
+  const header = document.getElementById('siteHeader');
+
+  window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+      header.classList.add('header-hidden');
+    } else {
+      header.classList.remove('header-hidden');
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  }, false);
+</script>
 
 </body>
 </html>
