@@ -306,13 +306,14 @@ body {
   margin-bottom: 24px;
 }
 
+/* 🌟 본문 이미지가 잘리지 않고 원본 비율로 모두 나오도록 수정된 부분 */
 .article-content img {
   display: block !important;
   max-width: 100% !important;
   width: 100% !important;
   height: auto !important;
-  max-height: 550px !important;
-  object-fit: cover !important;
+  object-fit: contain !important;
+  background: #f9f9f9;
   border-radius: 8px !important;
   margin: 40px auto !important;
 }
