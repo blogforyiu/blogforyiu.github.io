@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECO & TECH - Official Store</title>
-  <link rel="stylesheet" href="style.css?v=4">
+  <link rel="stylesheet" href="style.css?v=6">
   
-  <!-- 눈누 메모먼트 꾹꾹체 웹폰트 선언 -->
   <style>
     @font-face {
       font-family: 'MomentsKkugKkug';
@@ -16,50 +15,44 @@
     }
   </style>
 
-  <!-- Firebase SDK (조회수/방문자 연동용) -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
-<!-- 상단 네비게이션 헤더 (스크롤 시 숨김/나타남) -->
+<!-- 상단 네비게이션 헤더 (영문 혼용 카테고리 & 스크롤 숨김) -->
 <header class="site-header" id="siteHeader">
   <a href="index.html" class="site-logo">ECO & TECH</a>
   <nav class="site-nav">
-    <a href="index.html" style="color: #ff5722;">OUTLET</a>
-    <a href="index.html">SHOES</a>
-    <a href="index.html">MEN</a>
-    <a href="index.html">WOMEN</a>
-    <a href="index.html">SPORTS</a>
-    <a href="index.html">LIFESTYLE</a>
+    <a href="#" onclick="filterCategory('전체', event)" class="active-cat">ALL</a>
+    <a href="#" onclick="filterCategory('IT/스마트폰', event)">IT / Tech</a>
+    <a href="#" onclick="filterCategory('생활/꿀팁', event)">Life / Tips</a>
+    <a href="#" onclick="filterCategory('여행/맛집', event)">Travel / Food</a>
+    <a href="#" onclick="filterCategory('금융/테크', event)">Finance</a>
   </nav>
   <div class="header-right-menu">
-    <a href="about.html">도움말</a>
-    <a href="privacy.html">주문 및 반품</a>
-    <a href="contact.html">고객센터</a>
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="contact.html">Contact</a>
   </div>
 </header>
 
-<!-- 🌟 아디다스 스타일 풀 와이드 히어로 배너 섹션 -->
+<!-- 풀 와이드 히어로 배너 섹션 -->
 <section class="adidas-hero-section">
-  <div class="hero-grid" id="hero-grid-container">
-    <!-- 자바스크립트로 최신 포스트들이 대형 배너 카드 형태로 동적 삽입됩니다 -->
-  </div>
+  <div class="hero-grid" id="hero-grid-container"></div>
 </section>
 
 <!-- 전체 아티클 목록 섹션 -->
 <main class="main-container">
   <div class="section-title-area">
-    <h2>FEATURED STORIES</h2>
+    <h2 id="current-category-title">ALL POSTS</h2>
   </div>
-  <div class="post-grid" id="post-grid-container">
-    <!-- 일반 카드 목록 -->
-  </div>
+  <div class="post-grid" id="post-grid-container"></div>
 </main>
 
 <script src="data.js"></script>
 <script>
-  // 스크롤 감지 헤더 숨김/나타남 제어
   let lastScrollTop = 0;
   const header = document.getElementById('siteHeader');
 
@@ -73,41 +66,34 @@
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   }, false);
 
-  // 메인 페이지 포스트 렌더링 (아디다스 스타일 배너 + 카드 믹스)
-  window.onload = function() {
-    const heroContainer = document.getElementById('hero-grid-container');
-    const postContainer = document.getElementById('post-grid-container');
+  let currentSelectedCategory = '전체';
 
-    if (typeof posts === 'undefined' || posts.length === 0) {
-      if(heroContainer) heroContainer.innerHTML = '<p style="padding:40px; text-align:center;">게시글을 불러올 수 없습니다.</p>';
+  function filterCategory(categoryName, event) {
+    if(event) event.preventDefault();
+    currentSelectedCategory = categoryName;
+    
+    document.querySelectorAll('.site-nav a').forEach(el => el.style.color = '#111');
+    if(event) event.target.style.color = '#ff5722';
+
+    document.getElementById('current-category-title').innerText = categoryName === '전체' ? 'ALL POSTS' : categoryName;
+    renderPosts(categoryName);
+  }
+
+  function renderPosts(categoryFilter) {
+    const postContainer = document.getElementById('post-grid-container');
+    
+    let filteredPosts = posts;
+    if (categoryFilter !== '전체') {
+      filteredPosts = posts.filter(p => p.category === categoryFilter);
+    }
+
+    if (filteredPosts.length === 0) {
+      postContainer.innerHTML = '<p style="padding: 40px; color: #767677; grid-column: 1/-1;">해당 카테고리에 등록된 포스트가 없습니다.</p>';
       return;
     }
 
-    // 상위 3개 게시물을 아디다스 스타일의 대형 히어로 카드 배너로 구성
-    let heroHTML = '';
-    const heroPosts = posts.slice(0, 3); // 최대 3개
-    
-    heroPosts.forEach((post, index) => {
-      // 이미지 추출 (정규식으로 첫 번째 img src 추출)
-      const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
-      const imgSrc = imgMatch ? imgMatch[1] : 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80';
-      
-      heroHTML += `
-        <div class="hero-card" onclick="location.href='article.html?id=${post.id}'">
-          <img src="${imgSrc}" alt="${post.title}" loading="lazy">
-          <div class="hero-card-content">
-            <span class="hero-badge">STEP INTO SEASON</span>
-            <h3>${post.title}</h3>
-            <span class="hero-link">자세히 보기 →</span>
-          </div>
-        </div>
-      `;
-    });
-    heroContainer.innerHTML = heroHTML;
-
-    // 전체 포스트 카드 목록 렌더링
     let listHTML = '';
-    posts.forEach(post => {
+    filteredPosts.forEach(post => {
       const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
       const imgSrc = imgMatch ? imgMatch[1] : 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80';
 
@@ -117,7 +103,7 @@
             <img src="${imgSrc}" alt="${post.title}" loading="lazy">
           </div>
           <div class="post-card-body">
-            <span class="post-category">${post.category || 'LIFE'}</span>
+            <span class="post-category">${post.category || 'STORY'}</span>
             <h4 class="post-title">${post.title}</h4>
             <span class="post-date">${post.date}</span>
           </div>
@@ -125,6 +111,37 @@
       `;
     });
     postContainer.innerHTML = listHTML;
+  }
+
+  window.onload = function() {
+    const heroContainer = document.getElementById('hero-grid-container');
+
+    if (typeof posts === 'undefined' || posts.length === 0) {
+      if(heroContainer) heroContainer.innerHTML = '<p style="padding:40px; text-align:center;">게시글을 불러올 수 없습니다.</p>';
+      return;
+    }
+
+    let heroHTML = '';
+    const heroPosts = posts.slice(0, 3);
+    
+    heroPosts.forEach((post) => {
+      const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
+      const imgSrc = imgMatch ? imgMatch[1] : 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80';
+      
+      heroHTML += `
+        <div class="hero-card" onclick="location.href='article.html?id=${post.id}'">
+          <img src="${imgSrc}" alt="${post.title}" loading="lazy">
+          <div class="hero-card-content">
+            <span class="hero-badge">${post.category || 'FEATURED'}</span>
+            <h3>${post.title}</h3>
+            <span class="hero-link">DISCOVER MORE →</span>
+          </div>
+        </div>
+      `;
+    });
+    heroContainer.innerHTML = heroHTML;
+
+    renderPosts('전체');
   };
 </script>
 
