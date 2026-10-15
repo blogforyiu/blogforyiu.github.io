@@ -81,10 +81,11 @@ body {
   color: inherit;
 }
 
-/* 히어로 배너 그리드 */
+/* 🌟 아디다스 스타일 풀 와이드 히어로 배너 그리드 (마우스 오버 슬라이드 효과) */
 .adidas-hero-section {
   width: 100%;
   background: #000000;
+  overflow: hidden;
 }
 
 .hero-grid {
@@ -99,29 +100,40 @@ body {
   height: 480px;
   overflow: hidden;
   cursor: pointer;
-  background: #111;
+  background: #000000;
 }
 
 .hero-card img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.85;
-  transition: transform 0.5s ease, opacity 0.3s;
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .hero-card:hover img {
-  transform: scale(1.03);
-  opacity: 1;
+  transform: scale(1.05);
 }
 
+/* 🖤 평소에는 이미지 하단 60%를 덮고 있다가 마우스 올리면 아래로 슥 내려가는 박스 */
 .hero-card-content {
   position: absolute;
-  bottom: 40px;
-  left: 40px;
-  right: 40px;
-  color: #ffffff;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.75) 70%, rgba(0, 0, 0, 0.3) 100%);
+  padding: 30px 40px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  transform: translateY(0);
+  transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
   z-index: 2;
+}
+
+.hero-card:hover .hero-card-content {
+  transform: translateY(40px);
 }
 
 .hero-badge {
@@ -131,23 +143,27 @@ body {
   font-size: 11px;
   font-weight: 800;
   padding: 4px 10px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   letter-spacing: 1px;
+  width: fit-content;
 }
 
 .hero-card-content h3 {
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 900;
   line-height: 1.3;
-  margin-bottom: 15px;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  margin-bottom: 12px;
+  color: #ffffff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .hero-link {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 800;
+  color: #ffffff;
   border-bottom: 2px solid #ffffff;
   padding-bottom: 2px;
+  width: fit-content;
 }
 
 /* 메인 컨테이너 & 포스트 그리드 */
@@ -287,26 +303,4 @@ body {
 }
 
 .article-content img {
-  display: block !important;
-  max-width: 100% !important;
-  width: 100% !important;
-  height: auto !important;
-  max-height: 550px !important;
-  object-fit: cover !important;
-  border-radius: 8px !important;
-  margin: 40px auto !important;
-}
-
-.article-footer-nav {
-  margin-top: 60px;
-  padding-top: 30px;
-  border-top: 1px solid var(--border-color);
-  text-align: center;
-}
-
-@media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr; }
-  .hero-card { height: 350px; }
-  .site-header { padding: 0 20px; }
-  .site-nav { display: none; }
-}
+  display: block
