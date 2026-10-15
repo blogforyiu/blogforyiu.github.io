@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECO & TECH - Official Store</title>
-  <link rel="stylesheet" href="style.css?v=12">
+  <link rel="stylesheet" href="style.css?v=13">
   
   <style>
     @font-face {
@@ -38,7 +38,7 @@
   </div>
 </header>
 
-<!-- 풀 와이드 히어로 배너 섹션 (조회수 기준 인기글 연동) -->
+<!-- 풀 와이드 히어로 배너 섹션 (FEATURED 감성 연동) -->
 <section class="adidas-hero-section">
   <div class="hero-grid" id="hero-grid-container">
     <div style="grid-column: 1/-1; padding: 60px; text-align: center; color: #fff;">인기 포스트를 불러오는 중입니다...</div>
@@ -83,9 +83,8 @@
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   }, false);
 
-  let postViewsMap = {}; // 조회수를 저장할 객체
+  let postViewsMap = {};
 
-  // 페이지 로드 시 Firebase에서 조회수 데이터를 먼저 가져온 뒤 화면을 렌더링
   window.onload = async function() {
     if (typeof posts === 'undefined' || posts.length === 0) {
       document.getElementById('hero-grid-container').innerHTML = '<p style="padding:40px; text-align:center; color:#fff;">게시글을 불러올 수 없습니다.</p>';
@@ -98,7 +97,7 @@
         postViewsMap[doc.id] = doc.data().views || 0;
       });
     } catch (e) {
-      console.log("조회수 불러오기 실패 (기본 정렬로 대체)");
+      console.log("조회수 불러오기 실패");
     }
 
     filterCategory('전체');
@@ -118,21 +117,20 @@
 
     document.getElementById('current-category-title').innerText = categoryName === '전체' ? 'ALL POSTS' : categoryName;
     
-    // 1. 카테고리 필터링
     let targetPosts = posts;
     if (categoryName !== '전체') {
       targetPosts = posts.filter(p => p.category === categoryName);
     }
 
-    // 2. 하단 목록은 최신순(id 내림차순) 정렬
+    // 하단 목록은 최신순 정렬
     let listSorted = [...targetPosts].sort((a, b) => b.id - a.id);
     renderPosts(listSorted);
 
-    // 3. 상단 히어로 배너는 조회수가 높은 순(Views 내림차순)으로 상위 3개 선정
+    // 상단 히어로 배너는 조회수 높은 순 정렬
     let heroSorted = [...targetPosts].sort((a, b) => {
       let viewsA = postViewsMap[String(a.id)] || 0;
       let viewsB = postViewsMap[String(b.id)] || 0;
-      return viewsB - viewsA; // 조회수 높은 것부터
+      return viewsB - viewsA;
     });
     renderHero(heroSorted);
   }
@@ -146,7 +144,7 @@
     }
 
     let heroHTML = '';
-    const heroPosts = targetPosts.slice(0, 3); // 조회수 상위 3개
+    const heroPosts = targetPosts.slice(0, 3);
     
     heroPosts.forEach((post) => {
       const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
@@ -157,7 +155,7 @@
         <div class="hero-card" onclick="location.href='article.html?id=${post.id}'">
           <img src="${imgSrc}" alt="${post.title}" loading="lazy">
           <div class="hero-card-content">
-            <span class="hero-badge">🔥 인기수 ㆍ ${views} VIEWS</span>
+            <span class="hero-badge">FEATURED ㆍ ${views} VIEWS</span>
             <h3>${post.title}</h3>
             <span class="hero-link">DISCOVER MORE →</span>
           </div>
