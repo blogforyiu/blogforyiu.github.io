@@ -192,28 +192,9 @@
 
     if (post) {
       document.title = `${post.title} - 에코 힐링 정보 커뮤니티`;
+      
       container.innerHTML = `
         <div class="article-category">${post.category}</div>
         <h1 class="article-title">${post.title}</h1>
         <div class="article-date">작성일: ${post.date}</div>
-        <div class="article-content">${post.content}</div>
-      `;
-
-      // 조회수 증가 로직
-      const docRef = db.collection("article_views").doc(String(postId));
-      docRef.get().then((doc) => {
-        let currentViews = 0;
-        if (doc.exists) {
-          currentViews = doc.data().views || 0;
-        }
-        docRef.set({ views: currentViews + 1 }, { merge: true }).catch(() => {});
-      }).catch(() => {});
-
-    } else {
-      container.innerHTML = `<h2>해당 포스트를 찾을 수 없습니다.</h2><p>존재하지 않거나 삭제된 게시물입니다.</p>`;
-    }
-  };
-</script>
-
-</body>
-</html>
+        <div class
