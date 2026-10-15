@@ -4,10 +4,19 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>포스트 상세 - 에코 힐링 정보 커뮤니티</title>
+  
+  <!-- 스타일시트 경로 정돈 -->
   <link rel="stylesheet" href="style.css?v=2">
   
-  <!-- 눈누 메모먼트 꾹꾹체 웹폰트 CDN -->
-  <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2" rel="stylesheet">
+  <!-- 눈누 메모먼트 꾹꾹체 웹폰트 CDN (폰트 선언 안전화) -->
+  <style>
+    @font-face {
+      font-family: 'MomentsKkugKkug';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
 
   <!-- Firebase SDK (조회수 연동용) -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
@@ -119,7 +128,7 @@
       margin-bottom: 18px;
     }
     
-    /* 🖼️ 본문 안의 이미지 비율 유지 및 가운데 정렬 설정 (옆으로 늘어남 방지) */
+    /* 🖼️ 본문 안의 이미지 비율 유지 및 가운데 정렬 설정 */
     .article-content img {
       display: block !important;
       max-width: 100% !important;
@@ -140,61 +149,3 @@
     }
   </style>
 </head>
-<body>
-
-<!-- 상단 네비게이션 헤더 -->
-<header class="site-header">
-  <a href="index.html" class="site-logo">ECO & TECH</a>
-  <nav class="site-nav">
-    <a href="index.html">홈</a>
-    <a href="about.html">소개</a>
-    <a href="privacy.html">개인정보처리방침</a>
-    <a href="contact.html">문의하기</a>
-  </nav>
-</header>
-
-<div class="article-wrapper">
-  <!-- 상단 홈으로 돌아가기 버튼 -->
-  <a href="index.html" class="back-btn">← 홈으로 돌아가기</a>
-
-  <div id="article-container">
-    <h2 style="text-align: center; color: var(--text-muted);">포스트를 불러오는 중입니다...</h2>
-  </div>
-
-  <!-- 하단 홈으로 돌아가기 버튼 영역 -->
-  <div class="article-footer-nav">
-    <a href="index.html" class="back-btn">🏠 홈으로 돌아가기</a>
-  </div>
-</div>
-
-<script src="data.js"></script>
-<script>
-  const firebaseConfig = {
-    apiKey: "AIzaSyBR0wLEB88q2_aLBZPrdKFH27wxjHXsrIc",
-    authDomain: "blog-visitor-87a5c.firebaseapp.com",
-    projectId: "blog-visitor-87a5c",
-    storageBucket: "blog-visitor-87a5c.appspot.com",
-    messagingSenderId: "82038942165",
-    appId: "1:82038942165:web:9772c7c77bd3f88393f56c"
-  };
-
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-  const db = firebase.firestore();
-
-  window.onload = function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const postId = parseInt(urlParams.get('id')) || 1;
-
-    const post = posts.find(p => p.id === postId);
-    const container = document.getElementById('article-container');
-
-    if (post) {
-      document.title = `${post.title} - 에코 힐링 정보 커뮤니티`;
-      
-      container.innerHTML = `
-        <div class="article-category">${post.category}</div>
-        <h1 class="article-title">${post.title}</h1>
-        <div class="article-date">작성일: ${post.date}</div>
-        <div class
