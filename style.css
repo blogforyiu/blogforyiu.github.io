@@ -1,325 +1,176 @@
-:root {
-  --bg-color: #fcfbfa;           /* 아주 미세하게 화사한 웜 아이보리 바탕색 */
-  --header-bg: #ffffff;
-  --primary: #1a202c;            /* 깊이감 있는 딥 다크 차콜 */
-  --accent: #319795;             /* 세련된 틸(Teal) 포인트 컬러 */
-  --text-main: #2d3748;
-  --text-sub: #718096;
-  --border-color: #edf2f7;
-  --shadow-subtle: 0 10px 30px rgba(0, 0, 0, 0.04);
-  --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.08);
-}
+/* ==========================================
+   에코 힐링 정보 커뮤니티 - 공통 스타일 (style.css)
+   ========================================== */
 
-* { 
-  box-sizing: border-box; 
+:root {
+  --bg-gradient: #f8fafc;
+  --card-bg: #ffffff;
+  --card-border: #edf2f7;
+  --text-main: #111111;
+  --text-sub: #2d3748;
+  --text-muted: #a0aec0;
+  --primary: #ff5722;
+  --primary-hover: #e64a19;
+  --shadow-sm: 0 2px 10px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.04);
 }
 
 body {
-  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, sans-serif !important;
-  background-color: var(--bg-color);
-  color: var(--text-main);
-  margin: 0;
+  font-family: 'MomentsKkugKkug', 'Pretendard Variable', Pretendard, sans-serif !important;
+  background: var(--bg-gradient);
   padding: 0;
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.8;
+  margin: 0;
+  padding-top: 100px;
 }
 
-/* 🌟 모든 페이지 공통 상단 네비게이션 헤더 (왼쪽 마크 고정) */
+/* 🌟 스크롤 시 사라지고 나타나는 스마트 상단 헤더 */
 .site-header {
-  background: var(--header-bg);
-  border-bottom: 1px solid var(--border-color);
-  padding: 22px 50px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--card-border);
+  padding: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+  z-index: 1000;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s ease-in-out;
+  box-sizing: border-box;
 }
+
+.site-header.header-hidden {
+  transform: translateY(-100%);
+}
+
 .site-logo {
-  font-size: 21px;
+  font-size: 24px;
   font-weight: 900;
-  letter-spacing: 2.5px;
-  color: var(--primary);
+  color: var(--text-main);
   text-decoration: none;
+  letter-spacing: 1px;
 }
+
 .site-nav {
   display: flex;
-  gap: 32px;
+  gap: 35px;
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   color: var(--text-sub);
 }
+
 .site-nav a {
   text-decoration: none;
   color: inherit;
   transition: color 0.2s;
 }
+
 .site-nav a:hover {
-  color: var(--accent);
-}
-
-/* 메인 wrapper */
-.wrapper {
-  max-width: 1360px;
-  width: 100%;
-  margin: 45px auto;
-  padding: 0 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 50px;
-}
-
-.sidebar {
-  display: none !important;
-}
-
-/* 🌿 메인 히어로 배너 (새로운 럭셔리 스타일) */
-.hero-banner-grid {
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  background: #ffffff;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: var(--shadow-subtle);
-  border: 1px solid var(--border-color);
-  min-height: 460px;
-}
-.hero-text-side {
-  padding: 70px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-}
-.hero-subtitle-tag {
-  font-size: 12px;
-  font-weight: 900;
-  letter-spacing: 2px;
-  color: var(--accent);
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-.hero-main-title {
-  font-size: 38px;
-  font-weight: 900;
-  line-height: 1.3;
   color: var(--primary);
-  margin-bottom: 20px;
-}
-.hero-desc {
-  font-size: 16px;
-  color: var(--text-sub);
-  line-height: 1.7;
-}
-.hero-img-side {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-.hero-img-side img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-.hero-banner-grid:hover .hero-img-side img {
-  transform: scale(1.03);
 }
 
-/* 🌟 포스트 섹션 디자인 */
-.blog-section {
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 40px;
-  box-shadow: var(--shadow-subtle);
-  border: 1px solid var(--border-color);
-  width: 100%;
-}
-.blog-header {
-  margin-bottom: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 2px solid #f7fafc;
-  padding-bottom: 16px;
-}
-.blog-title {
-  font-size: 22px;
-  font-weight: 900;
-  color: var(--primary);
-  letter-spacing: -0.5px;
+/* 와이드형 모던 아티클 래퍼 */
+.article-wrapper {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 60px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--card-border);
+  box-sizing: border-box;
 }
 
-/* 4열 그리드 카드 스타일 */
-.post-list-scroll {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  width: 100%;
-}
-
-.post-card-mini {
-  background: #ffffff;
-  border-radius: 16px;
-  overflow: hidden;
+.back-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background: var(--text-main);
+  color: #ffffff;
   text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-  border: 1px solid var(--border-color);
-  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  font-weight: 700;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  transition: background 0.2s;
 }
-.post-card-mini:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--shadow-hover);
-  border-color: var(--accent);
+
+.back-btn:hover {
+  background: var(--primary);
 }
-.post-thumb-wrapper-mini {
-  width: 100%;
-  height: 180px;
-  background: #f7fafc;
-  overflow: hidden;
-}
-.post-thumb-mini {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.post-card-mini:hover .post-thumb-mini {
-  transform: scale(1.06);
-}
-.post-content-mini {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  flex-grow: 1;
-}
-.post-title-mini {
-  font-size: 15px;
+
+.article-category {
+  font-size: 14px;
   font-weight: 800;
   color: var(--primary);
-  line-height: 1.5;
-  margin-bottom: 12px;
-  display: -webkit-box;
-  -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.post-date-mini {
-  font-size: 12px;
-  color: var(--text-sub);
-  font-weight: 700;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-/* 🖼️ 상세 본문 및 서브 페이지 이미지 비율 유지 및 정상 출력 설정 */
-.article-content img, article img, .post-body img {
-  display: block !important;
-  width: 100% !important;
-  max-width: 100% !important;
-  height: auto !important;
-  max-height: 500px !important;
-  border-radius: 16px !important;
-  margin: 35px 0 !important;
-  box-shadow: var(--shadow-subtle);
-  background-color: transparent !important;
-}
-
-/* 📄 서브 페이지 및 상세 본문 공통 스타일 */
-.contact-container, .article-wrapper, .policy-wrapper {
-  max-width: 900px;
-  margin: 50px auto;
-  background: #ffffff;
-  border-radius: 24px;
-  padding: 60px;
-  box-shadow: var(--shadow-subtle);
-  border: 1px solid var(--border-color);
-}
-.contact-title, .article-title, .policy-title {
+.article-title {
   font-size: 34px;
   font-weight: 900;
-  color: var(--primary);
-  margin-bottom: 15px;
-}
-.article-content {
-  font-size: 17px;
-  line-height: 1.9;
   color: var(--text-main);
+  margin-bottom: 15px;
+  line-height: 1.3;
 }
 
-/* 폼 스타일 */
-.form-group {
+.article-date {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid var(--card-border);
+}
+
+/* 📖 본문 가독성 극대화 스타일 */
+.article-content {
+  font-size: 18px;
+  line-height: 2.0 !important;
+  color: var(--text-sub) !important;
+  font-weight: 500 !important;
+  letter-spacing: -0.3px;
+}
+
+.article-content h2 {
+  font-size: 24px;
+  font-weight: 900;
+  color: var(--text-main);
+  margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.article-content p {
   margin-bottom: 24px;
+  color: var(--text-sub) !important;
 }
-.form-label {
-  display: block;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--primary);
-  margin-bottom: 8px;
+
+/* 🖼️ 본문 안의 이미지 비율 유지 및 와이드 둥근 모서리 설정 */
+.article-content img {
+  display: block !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 550px !important;
+  object-fit: cover !important;
+  border-radius: 16px !important;
+  margin: 40px auto !important;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.06);
 }
-.form-input, .form-textarea {
-  width: 100%;
-  padding: 15px 20px;
-  border: 1px solid #cbd5e1;
-  border-radius: 12px;
-  font-size: 15px;
-  font-family: inherit;
-  outline: none;
-  background: #f8fafc;
-  transition: all 0.2s ease;
-}
-.form-input:focus, .form-textarea:focus {
-  border-color: var(--accent);
-  background: #ffffff;
-  box-shadow: 0 0 0 4px rgba(49, 151, 149, 0.12);
-}
-.form-textarea {
-  resize: vertical;
-  min-height: 160px;
-}
-.submit-btn {
-  width: 100%;
-  background: var(--primary);
-  color: #ffffff;
-  border: none;
-  padding: 16px;
-  font-size: 16px;
-  font-weight: 800;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: background 0.2s, transform 0.1s;
-  box-shadow: 0 4px 15px rgba(26, 32, 44, 0.2);
-  margin-top: 10px;
-}
-.submit-btn:hover {
-  background: var(--accent);
-  transform: translateY(-2px);
-}
-.back-home-link, .back-btn {
-  display: inline-block;
-  margin-bottom: 25px;
-  font-size: 14px;
-  font-weight: 700;
-  color: var(--primary);
-  text-decoration: none;
-}
-.back-home-link:hover, .back-btn:hover {
-  color: var(--accent);
+
+/* 하단 홈으로 돌아가기 버튼 영역 스타일 */
+.article-footer-nav {
+  margin-top: 60px;
+  padding-top: 30px;
+  border-top: 1px solid var(--card-border);
+  text-align: center;
 }
 
 /* 반응형 미디어쿼리 */
-@media (max-width: 1200px) {
-  .hero-banner-grid { grid-template-columns: 1fr; }
-  .hero-img-side { height: 280px; }
-  .post-list-scroll { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 650px) {
-  .post-list-scroll { grid-template-columns: 1fr; }
-  .contact-container, .article-wrapper, .policy-wrapper { padding: 30px; }
-  .site-header { padding: 18px 24px; }
-  .hero-text-side { padding: 40px; }
+@media (max-width: 768px) {
+  .site-header { padding: 15px 20px; }
+  .site-nav { display: none; }
+  .article-wrapper { padding: 30px 20px; margin: 20px; }
+  .article-title { font-size: 26px; }
 }
