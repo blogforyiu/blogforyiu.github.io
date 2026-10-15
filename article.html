@@ -3,12 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>포스트 상세 - 에코 힐링 정보 커뮤니티</title>
+  <title>포스트 상세 - ECO & TECH</title>
+  <link rel="stylesheet" href="style.css?v=6">
   
-  <!-- 공통 스타일시트 연결 -->
-  <link rel="stylesheet" href="style.css?v=3">
-  
-  <!-- 눈누 메모먼트 꾹꾹체 웹폰트 선언 -->
   <style>
     @font-face {
       font-family: 'MomentsKkugKkug';
@@ -18,48 +15,48 @@
     }
   </style>
 
-  <!-- Firebase SDK (조회수 연동용) -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
-<!-- 상단 네비게이션 헤더 (스크롤 감지 숨김/나타남 적용) -->
+<!-- 상단 네비게이션 헤더 -->
 <header class="site-header" id="siteHeader">
   <a href="index.html" class="site-logo">ECO & TECH</a>
   <nav class="site-nav">
-    <a href="index.html">OUTLET</a>
-    <a href="index.html">SHOES</a>
-    <a href="index.html">MEN</a>
-    <a href="index.html">WOMEN</a>
-    <a href="index.html">SPORTS</a>
-    <a href="index.html">LIFESTYLE</a>
+    <a href="index.html">HOME</a>
+    <a href="index.html">IT / Tech</a>
+    <a href="index.html">Life / Tips</a>
+    <a href="index.html">Travel / Food</a>
+    <a href="index.html">Finance</a>
   </nav>
+  <div class="header-right-menu">
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </header>
 
 <div class="article-wrapper">
-  <!-- 상단 홈으로 돌아가기 버튼 -->
-  <a href="index.html" class="back-btn">← 홈으로 돌아가기</a>
+  <a href="index.html" class="back-btn">← BACK TO LIST</a>
 
   <div id="article-container">
-    <h2 style="text-align: center; color: #a0aec0;">포스트를 불러오는 중입니다...</h2>
+    <h2 style="text-align: center; color: #767677;">포스트를 불러오는 중입니다...</h2>
   </div>
 
-  <!-- 하단 홈으로 돌아가기 버튼 영역 -->
   <div class="article-footer-nav">
-    <a href="index.html" class="back-btn">🏠 홈으로 돌아가기</a>
+    <a href="index.html" class="back-btn">🏠 BACK TO HOME</a>
   </div>
 </div>
 
 <script src="data.js"></script>
 <script>
-  // 🌟 스크롤 방향 감지하여 헤더 숨기기 / 나타내기 기능
   let lastScrollTop = 0;
   const header = document.getElementById('siteHeader');
 
   window.addEventListener('scroll', function() {
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    
     if (scrollTop > lastScrollTop && scrollTop > 100) {
       header.classList.add('header-hidden');
     } else {
@@ -68,7 +65,6 @@
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   }, false);
 
-  // Firebase 및 포스트 렌더링 로직
   const firebaseConfig = {
     apiKey: "AIzaSyBR0wLEB88q2_aLBZPrdKFH27wxjHXsrIc",
     authDomain: "blog-visitor-87a5c.firebaseapp.com",
@@ -88,54 +84,39 @@
 
     try {
       if (typeof posts === 'undefined') {
-        throw new Error("data.js 파일을 불러오지 못했거나 posts 데이터가 정의되지 않았습니다.");
+        throw new Error("data.js 파일을 불러오지 못했습니다.");
       }
 
       const urlParams = new URLSearchParams(window.location.search);
       const postId = parseInt(urlParams.get('id')) || 1;
-
       const post = posts.find(p => p.id === postId);
 
       if (post) {
-        document.title = `${post.title} - 에코 힐링 정보 커뮤니티`;
+        document.title = `${post.title} - ECO & TECH`;
         
         container.innerHTML = `
-          <div class="article-category">${post.category}</div>
+          <div class="article-category">${post.category || 'STORY'}</div>
           <h1 class="article-title">${post.title}</h1>
           <div class="article-date">작성일: ${post.date}</div>
           <div class="article-content" id="post-content-body">${post.content}</div>
         `;
 
-        // 🖼️ 본문 이미지 지연 로딩(lazy loading) 적용
         const contentImages = document.querySelectorAll('#post-content-body img');
-        contentImages.forEach(img => {
-          img.setAttribute('loading', 'lazy');
-        });
+        contentImages.forEach(img => img.setAttribute('loading', 'lazy'));
 
-        // 조회수 증가 로직 (예외 처리)
         try {
           const docRef = db.collection("article_views").doc(String(postId));
           docRef.get().then((doc) => {
-            let currentViews = 0;
-            if (doc && doc.exists) {
-              currentViews = doc.data().views || 0;
-            }
+            let currentViews = doc && doc.exists ? doc.data().views || 0 : 0;
             docRef.set({ views: currentViews + 1 }, { merge: true }).catch(() => {});
           }).catch(() => {});
-        } catch (e) {
-          console.warn("Firestore 조회수 연동 예외:", e);
-        }
+        } catch (e) {}
 
       } else {
         container.innerHTML = `<h2>해당 포스트를 찾을 수 없습니다.</h2><p>존재하지 않거나 삭제된 게시물입니다.</p>`;
       }
-
     } catch (error) {
-      console.error("포스트 렌더링 에러:", error);
-      container.innerHTML = `
-        <h2 style="color: #e53e3e;">데이터를 불러오는 중 문제가 발생했습니다.</h2>
-        <p><strong>원인:</strong> ${error.message}</p>
-      `;
+      container.innerHTML = `<h2 style="color: #e53e3e;">문제가 발생했습니다.</h2><p>${error.message}</p>`;
     }
   };
 </script>
