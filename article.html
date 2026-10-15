@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>포스트 상세 - 에코 힐링 정보 커뮤니티</title>
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
   
   <!-- 눈누 메모먼트 꾹꾹체 웹폰트 올바른 선언 방식 -->
   <style>
@@ -17,132 +17,151 @@
 
     body {
       font-family: 'MomentsKkugKkug', 'Pretendard Variable', Pretendard, sans-serif !important;
-      background: var(--bg-gradient);
-      padding: 30px 20px;
+      background: #f8fafc;
+      padding: 0;
       margin: 0;
+      padding-top: 100px; /* 고정 헤더에 본문이 가리지 않도록 여백 확보 */
     }
 
-    /* 상단 네비게이션 헤더 스타일 통일 */
+    /* 🌟 스크롤 시 사라지고 나타나는 스마트 상단 헤더 (아디다스 스타일 와이드 네비게이션) */
     .site-header {
-      max-width: 950px;
-      margin: 0 auto 30px auto;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid #e2e8f0;
+      padding: 20px 50px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      padding: 20px 30px;
-      border-radius: 18px;
-      border: 1px solid var(--card-border);
-      box-shadow: var(--shadow-sm);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.03);
+      transition: transform 0.3s ease-in-out; /* 부드럽게 슥 사라지고 나타나는 효과 */
     }
+
+    /* 스크롤 내려서 숨겨질 때 적용될 클래스 */
+    .site-header.header-hidden {
+      transform: translateY(-100%);
+    }
+
     .site-logo {
-      font-size: 22px;
-      font-weight: 800;
-      color: var(--text-main);
+      font-size: 24px;
+      font-weight: 900;
+      color: #111111;
       text-decoration: none;
-      letter-spacing: -0.5px;
+      letter-spacing: 1px;
     }
     .site-nav {
       display: flex;
-      gap: 20px;
+      gap: 35px;
+      font-size: 15px;
+      font-weight: 700;
+      color: #4a5568;
     }
     .site-nav a {
       text-decoration: none;
-      color: var(--text-sub);
-      font-weight: 700;
-      font-size: 15px;
+      color: inherit;
       transition: color 0.2s;
     }
     .site-nav a:hover {
-      color: var(--primary);
+      color: #ff5722; /* 포인트 컬러 */
     }
 
+    /* 와이드형 모던 아티클 래퍼 (아디다스 감성 와이드 레이아웃) */
     .article-wrapper {
-      max-width: 950px;
-      margin: 0 auto;
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 22px;
-      padding: 40px;
-      border: 1px solid var(--card-border);
-      box-shadow: var(--shadow-md);
+      max-width: 1100px;
+      margin: 40px auto;
+      background: #ffffff;
+      border-radius: 20px;
+      padding: 60px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+      border: 1px solid #edf2f7;
     }
     .back-btn {
       display: inline-block;
-      padding: 10px 18px;
-      background: var(--primary);
+      padding: 10px 20px;
+      background: #111111;
       color: #ffffff;
       text-decoration: none;
       font-weight: 700;
-      border-radius: 10px;
-      margin-bottom: 24px;
+      border-radius: 8px;
+      margin-bottom: 30px;
       transition: background 0.2s;
     }
     .back-btn:hover {
-      background: var(--primary-hover);
+      background: #ff5722;
     }
     .article-category {
       font-size: 14px;
-      font-weight: 700;
-      color: var(--primary);
-      margin-bottom: 8px;
+      font-weight: 800;
+      color: #ff5722;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     .article-title {
-      font-size: 28px;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-bottom: 12px;
+      font-size: 34px;
+      font-weight: 900;
+      color: #111111;
+      margin-bottom: 15px;
       line-height: 1.3;
     }
     .article-date {
       font-size: 14px;
-      color: var(--text-muted);
-      margin-bottom: 30px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #e2e8f0;
+      color: #a0aec0;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid #edf2f7;
     }
 
-    /* 📖 본문 가독성 극대화 스타일 (진한 색상, 도톰한 두께, 넉넉한 줄간격) */
+    /* 📖 본문 가독성 극대화 스타일 */
     .article-content {
-      font-size: 17px;
-      line-height: 1.9 !important;
+      font-size: 18px;
+      line-height: 2.0 !important;
       color: #2d3748 !important;
       font-weight: 500 !important;
       letter-spacing: -0.3px;
     }
     .article-content h2 {
-      font-size: 21px;
-      font-weight: 800;
-      color: var(--text-main);
-      margin-top: 40px;
-      margin-bottom: 16px;
+      font-size: 24px;
+      font-weight: 900;
+      color: #111111;
+      margin-top: 50px;
+      margin-bottom: 20px;
     }
     .article-content p {
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       color: #2d3748 !important;
     }
     
-    /* 🖼️ 본문 안의 이미지 비율 유지 및 가운데 정렬 설정 */
+    /* 🖼️ 본문 안의 이미지 비율 유지 및 와이드 둥근 모서리 설정 */
     .article-content img {
       display: block !important;
       max-width: 100% !important;
-      width: auto !important;
+      width: 100% !important;
       height: auto !important;
-      max-height: 500px !important;
-      border-radius: 12px !important;
-      margin: 35px auto !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+      max-height: 550px !important;
+      object-fit: cover !important;
+      border-radius: 16px !important;
+      margin: 40px auto !important;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
     }
     
     /* 하단 홈으로 돌아가기 버튼 영역 스타일 */
     .article-footer-nav {
-      margin-top: 50px;
-      padding-top: 25px;
-      border-top: 1px solid #e2e8f0;
+      margin-top: 60px;
+      padding-top: 30px;
+      border-top: 1px solid #edf2f7;
       text-align: center;
+    }
+
+    /* 반응형 미디어쿼리 */
+    @media (max-width: 768px) {
+      .site-header { padding: 15px 20px; }
+      .site-nav { display: none; } /* 모바일에서는 메뉴 숨김 (필요시 햄버거 메뉴 확장 가능) */
+      .article-wrapper { padding: 30px 20px; margin: 20px; }
+      .article-title { font-size: 26px; }
     }
   </style>
 
@@ -152,14 +171,16 @@
 </head>
 <body>
 
-<!-- 상단 네비게이션 헤더 -->
-<header class="site-header">
+<!-- 상단 네비게이션 헤더 (스크롤 감지 숨김/나타남 적용) -->
+<header class="site-header" id="siteHeader">
   <a href="index.html" class="site-logo">ECO & TECH</a>
   <nav class="site-nav">
-    <a href="index.html">홈</a>
-    <a href="about.html">소개</a>
-    <a href="privacy.html">개인정보처리방침</a>
-    <a href="contact.html">문의하기</a>
+    <a href="index.html">OUTLET</a>
+    <a href="index.html">SHOES</a>
+    <a href="index.html">MEN</a>
+    <a href="index.html">WOMEN</a>
+    <a href="index.html">SPORTS</a>
+    <a href="index.html">LIFESTYLE</a>
   </nav>
 </header>
 
@@ -168,7 +189,7 @@
   <a href="index.html" class="back-btn">← 홈으로 돌아가기</a>
 
   <div id="article-container">
-    <h2 style="text-align: center; color: var(--text-muted);">포스트를 불러오는 중입니다...</h2>
+    <h2 style="text-align: center; color: #a0aec0;">포스트를 불러오는 중입니다...</h2>
   </div>
 
   <!-- 하단 홈으로 돌아가기 버튼 영역 -->
@@ -179,6 +200,24 @@
 
 <script src="data.js"></script>
 <script>
+  // 🌟 스크롤 방향 감지하여 헤더 숨기기 / 나타내기 기능
+  let lastScrollTop = 0;
+  const header = document.getElementById('siteHeader');
+
+  window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+      // 아래로 내릴 때: 헤더 숨김
+      header.classList.add('header-hidden');
+    } else {
+      // 위로 올릴 때: 헤더 다시 나타남
+      header.classList.remove('header-hidden');
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  }, false);
+
+  // Firebase 및 포스트 렌더링 로직
   const firebaseConfig = {
     apiKey: "AIzaSyBR0wLEB88q2_aLBZPrdKFH27wxjHXsrIc",
     authDomain: "blog-visitor-87a5c.firebaseapp.com",
