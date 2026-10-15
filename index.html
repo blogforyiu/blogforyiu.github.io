@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ECO & TECH - Official Store</title>
-  <link rel="stylesheet" href="style.css?v=6">
+  <link rel="stylesheet" href="style.css?v=10">
   
   <style>
     @font-face {
@@ -21,7 +21,7 @@
 </head>
 <body>
 
-<!-- 상단 네비게이션 헤더 (영문 혼용 카테고리 & 스크롤 숨김) -->
+<!-- 상단 네비게이션 헤더 -->
 <header class="site-header" id="siteHeader">
   <a href="index.html" class="site-logo">ECO & TECH</a>
   <nav class="site-nav">
@@ -38,7 +38,7 @@
   </div>
 </header>
 
-<!-- 풀 와이드 히어로 배너 섹션 -->
+<!-- 풀 와이드 히어로 배너 섹션 (카테고리별 실시간 연동) -->
 <section class="adidas-hero-section">
   <div class="hero-grid" id="hero-grid-container"></div>
 </section>
@@ -53,6 +53,7 @@
 
 <script src="data.js"></script>
 <script>
+  // 스크롤 감지 헤더 숨김/나타남 제어
   let lastScrollTop = 0;
   const header = document.getElementById('siteHeader');
 
@@ -66,34 +67,77 @@
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   }, false);
 
-  let currentSelectedCategory = '전체';
-
+  // 카테고리 클릭 시 상단 히어로 배너와 하단 목록을 동시에 필터링하는 함수
   function filterCategory(categoryName, event) {
     if(event) event.preventDefault();
-    currentSelectedCategory = categoryName;
     
-    document.querySelectorAll('.site-nav a').forEach(el => el.style.color = '#111');
-    if(event) event.target.style.color = '#ff5722';
-
-    document.getElementById('current-category-title').innerText = categoryName === '전체' ? 'ALL POSTS' : categoryName;
-    renderPosts(categoryName);
-  }
-
-  function renderPosts(categoryFilter) {
-    const postContainer = document.getElementById('post-grid-container');
-    
-    let filteredPosts = posts;
-    if (categoryFilter !== '전체') {
-      filteredPosts = posts.filter(p => p.category === categoryFilter);
+    // 네비게이션 메뉴 활성화 스타일 변경
+    document.querySelectorAll('.site-nav a').forEach(el => {
+      el.classList.remove('active-cat');
+      el.style.color = '#000';
+    });
+    if(event) {
+      event.target.classList.add('active-cat');
+      event.target.style.color = '#ff5722';
     }
 
-    if (filteredPosts.length === 0) {
+    // 제목 텍스트 변경
+    document.getElementById('current-category-title').innerText = categoryName === '전체' ? 'ALL POSTS' : categoryName;
+    
+    // 데이터 필터링 실행
+    let filteredPosts = posts;
+    if (categoryName !== '전체') {
+      filteredPosts = posts.filter(p => p.category === categoryName);
+    }
+
+    // 1. 상단 히어로 배너 렌더링 (해당 카테고리 글 상위 최대 3개)
+    renderHero(filteredPosts);
+
+    // 2. 하단 포스트 그리드 렌더링
+    renderPosts(filteredPosts);
+  }
+
+  // 상단 히어로 배너 렌더링 함수
+  function renderHero(targetPosts) {
+    const heroContainer = document.getElementById('hero-grid-container');
+    
+    if (!targetPosts || targetPosts.length === 0) {
+      heroContainer.innerHTML = '<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: #fff;">해당 카테고리에 표시할 배너 게시물이 없습니다.</div>';
+      return;
+    }
+
+    let heroHTML = '';
+    const heroPosts = targetPosts.slice(0, 3); // 최대 3개
+    
+    heroPosts.forEach((post) => {
+      const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
+      const imgSrc = imgMatch ? imgMatch[1] : 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80';
+      
+      heroHTML += `
+        <div class="hero-card" onclick="location.href='article.html?id=${post.id}'">
+          <img src="${imgSrc}" alt="${post.title}" loading="lazy">
+          <div class="hero-card-content">
+            <span class="hero-badge">${post.category || 'FEATURED'}</span>
+            <h3>${post.title}</h3>
+            <span class="hero-link">DISCOVER MORE →</span>
+          </div>
+        </div>
+      `;
+    });
+    heroContainer.innerHTML = heroHTML;
+  }
+
+  // 하단 포스트 그리드 렌더링 함수
+  function renderPosts(targetPosts) {
+    const postContainer = document.getElementById('post-grid-container');
+
+    if (!targetPosts || targetPosts.length === 0) {
       postContainer.innerHTML = '<p style="padding: 40px; color: #767677; grid-column: 1/-1;">해당 카테고리에 등록된 포스트가 없습니다.</p>';
       return;
     }
 
     let listHTML = '';
-    filteredPosts.forEach(post => {
+    targetPosts.forEach(post => {
       const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
       const imgSrc = imgMatch ? imgMatch[1] : 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80';
 
@@ -113,35 +157,13 @@
     postContainer.innerHTML = listHTML;
   }
 
+  // 페이지 최초 접속 시 전체 포스트 출력
   window.onload = function() {
-    const heroContainer = document.getElementById('hero-grid-container');
-
     if (typeof posts === 'undefined' || posts.length === 0) {
-      if(heroContainer) heroContainer.innerHTML = '<p style="padding:40px; text-align:center;">게시글을 불러올 수 없습니다.</p>';
+      document.getElementById('hero-grid-container').innerHTML = '<p style="padding:40px; text-align:center;">게시글을 불러올 수 없습니다.</p>';
       return;
     }
-
-    let heroHTML = '';
-    const heroPosts = posts.slice(0, 3);
-    
-    heroPosts.forEach((post) => {
-      const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
-      const imgSrc = imgMatch ? imgMatch[1] : 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80';
-      
-      heroHTML += `
-        <div class="hero-card" onclick="location.href='article.html?id=${post.id}'">
-          <img src="${imgSrc}" alt="${post.title}" loading="lazy">
-          <div class="hero-card-content">
-            <span class="hero-badge">${post.category || 'FEATURED'}</span>
-            <h3>${post.title}</h3>
-            <span class="hero-link">DISCOVER MORE →</span>
-          </div>
-        </div>
-      `;
-    });
-    heroContainer.innerHTML = heroHTML;
-
-    renderPosts('전체');
+    filterCategory('전체');
   };
 </script>
 
