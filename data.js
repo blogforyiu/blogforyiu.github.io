@@ -101,18 +101,18 @@ const posts = [
         category: "생활/꿀팁",
         title: "전자레인지 만능 청소 및 냄새 제거법: 귤껍질과 식초로 묵은 때 불리기",
         date: "2026. 10. 07",
-        thumb: "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyNDEwMTBfNzAg%2FMDAxNzI4NTQyNjIxNTc3.9m5unhSvYTtZCxcYmPY3ukexkpTMt3Gr8qluBhgZD5gg.22mxL5aRrqwJ5F2USRcXrg1RT4tSkf_1lMxRnwezwy8g.JPEG%2FDSC09007.JPG&type=sc960_832",
+        thumb: "https://images.pexels.com/photos/9462228/pexels-photo-9462228.jpeg",
         snippet: "식초, 레몬, 귤껍질 등을 활용해 묵은 기름때를 불리고 렌지 내부 탈취를 완벽하게 끝내는 과정 리뷰.",
         content: `
             <p>자취생들이나 주부들이 매일같이 가장 자주 사용하지만, 막상 청소하려고 마음먹으면 가장 귀찮고 기피하게 되는 가전제품을 꼽으라면 단연 '전자레인지'가 아닐까요? 냉동실에 있던 피자나 즉석식품, 각종 찌개류를 데워 먹다가 국물이 튀고 사방에 기름때와 양념이 굳어버려, 나중에 문을 열어보면 꼬릿한 음식물 냄새와 함께 내부가 엉망진창으로 오염되어 있기 일쑤입니다. 수세미를 들고 거품을 내어 박박 긁어내려 해도 내부에 흠집만 나고 잘 닦이지 않아 스트레스만 받죠. 오늘은 화학세제 없이 집에서 흔히 구할 수 있는 재료로 전자레인지를 힘들이지 않고 새 것처럼 되돌리는 천연 스팀 세척법을 알려드립니다.</p>
 
-            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MjJfMTE1%2FMDAxNjI0MzI0MDk1NTM5.nKzNMvvrUPHrlnN5pXXqUAdVG6Kg3xd0rkLxAK4-iZ4g.GCkk3WAJDLb43LN2mAziRmADvMwfoUG9e7pSG1uhwFog.JPEG.ps717942%2FIMG_4382.jpg&type=sc960_832" alt="천연 세척 재료">
+            <img src="https://images.pexels.com/photos/9462228/pexels-photo-9462228.jpeg" alt="천연 세척 재료">
 
             <h2>1. 전자레인지 내부 오염의 원인과 천연 스팀 세척의 배경 이해하기</h2>
             <p>전자레인지는 마이크로파를 이용해 음식물 속 수분 분자를 진동시켜 가열하는 원리를 가집니다. 이 과정에서 가열되는 음식물 속 미세한 기름방울과 양념 국물이 폭발하듯 사방으로 튀어 내부 벽면에 밀착되고, 고온에 반복 노출되면서 단단하게 눌어붙게 됩니다. 여기에 다양한 음식 냄새가 섞여 내부 단열재와 벽면에 배어들기 때문에, 독한 화학 세제로 표면을 닦아내는 것만으로는 근본적인 냄새 제거와 찌든 때 불리기가 어렵습니다. 뜨거운 증기와 천연 산성 성분을 활용한 스팀 사우나 방식이 가장 과학적이고 효과적인 이유입니다.</p>
             <p>화학성분이 강한 주방 세제를 전자레인지 내부에 무분별하게 분사하면 플라스틱 코팅면을 부식시킬 뿐만 아니라, 다음 사용 시 음식물에 세제 잔여물이 스며들 위험이 있습니다. 따라서 식초의 아세트산 성분과 감귤류의 테르펜 성분을 활용한 천연 세척법은 위생과 안전 측면에서 가장 완벽한 대안이 됩니다.</p>
 
-            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MjJfMTE1%2FMDAxNjI0MzI0MDk1NTM5.nKzNMvvrUPHrlnN5pXXqUAdVG6Kg3xd0rkLxAK4-iZ4g.GCkk3WAJDLb43LN2mAziRmADvMwfoUG9e7pSG1uhwFog.JPEG.ps717942%2FIMG_4382.jpg&type=sc960_832" alt="천연 세척 재료">
+            <img src="https://images.pexels.com/photos/4099082/pexels-photo-4099082.jpeg" alt="천연 세척 재료">
 
             <h2>2. 힘들이지 않고 전자레인지를 정화하는 단계별 실전 노하우 3가지</h2>
             <p><strong>첫째, 식초와 귤껍질을 활용한 스팀 용액 준비하기:</strong> 내열용기나 오븐용 유리 그릇에 물을 절반쯤 붓고 식초 2~3스푼을 섞은 뒤 먹고 남은 귤껍질이나 레몬 조각을 담아줍니다. 식초의 산성 성분과 감귤류의 시트러스 정유 성분이 세척 효과를 극대화합니다.</p>
@@ -122,7 +122,7 @@ const posts = [
             <h2>3. 트러블슈팅 및 주의사항: 기기 보호 및 안전 수칙</h2>
             <p>전자레인지 내부를 청소할 때 철수세미나 거친 연마 패드를 사용하면 내부 코팅면이나 플라스틱 벽면에 영구적인 흠집이 생겨 화재 위험이나 마이크로파 난반사를 유발할 수 있으므로 반드시 부드러운 스펀지나 키친타올을 사용해야 합니다. 또한 유리 그릇을 고온으로 가열한 뒤 꺼낼 때 급격한 온도 차이로 인해 유리 파손이나 화상을 입을 수 있으므로 반드시 주방 장갑을 착용하고 안전하게 다루어야 합니다.</p>
 
-            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA2MjJfMTE1%2FMDAxNjI0MzI0MDk1NTM5.nKzNMvvrUPHrlnN5pXXqUAdVG6Kg3xd0rkLxAK4-iZ4g.GCkk3WAJDLb43LN2mAziRmADvMwfoUG9e7pSG1uhwFog.JPEG.ps717942%2FIMG_4382.jpg&type=sc960_832" alt="천연 세척 재료">
+            <img src="https://images.pexels.com/photos/9462303/pexels-photo-9462303.jpeg" alt="천연 세척 재료">
 
             <h2>4. 결론: 주기적인 천연 세척으로 가전 수명과 위생 지키기</h2>
             <p>전자레인지는 식음료를 다루는 가전인 만큼 위생 관리가 직결되는 핵심 공간입니다. 화학 세제의 잔여물 걱정 없이 식초와 귤껍질 같은 천연 재료로 스팀 세척을 주기적으로 실천한다면, 묵은 기름때와 불쾌한 냄새를 말끔히 없애고 언제나 위생적이고 쾌적한 주방 환경을 유지하실 수 있습니다.</p>
