@@ -1,125 +1,127 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ECO & TECH</title>
-  <link rel="stylesheet" href="style.css?v=6">
-  
-  <style>
-    @font-face {
-      font-family: 'MomentsKkugKkug';
-      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2') format('woff2');
-      font-weight: normal;
-      font-style: normal;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>포스트 상세 - ECO & TECH</title>
+  <link rel="stylesheet" href="style.css?v=6">
+  
+  <style>
+    @font-face {
+      font-family: 'MomentsKkugKkug';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2204@1.0/MomentsKkugKkug.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+  </style>
 
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
 <!-- 상단 네비게이션 헤더 -->
 <header class="site-header" id="siteHeader">
-  <a href="index.html" class="site-logo">ECO & TECH</a>
-  <nav class="site-nav">
-    <a href="index.html">HOME</a>
-    <a href="index.html">IT / Tech</a>
-    <a href="index.html">Life / Tips</a>
-    <a href="index.html">Travel / Food</a>
-    <a href="index.html">Finance</a>
-  </nav>
-  <div class="header-right-menu">
-    <a href="about.html">About</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="contact.html">Contact</a>
-  </div>
+  <a href="index.html" class="site-logo">ECO & TECH</a>
+  <nav class="site-nav">
+    <a href="index.html">HOME</a>
+    <a href="index.html">IT / Tech</a>
+    <a href="index.html">Life / Tips</a>
+    <a href="index.html">Travel / Food</a>
+    <a href="index.html">Finance</a>
+  </nav>
+  <div class="header-right-menu">
+    <a href="about.html">About</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="contact.html">Contact</a>
+  </div>
 </header>
 
 <div class="article-wrapper">
-  <a href="index.html" class="back-btn">← BACK TO LIST</a>
+  <a href="index.html" class="back-btn">← BACK TO LIST</a>
 
-  <div id="article-container">
-    <h2 style="text-align: center; color: #767677;">포스트를 불러오는 중입니다...</h2>
-  </div>
+  <div id="article-container">
+    <h2 style="text-align: center; color: #767677;">포스트를 불러오는 중입니다...</h2>
+  </div>
 
-  <div class="article-footer-nav">
-    <a href="index.html" class="back-btn">🏠 BACK TO HOME</a>
-  </div>
+  <div class="article-footer-nav">
+    <a href="index.html" class="back-btn">🏠 BACK TO HOME</a>
+  </div>
 </div>
 
 <script src="data.js"></script>
 <script>
-  let lastScrollTop = 0;
-  const header = document.getElementById('siteHeader');
+  let lastScrollTop = 0;
+  const header = document.getElementById('siteHeader');
 
-  window.addEventListener('scroll', function() {
-    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    if (scrollTop > lastScrollTop && scrollTop > 100) {
-      header.classList.add('header-hidden');
-    } else {
-      header.classList.remove('header-hidden');
-    }
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
-  }, false);
+  window.addEventListener('scroll', function() {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop && scrollTop > 100) {
+      header.classList.add('header-hidden');
+    } else {
+      header.classList.remove('header-hidden');
+    }
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+  }, false);
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyBR0wLEB88q2_aLBZPrdKFH27wxjHXsrIc",
-    authDomain: "blog-visitor-87a5c.firebaseapp.com",
-    projectId: "blog-visitor-87a5c",
-    storageBucket: "blog-visitor-87a5c.appspot.com",
-    messagingSenderId: "82038942165",
-    appId: "1:82038942165:web:9772c7c77bd3f88393f56c"
-  };
+  const firebaseConfig = {
+    apiKey: "AIzaSyBR0wLEB88q2_aLBZPrdKFH27wxjHXsrIc",
+    authDomain: "blog-visitor-87a5c.firebaseapp.com",
+    projectId: "blog-visitor-87a5c",
+    storageBucket: "blog-visitor-87a5c.appspot.com",
+    messagingSenderId: "82038942165",
+    appId: "1:82038942165:web:9772c7c77bd3f88393f56c"
+  };
 
-  if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-  }
-  const db = firebase.firestore();
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
 
-  window.onload = function() {
-    const container = document.getElementById('article-container');
+  window.onload = function() {
+    const container = document.getElementById('article-container');
 
-    try {
-      if (typeof posts === 'undefined') {
-        throw new Error("data.js 파일을 불러오지 못했습니다.");
-      }
+    try {
+      if (typeof posts === 'undefined') {
+        throw new Error("data.js 파일을 불러오지 못했습니다.");
+      }
 
-      const urlParams = new URLSearchParams(window.location.search);
-      const postId = parseInt(urlParams.get('id')) || 1;
-      const post = posts.find(p => p.id === postId);
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = parseInt(urlParams.get('id')) || 1;
+      const post = posts.find(p => p.id === postId);
 
-      if (post) {
-        document.title = `${post.title} - ECO & TECH`;
-        
-        container.innerHTML = `
-          <div class="article-category">${post.category || 'STORY'}</div>
-          <h1 class="article-title">${post.title}</h1>
-          <div class="article-date">작성일: ${post.date}</div>
-          <div class="article-content" id="post-content-body">${post.content}</div>
-        `;
+      if (post) {
+        document.title = `${post.title} - ECO & TECH`;
+        
+        container.innerHTML = `
+          <div class="article-category">${post.category || 'STORY'}</div>
+          <h1 class="article-title">${post.title}</h1>
+          <div class="article-date">작성일: ${post.date}</div>
+          <div class="article-content" id="post-content-body">${post.content}</div>
+        `;
 
-        const contentImages = document.querySelectorAll('#post-content-body img');
-        contentImages.forEach(img => img.setAttribute('loading', 'lazy'));
+        const contentImages = document.querySelectorAll('#post-content-body img');
+        contentImages.forEach(img => img.setAttribute('loading', 'lazy'));
 
-        try {
-          const docRef = db.collection("article_views").doc(String(postId));
-          docRef.get().then((doc) => {
-            let currentViews = doc && doc.exists ? doc.data().views || 0 : 0;
-            docRef.set({ views: currentViews + 1 }, { merge: true }).catch(() => {});
-          }).catch(() => {});
-        } catch (e) {}
+        try {
+          const docRef = db.collection("article_views").doc(String(postId));
+          docRef.get().then((doc) => {
+            let currentViews = doc && doc.exists ? doc.data().views || 0 : 0;
+            docRef.set({ views: currentViews + 1 }, { merge: true }).catch(() => {});
+          }).catch(() => {});
+        } catch (e) {}
 
-      } else {
-        container.innerHTML = `<h2>해당 포스트를 찾을 수 없습니다.</h2><p>존재하지 않거나 삭제된 게시물입니다.</p>`;
-      }
-    } catch (error) {
-      container.innerHTML = `<h2 style="color: #e53e3e;">문제가 발생했습니다.</h2><p>${error.message}</p>`;
-    }
-  };
+      } else {
+        container.innerHTML = `<h2>해당 포스트를 찾을 수 없습니다.</h2><p>존재하지 않거나 삭제된 게시물입니다.</p>`;
+      }
+    } catch (error) {
+      container.innerHTML = `<h2 style="color: #e53e3e;">문제가 발생했습니다.</h2><p>${error.message}</p>`;
+    }
+  };
 </script>
 
 </body>
 </html>
+
+여기 있어?
