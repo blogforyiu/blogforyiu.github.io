@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>개인정보처리방침 - ECO & TECH</title>
-  <link rel="stylesheet" href="style.css?v=9">
+  <title>ECO & TECH</title>
+  <link rel="stylesheet" href="style.css?v=13">
   
   <style>
     @font-face {
@@ -14,6 +14,10 @@
       font-style: normal;
     }
   </style>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
 </head>
 <body>
 
@@ -21,55 +25,49 @@
 <header class="site-header" id="siteHeader">
   <a href="index.html" class="site-logo">ECO & TECH</a>
   <nav class="site-nav">
-    <a href="index.html">HOME</a>
-    <a href="index.html">IT / Tech</a>
-    <a href="index.html">Life / Tips</a>
-    <a href="index.html">Travel / Food</a>
-    <a href="index.html">Finance</a>
+    <a href="#" onclick="filterCategory('전체', event)" class="active-cat">ALL</a>
+    <a href="#" onclick="filterCategory('IT/스마트폰', event)">IT / Tech</a>
+    <a href="#" onclick="filterCategory('생활/꿀팁', event)">Life / Tips</a>
   </nav>
   <div class="header-right-menu">
     <a href="about.html">About</a>
-    <a href="privacy.html" style="color: #ff5722; font-weight: 800;">Privacy</a>
+    <a href="privacy.html">Privacy</a>
     <a href="contact.html">Contact</a>
   </div>
 </header>
 
-<div class="article-wrapper">
-  <a href="index.html" class="back-btn">← BACK TO HOME</a>
-
-  <div class="article-content" style="padding-top: 20px;">
-    <h1 class="article-title" style="margin-bottom: 30px;">🔒 개인정보처리방침</h1>
-
-    <p>본 블로그는 「개인정보 보호법」 및 구글 애드센스 운영 정책에 따라 이용자의 개인정보 보호 및 권익을 보호하고, 개인정보와 관련한 이용자의 고충을 원활하게 처리할 수 있도록 다음과 같은 처리 방침을 두고 있습니다.</p>
-
-    <h2>제1조 (개인정보의 처리 목적)</h2>
-    <p>블로그는 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고 있는 개인정보는 다음의 목적 이외의 용도로는 사용되지 않으며, 이용 목적이 변경될 시에는 사전동의를 구할 예정입니다.</p>
-    <ul>
-      <li style="margin-bottom: 10px;">블로그 댓글 작성 및 관리, 문의 응대</li>
-      <li style="margin-bottom: 10px;">구글 애드센스를 통한 맞춤형 광고 제공 및 통계 분석</li>
-    </ul>
-
-    <h2>제2조 (구글(Google) 광고 및 쿠키(Cookie) 사용 안내)</h2>
-    <p>• 당 블로그는 구글 애드센스를 사용합니다.</p>
-    <p>• 구글을 포함한 제3자 벤더는 쿠키를 사용하여 사용자가 블로그에 방문한 이력 정보를 바탕으로 광고를 게재합니다.</p>
-    <p>• 구글은 광고 쿠키를 사용하여 사용자가 당 블로그 및 인터넷상의 다른 사이트에 방문한 기록을 바탕으로 적절한 광고를 사용자에게 노출할 수 있습니다.</p>
-    <p>• 사용자는 Google 광고 설정에서 맞춤광고를 중지할 수 있으며, 또는 <a href="https://www.aboutads.info" target="_blank" style="color: #ff5722; text-decoration: underline;">www.aboutads.info</a>를 방문하여 맞춤광고에 사용되는 제3자 벤더의 쿠키를 차단할 수 있습니다.</p>
-
-    <h2>제3조 (수집하는 개인정보 항목)</h2>
-    <p>• <strong>필수항목:</strong> IP 주소, 쿠키, 방문 기록, 서비스 이용 기록 (구글 애드센스 및 GA 등 자동 수집)</p>
-    <p>• <strong>선택항목:</strong> 닉네임, 이메일, 댓글 내용 (댓글 작성 시)</p>
-
-    <h2>제4조 (개인정보 보호 책임자)</h2>
-    <p>블로그 운영자는 개인정보 처리에 관한 업무를 총괄해서 책임지고 있습니다.</p>
-    <p>• <strong>담당자:</strong> 블로그 관리자</p>
+<!-- 풀 와이드 히어로 배너 섹션 -->
+<section class="adidas-hero-section">
+  <div class="hero-grid" id="hero-grid-container">
+    <div style="grid-column: 1/-1; padding: 60px; text-align: center; color: #fff;">인기 포스트를 불러오는 중입니다...</div>
   </div>
+</section>
 
-  <div class="article-footer-nav">
-    <a href="index.html" class="back-btn">🏠 BACK TO HOME</a>
+<!-- 전체 아티클 목록 섹션 -->
+<main class="main-container">
+  <div class="section-title-area">
+    <h2 id="current-category-title">ALL POSTS</h2>
   </div>
-</div>
+  <div class="post-grid" id="post-grid-container"></div>
+</main>
 
+<script src="data.js"></script>
 <script>
+  // Firebase 초기화
+  const firebaseConfig = {
+    apiKey: "AIzaSyBR0wLEB88q2_aLBZPrdKFH27wxjHXsrIc",
+    authDomain: "blog-visitor-87a5c.firebaseapp.com",
+    projectId: "blog-visitor-87a5c",
+    storageBucket: "blog-visitor-87a5c.appspot.com",
+    messagingSenderId: "82038942165",
+    appId: "1:82038942165:web:9772c7c77bd3f88393f56c"
+  };
+
+  if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+  }
+  const db = firebase.firestore();
+
   let lastScrollTop = 0;
   const header = document.getElementById('siteHeader');
 
@@ -82,6 +80,115 @@
     }
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
   }, false);
+
+  let postViewsMap = {};
+
+  window.onload = async function() {
+    if (typeof posts === 'undefined' || posts.length === 0) {
+      document.getElementById('hero-grid-container').innerHTML = '<p style="padding:40px; text-align:center; color:#fff;">게시글을 불러올 수 없습니다.</p>';
+      return;
+    }
+
+    try {
+      const snapshot = await db.collection("article_views").get();
+      snapshot.forEach(doc => {
+        postViewsMap[doc.id] = doc.data().views || 0;
+      });
+    } catch (e) {
+      console.log("조회수 불러오기 실패");
+    }
+
+    filterCategory('전체');
+  };
+
+  function filterCategory(categoryName, event) {
+    if(event) event.preventDefault();
+    
+    document.querySelectorAll('.site-nav a').forEach(el => {
+      el.classList.remove('active-cat');
+      el.style.color = '#000';
+    });
+    if(event) {
+      event.target.classList.add('active-cat');
+      event.target.style.color = '#ff5722';
+    }
+
+    document.getElementById('current-category-title').innerText = categoryName === '전체' ? 'ALL POSTS' : categoryName;
+    
+    let targetPosts = posts;
+    if (categoryName !== '전체') {
+      targetPosts = posts.filter(p => p.category === categoryName);
+    }
+
+    let listSorted = [...targetPosts].sort((a, b) => b.id - a.id);
+    renderPosts(listSorted);
+
+    let heroSorted = [...targetPosts].sort((a, b) => {
+      let viewsA = postViewsMap[String(a.id)] || 0;
+      let viewsB = postViewsMap[String(b.id)] || 0;
+      return viewsB - viewsA;
+    });
+    renderHero(heroSorted);
+  }
+
+  function renderHero(targetPosts) {
+    const heroContainer = document.getElementById('hero-grid-container');
+    
+    if (!targetPosts || targetPosts.length === 0) {
+      heroContainer.innerHTML = '<div style="grid-column: 1/-1; padding: 40px; text-align: center; color: #fff;">해당 카테고리에 표시할 배너 게시물이 없습니다.</div>';
+      return;
+    }
+
+    let heroHTML = '';
+    const heroPosts = targetPosts.slice(0, 3);
+    
+    heroPosts.forEach((post) => {
+      const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
+      const imgSrc = imgMatch ? imgMatch[1] : 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80';
+      const views = postViewsMap[String(post.id)] || 0;
+      
+      heroHTML += `
+        <div class="hero-card" onclick="location.href='article.html?id=${post.id}'">
+          <img src="${imgSrc}" alt="${post.title}" loading="lazy">
+          <div class="hero-card-content">
+            <span class="hero-badge">FEATURED ㆍ ${views} VIEWS</span>
+            <h3>${post.title}</h3>
+            <span class="hero-link">DISCOVER MORE →</span>
+          </div>
+        </div>
+      `;
+    });
+    heroContainer.innerHTML = heroHTML;
+  }
+
+  function renderPosts(targetPosts) {
+    const postContainer = document.getElementById('post-grid-container');
+
+    if (!targetPosts || targetPosts.length === 0) {
+      postContainer.innerHTML = '<p style="padding: 40px; color: #767677; grid-column: 1/-1;">해당 카테고리에 등록된 포스트가 없습니다.</p>';
+      return;
+    }
+
+    let listHTML = '';
+    targetPosts.forEach(post => {
+      const imgMatch = post.content.match(/<img[^>]+src="([^">]+)"/);
+      const imgSrc = imgMatch ? imgMatch[1] : 'https://images.unsplash.com/photo-1515955656352-a1fa3ffcd111?auto=format&fit=crop&w=800&q=80';
+
+      listHTML += `
+        <div class="post-card" onclick="location.href='article.html?id=${post.id}'">
+          <div class="post-card-img">
+            <img src="${imgSrc}" alt="${post.title}" loading="lazy">
+          </div>
+          <div class="post-card-body">
+            <span class="post-category">${post.category || 'STORY'}</span>
+            <h4 class="post-title">${post.title}</h4>
+            <span class="post-date">${post.date}</span>
+          </div>
+        </div>
+      `;
+    });
+    postContainer.innerHTML = listHTML;
+  }
 </script>
 
 </body>
